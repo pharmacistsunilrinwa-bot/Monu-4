@@ -4,7 +4,7 @@ enum class MONUDestination(
     val title: String,
     val icon: String
 ) {
-    CONNECTION("Connection"),
+    CONNECTION("Connection", "⌁"),
     HOME("Home", "⌂"),
     CHAT("Command Center", "◉"),
     TASKS("Tasks", "✓"),
