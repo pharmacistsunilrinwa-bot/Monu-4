@@ -1,0 +1,53 @@
+name: MONU Mobile Android Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build MONU APK
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Show Project
+        run: |
+          echo "MONU Mobile Build Started"
+          find . -maxdepth 3 -type f | sort
+
+      - name: Build Debug APK
+        run: gradle :app:assembleDebug --stacktrace
+
+      - name: Verify APK Exists
+        run: |
+          test -f app/build/outputs/apk/debug/app-debug.apk
+          echo "APK VERIFIED SUCCESSFULLY"
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MONU-Mobile-debug-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30

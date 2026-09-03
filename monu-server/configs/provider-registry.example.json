@@ -1,0 +1,51 @@
+{
+  "providers": {
+    "gemini": {
+      "enabled": true,
+      "credential_discovery": "environment",
+      "credential_pattern": "GEMINI_API_KEY_<number>",
+      "capabilities": [
+        "reasoning",
+        "text",
+        "multimodal"
+      ]
+    },
+    "groq": {
+      "enabled": true,
+      "credential_discovery": "environment",
+      "credential_pattern": "GROQ_API_KEY_<number>",
+      "capabilities": [
+        "reasoning",
+        "fast_inference"
+      ]
+    },
+    "cohere": {
+      "enabled": true,
+      "credential_discovery": "environment",
+      "credential_pattern": "COHERE_API_KEY_<number>",
+      "capabilities": [
+        "text",
+        "embedding",
+        "retrieval"
+      ]
+    },
+    "huggingface": {
+      "enabled": true,
+      "credential_discovery": "environment",
+      "credential_pattern": "HUGGINGFACE_API_KEY_<number>",
+      "capabilities": [
+        "models",
+        "inference"
+      ]
+    },
+    "github": {
+      "enabled": true,
+      "credential_discovery": "environment",
+      "credential_pattern": "GITHUB_TOKEN_<number>",
+      "capabilities": [
+        "repository",
+        "code_research"
+      ]
+    }
+  }
+}
