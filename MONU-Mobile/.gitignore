@@ -8,3 +8,6 @@
 .externalNativeBuild
 .cxx
 app/build
+
+# Local Android SDK path
+local.properties
