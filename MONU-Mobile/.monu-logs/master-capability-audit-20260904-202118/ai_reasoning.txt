@@ -1,0 +1,139 @@
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:3:enum class MONUDecisionStatus {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:13:enum class MONUDecisionFactorType {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:24:data class MONUDecisionFactor(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:26:    val type: MONUDecisionFactorType,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:32:data class MONUDecisionOption(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:36:    val factors: List<MONUDecisionFactor> = emptyList()
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:39:data class MONUDecision(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:43:    val status: MONUDecisionStatus = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:44:    val options: List<MONUDecisionOption> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:3:enum class IntelligenceStatus {
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:12:enum class IntelligenceConfidence {
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:20:data class IntelligenceSignal(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:26:    val confidence: IntelligenceConfidence = IntelligenceConfidence.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:29:data class IntelligenceInsight(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:34:    val confidence: IntelligenceConfidence,
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:35:    val status: IntelligenceStatus = IntelligenceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:38:data class IntelligenceSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:40:    val signals: List<IntelligenceSignal>,
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:41:    val insights: List<IntelligenceInsight>,
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:42:    val status: IntelligenceStatus
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:8:class MONUContextIntelligence {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:3:import com.monu.mobile.domain.model.MONUDecision
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:4:import com.monu.mobile.domain.model.MONUDecisionOption
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:5:import com.monu.mobile.domain.model.MONUDecisionStatus
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:7:class MONUDecisionCenter {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:9:    fun createDecision(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:13:        options: List<MONUDecisionOption>
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:14:    ): MONUDecision {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:15:        return MONUDecision(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:20:                MONUDecisionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:22:                MONUDecisionStatus.PENDING
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:30:        decision: MONUDecision,
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:32:    ): MONUDecision {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:38:            status = MONUDecisionStatus.SELECTED,
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:8:class MONUEventIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:1:package com.monu.mobile.feature.intelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:3:import com.monu.mobile.domain.model.IntelligenceInsight
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:4:import com.monu.mobile.domain.model.IntelligenceSignal
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:5:import com.monu.mobile.domain.model.IntelligenceSnapshot
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:6:import com.monu.mobile.domain.model.IntelligenceStatus
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:8:class MONUUnifiedIntelligence {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:10:    fun collectSignals(): List<IntelligenceSignal> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:15:        signals: List<IntelligenceSignal>
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:16:    ): List<IntelligenceInsight> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:20:    fun snapshot(): IntelligenceSnapshot {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:24:        return IntelligenceSnapshot(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:28:            status = IntelligenceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:1:package com.monu.mobile.feature.intelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:3:import com.monu.mobile.feature.context.MONUContextIntelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:4:import com.monu.mobile.feature.decision.MONUDecisionCenter
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:7:import com.monu.mobile.feature.planning.MONUPlanningIntelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:11:data class MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:17:class MONUIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:19:    private val unifiedIntelligence =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:20:        MONUUnifiedIntelligence()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:23:        MONUDecisionCenter()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:25:    private val planningIntelligence =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:26:        MONUPlanningIntelligence()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:28:    private val contextIntelligence =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:29:        MONUContextIntelligence()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:43:    fun capabilities(): List<MONUIntelligenceCapability> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:45:        val capabilities = mutableListOf<MONUIntelligenceCapability>()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:47:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:48:            name = "Unified Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:50:                unifiedIntelligence.snapshot()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:53:                "Collects signals, analyzes insights and creates intelligence snapshots."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:56:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:57:            name = "Decision Center",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:65:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:66:            name = "Planning Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:68:                planningIntelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:74:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:75:            name = "Context Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:77:                contextIntelligence.demoContext()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:83:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:92:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:101:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:110:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:111:            name = "Gemini Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:115:                    "Cloud AI reasoning is configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:1:package com.monu.mobile.feature.intelligence
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:33:    private val intelligenceHub =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:34:        MONUIntelligenceHub()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:69:            lower == "monu intelligence health" ||
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:70:            lower == "intelligence status" ||
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:75:                text = intelligenceHub.healthReport(),
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:81:        // Static/demo knowledge must never masquerade as a real intelligence answer.
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:9:class MONUPlanningIntelligence {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:34:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:42:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:45:                error = "Gemini API key is not configured."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:122:                return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:126:                        "Gemini HTTP $code: " +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:146:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:150:                        "Gemini returned no usable text."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:153:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:161:            MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:166:                        ?: "Unknown Gemini error."
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:144:                                "MONU voice intelligence module."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:32:            id = "intelligence",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:33:            command = "Command pattern intelligence",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:50:            "Command history and intelligence must be based on real recorded commands."
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:16:import com.monu.mobile.feature.context.MONUContextIntelligence
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:19:fun ContextIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:21:    val engine = MONUContextIntelligence()
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:29:        Text("MONU Context Intelligence")
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:16:import com.monu.mobile.domain.model.MONUDecision
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:17:import com.monu.mobile.domain.model.MONUDecisionStatus
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:20:fun DecisionCenterScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:23:        MONUDecision(
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:25:            title = "Decision Architecture",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:27:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:30:        MONUDecision(
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:32:            title = "Decision Transparency",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:33:            description = "Decision options should eventually expose their real factors and sources.",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:34:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:45:        Text("MONU Decision Center")
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:48:            "Decision architecture for evaluating options without fabricating conclusions."
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:16:import com.monu.mobile.feature.events.MONUEventIntelligenceHub
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:19:fun EventIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:22:        MONUEventIntelligenceHub()
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:33:        Text("Event Intelligence Hub")
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:30:        MONUFeatureCard("Device Intelligence", "Mobile health and diagnostics", "▣"),
+app/src/main/java/com/monu/mobile/ui/screens/OptimizationIntelligenceScreen.kt:13:fun OptimizationIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/OptimizationIntelligenceScreen.kt:20:        Text("Intelligence Optimization")
+app/src/main/java/com/monu/mobile/ui/screens/PlanningIntelligenceScreen.kt:22:fun PlanningIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/PlanningIntelligenceScreen.kt:57:        Text("MONU Planning Intelligence")
+app/src/main/java/com/monu/mobile/ui/screens/UnifiedIntelligenceScreen.kt:13:fun UnifiedIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/UnifiedIntelligenceScreen.kt:20:        Text("MONU Unified Intelligence")
+app/src/main/java/com/monu/mobile/ui/screens/UnifiedIntelligenceScreen.kt:22:        Text("Missing intelligence remains UNKNOWN.")

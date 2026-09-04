@@ -1,0 +1,10 @@
+8:import java.net.HttpURLConnection
+20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+22:    fun isConfigured(): Boolean {
+24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+27:    suspend fun ask(
+41:        if (!isConfigured()) {
+45:                error = "Gemini API key is not configured."
+49:        var connection: HttpURLConnection? = null
+53:                "https://generativelanguage.googleapis.com/" +
+59:                url.openConnection() as HttpURLConnection

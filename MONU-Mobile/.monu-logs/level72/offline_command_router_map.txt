@@ -1,0 +1,22 @@
+LEVEL 72 OFFLINE COMMAND ROUTER MAP
+===================================
+
+ROUTER:
+3:class MONUOfflineCommandRouter {
+5:    fun canHandle(command: String): Boolean {
+10:        return normalized.contains("hello") ||
+12:            normalized.contains("help") ||
+13:            normalized.contains("status") ||
+19:    fun handle(command: String): String {
+26:            normalized.contains("hello") ||
+30:            normalized.contains("help") ||
+34:                • hello
+35:                • help
+36:                • status
+41:            normalized.contains("status") ->
+
+CHAT:
+2:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+67:    val offlineCommandRouter = remember {
+68:        MONUOfflineCommandRouter()
+82:            offlineCommandRouter.handle(cleanCommand)

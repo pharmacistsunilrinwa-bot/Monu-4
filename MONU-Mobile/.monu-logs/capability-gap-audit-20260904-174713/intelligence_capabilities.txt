@@ -1,0 +1,316 @@
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:8:    private val context: Context
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:12:            context.getSystemService(Context.CONNECTIVITY_SERVICE)
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:7:    context: Context
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:11:        context.getSharedPreferences(
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:13:            Context.MODE_PRIVATE
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:13:        context: Context
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:19:                context.applicationContext,
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:8:class HomeAppearanceStore(context: Context) {
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:11:        context.getSharedPreferences(
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:13:            Context.MODE_PRIVATE
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:3:enum class MONUContextType {
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:14:enum class MONUContextStatus {
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:21:data class MONUContextItem(
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:23:    val type: MONUContextType,
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:26:    val status: MONUContextStatus = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:31:data class MONUContextSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:34:    val items: List<MONUContextItem> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:3:enum class MONUDecisionStatus {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:13:enum class MONUDecisionFactorType {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:24:data class MONUDecisionFactor(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:26:    val type: MONUDecisionFactorType,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:32:data class MONUDecisionOption(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:36:    val factors: List<MONUDecisionFactor> = emptyList()
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:39:data class MONUDecision(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:43:    val status: MONUDecisionStatus = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:44:    val options: List<MONUDecisionOption> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:3:enum class MONUKnowledgeSource {
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:13:enum class MONUKnowledgeStatus {
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:20:data class MONUKnowledgeItem(
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:24:    val source: MONUKnowledgeSource,
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:25:    val status: MONUKnowledgeStatus = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:31:data class MONUKnowledgeCollection(
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:3:enum class InternetKnowledgeState {
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:10:data class InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:15:    val state: InternetKnowledgeState,
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:10:    private val context: Context
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:15:        val packageManager = context.packageManager
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:29:                context.getSystemService(Context.CAMERA_SERVICE)
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:31:                withContext(Dispatchers.Main) {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:1:package com.monu.mobile.feature.context
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:3:import com.monu.mobile.domain.model.MONUContextItem
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:4:import com.monu.mobile.domain.model.MONUContextSnapshot
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:5:import com.monu.mobile.domain.model.MONUContextStatus
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:6:import com.monu.mobile.domain.model.MONUContextType
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:8:class MONUContextIntelligence {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:10:    fun demoContext(): List<MONUContextItem> {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:12:            MONUContextItem(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:13:                id = "project_context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:14:                type = MONUContextType.PROJECT,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:15:                title = "Current Project Context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:17:                status = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:20:            MONUContextItem(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:21:                id = "command_context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:22:                type = MONUContextType.COMMAND,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:23:                title = "Recent Command Context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:24:                summary = "Real command history may later provide contextual continuity.",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:25:                status = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:33:        items: List<MONUContextItem>
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:34:    ): MONUContextSnapshot {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:35:        return MONUContextSnapshot(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:36:            id = "context_snapshot",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:43:        items: List<MONUContextItem>
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:44:    ): List<MONUContextItem> {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:1:package com.monu.mobile.feature.decision
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:3:import com.monu.mobile.domain.model.MONUDecision
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:4:import com.monu.mobile.domain.model.MONUDecisionOption
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:5:import com.monu.mobile.domain.model.MONUDecisionStatus
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:7:class MONUDecisionCenter {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:9:    fun createDecision(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:13:        options: List<MONUDecisionOption>
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:14:    ): MONUDecision {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:15:        return MONUDecision(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:20:                MONUDecisionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:22:                MONUDecisionStatus.PENDING
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:30:        decision: MONUDecision,
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:32:    ): MONUDecision {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:33:        val exists = decision.options.any { it.id == optionId }
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:35:        if (!exists) return decision
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:37:        return decision.copy(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:38:            status = MONUDecisionStatus.SELECTED,
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:11:    private val context: Context
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:49:                    File(context.cacheDir, "monu_diagnostic_test.tmp")
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:82:            context.getDatabasePath("monu_database").parentFile
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:10:    private val context: Context
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:17:        val filesDir = context.filesDir
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:1:package com.monu.mobile.feature.knowledge
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:3:import com.monu.mobile.domain.model.MONUKnowledgeItem
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:4:import com.monu.mobile.domain.model.MONUKnowledgeSource
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:5:import com.monu.mobile.domain.model.MONUKnowledgeStatus
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:7:class MONUKnowledgeCenter {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:11:            MONUKnowledgeItem(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:14:                content = "Project architecture knowledge can be indexed here.",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:15:                source = MONUKnowledgeSource.PROJECT,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:16:                status = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:19:            MONUKnowledgeItem(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:21:                title = "Owner Knowledge",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:23:                source = MONUKnowledgeSource.USER,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:24:                status = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:32:        items: List<MONUKnowledgeItem>
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:33:    ): List<MONUKnowledgeItem> {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:1:package com.monu.mobile.feature.knowledge
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:3:import com.monu.mobile.domain.model.InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:4:import com.monu.mobile.domain.model.InternetKnowledgeState
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:23:            return InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:28:                state = InternetKnowledgeState.INVALID_QUERY,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:51:                    return InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:56:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:74:                    InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:79:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:81:                            "No useful knowledge summary found"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:84:                    InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:89:                        state = InternetKnowledgeState.SUCCESS
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:96:            InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:101:                state = InternetKnowledgeState.NETWORK_ERROR,
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:14:     * This engine intentionally does NOT
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:34:                acknowledged = 0,
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:45:            acknowledged = 0,
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:54:    val acknowledged: Int,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:10:    context: Context
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:15:            .get(context)
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:73:    suspend fun markAcknowledged(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:2:import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:3:import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:8:    private val intentParser =
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:9:        MONUOfflineCommandIntentParser()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:22:        val intent = intentParser.parse(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:24:        return intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:28:        return when (intentParser.parse(command)) {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:29:            MONUOfflineCommandIntent.EMPTY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:32:            MONUOfflineCommandIntent.GREETING ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:35:            MONUOfflineCommandIntent.HELP ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:47:            MONUOfflineCommandIntent.STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:50:            MONUOfflineCommandIntent.IDENTITY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:53:            MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:54:            MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:55:            MONUOfflineCommandIntent.LOCAL_STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:58:            MONUOfflineCommandIntent.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:67:        val intent = intentParser.parse(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:68:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:72:            intent = intent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:3:enum class MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:15:class MONUOfflineCommandIntentParser {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:17:    fun parse(command: String): MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:22:                MONUOfflineCommandIntent.EMPTY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:26:                MONUOfflineCommandIntent.GREETING
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:30:                MONUOfflineCommandIntent.HELP
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:33:                MONUOfflineCommandIntent.IDENTITY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:37:                MONUOfflineCommandIntent.LOCAL_STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:40:                MONUOfflineCommandIntent.STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:43:                MONUOfflineCommandIntent.TIME
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:47:                MONUOfflineCommandIntent.DATE
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:50:                MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:4:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:14:                intent = MONUOfflineCommandIntent.EMPTY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:20:                intent = MONUOfflineCommandIntent.GREETING,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:26:                intent = MONUOfflineCommandIntent.HELP,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:32:                intent = MONUOfflineCommandIntent.STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:38:                intent = MONUOfflineCommandIntent.IDENTITY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:44:                intent = MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:50:                intent = MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:56:                intent = MONUOfflineCommandIntent.LOCAL_STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:70:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:73:            .firstOrNull { it.intent == intent }
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:78:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:81:            .any { it.intent == intent }
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:9:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:4:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:6:import androidx.core.content.ContextCompat
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:11:    private val context: Context
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:44:            ContextCompat.checkSelfPermission(
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:45:                context,
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:10:    private val context: Context
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:6:class MONUChunkPlanner {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:8:    context: Context,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:12:    private val textToSpeech = TextToSpeech(context.applicationContext, this)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:4:import android.content.Context
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:5:import android.content.Intent
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:9:import android.speech.RecognizerIntent
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:11:import androidx.core.content.ContextCompat
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:14:    context: Context,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:20:    private val appContext = context.applicationContext
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:45:        return SpeechRecognizer.isRecognitionAvailable(appContext)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:49:        return ContextCompat.checkSelfPermission(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:50:            appContext,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:71:                SpeechRecognizer.createSpeechRecognizer(appContext)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:76:        val intent = Intent(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:77:            RecognizerIntent.ACTION_RECOGNIZE_SPEECH
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:80:                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:81:                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:85:                RecognizerIntent.EXTRA_PARTIAL_RESULTS,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:92:        speechRecognizer?.startListening(intent)
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:82:                        intent =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:84:                                .MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:6:import android.content.Context
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:7:import android.content.Intent
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:37:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:39:import androidx.core.content.ContextCompat
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:42:import com.monu.mobile.domain.model.InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:43:import com.monu.mobile.domain.model.InternetKnowledgeState
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:52:import kotlinx.coroutines.withContext
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:57:val context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:61:    MONUNetworkMonitor(context.applicationContext)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:64:val knowledgeEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:65:    MONUInternetKnowledgeEngine()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:99:                    "MONU Command Center ready. Internet knowledge is available.",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:119:    result: InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:122:        InternetKnowledgeState.SUCCESS -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:        InternetKnowledgeState.NOT_FOUND -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:151:        InternetKnowledgeState.NETWORK_ERROR -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:162:        InternetKnowledgeState.INVALID_QUERY -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:191:    MONUVoiceEngine(context) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:198:        context = context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:221:                        withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:222:                            knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:327:                        context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:339:                        context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:389:                        ContextCompat.checkSelfPermission(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:390:                            context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:482:                    withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:483:                        knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:578:context: Context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:582:context.getSystemService(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:583:Context.CLIPBOARD_SERVICE
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:596:context: Context,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:599:val intent =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:600:Intent(Intent.ACTION_SEND).apply {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:603:Intent.EXTRA_TEXT,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:608:context.startActivity(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:609:    Intent.createChooser(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:610:        intent,
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:14:import kotlinx.coroutines.withContext
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:39:            status = withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:16:import com.monu.mobile.feature.context.MONUContextIntelligence
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:19:fun ContextIntelligenceScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:21:    val engine = MONUContextIntelligence()
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:22:    val context = engine.prioritize(engine.demoContext())
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:29:        Text("MONU Context Intelligence")
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:32:            "Context should be assembled from verified information rather than fabricated assumptions."
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:39:            items(context) { item ->
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:16:import com.monu.mobile.domain.model.MONUDecision
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:17:import com.monu.mobile.domain.model.MONUDecisionStatus
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:20:fun DecisionCenterScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:22:    val decisions = listOf(
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:23:        MONUDecision(
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:24:            id = "decision_architecture",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:25:            title = "Decision Architecture",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:26:            description = "Real decisions will appear when MONU receives verified decision inputs.",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:27:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:30:        MONUDecision(
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:31:            id = "decision_truth",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:32:            title = "Decision Transparency",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:33:            description = "Decision options should eventually expose their real factors and sources.",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:34:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:45:        Text("MONU Decision Center")
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:48:            "Decision architecture for evaluating options without fabricating conclusions."
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:55:            items(decisions) { decision ->
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:62:                        Text(decision.title)
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:63:                        Text(decision.description)
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:64:                        Text("Status: ${decision.status}")
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:65:                        Text("Source: ${decision.source}")
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:15:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:22:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:24:        MONUDeviceCapabilityInspector(context).inspect()
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:16:import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:19:fun KnowledgeCenterScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:21:    val knowledge = MONUKnowledgeCenter().demoKnowledge()
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:28:        Text("MONU Knowledge Center")
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:31:            "Knowledge is designed to originate from real documents, projects, conversations and explicitly stored information."
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:38:            items(knowledge) { item ->
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:12:import kotlinx.coroutines.withContext
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:17:    val context =
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:18:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:25:            OfflineCommandQueue(context)
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:45:                withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:113:                    withContext(
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:15:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:22:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:23:    val permissions = MONUPermissionCenter(context).inspect()
+app/src/main/java/com/monu/mobile/ui/screens/ProjectCenterScreen.kt:33:            description = "Central AI brain and workforce",
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:16:    val context =
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:17:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:21:            ServerConfigStore(context)
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:3:import android.content.Context
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:21:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:29:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:50:                findings = MONUSecurityCenter(context)
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:19:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:26:    val context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:50:                    MONUSelfDiagnostics(context)
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:15:    val context =
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:16:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:20:            ServerConfigStore(context)
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:14:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:21:    val context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:24:        MONUSystemHealthEngine(context).inspect()

@@ -1,0 +1,26 @@
+     1	package com.monu.mobile.core.network
+     2	
+     3	import android.content.Context
+     4	import android.net.ConnectivityManager
+     5	import android.net.NetworkCapabilities
+     6	
+     7	class MONUNetworkMonitor(
+     8	    private val context: Context
+     9	) {
+    10	    fun isOnline(): Boolean {
+    11	        val connectivityManager =
+    12	            context.getSystemService(Context.CONNECTIVITY_SERVICE)
+    13	                    as ConnectivityManager
+    14	
+    15	        val network =
+    16	            connectivityManager.activeNetwork ?: return false
+    17	
+    18	        val capabilities =
+    19	            connectivityManager.getNetworkCapabilities(network)
+    20	                ?: return false
+    21	
+    22	        return capabilities.hasCapability(
+    23	            NetworkCapabilities.NET_CAPABILITY_INTERNET
+    24	        )
+    25	    }
+    26	}

@@ -1,0 +1,1266 @@
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt
+============================================================
+package com.monu.mobile.feature.intelligence
+
+import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+enum class MONUQuerySource {
+    OFFLINE,
+    INTERNAL_KNOWLEDGE,
+    INTELLIGENCE_HUB,
+    GEMINI,
+    INTERNET,
+    FALLBACK
+}
+
+data class MONUQueryResponse(
+    val source: MONUQuerySource,
+    val text: String,
+    val success: Boolean
+)
+
+class MONUQueryRouter {
+
+    private val offlineRouter =
+        MONUOfflineCommandRouter()
+
+    private val knowledgeCenter =
+        MONUKnowledgeCenter()
+
+    private val intelligenceHub =
+        MONUIntelligenceHub()
+
+    private val gemini =
+        MONUGeminiIntelligenceEngine()
+
+    private val internet =
+        MONUInternetKnowledgeEngine()
+
+    suspend fun route(
+        query: String,
+        isOnline: Boolean
+    ): MONUQueryResponse = withContext(Dispatchers.IO) {
+
+        val cleanQuery = query.trim()
+
+        if (cleanQuery.isBlank()) {
+            return@withContext MONUQueryResponse(
+                source = MONUQuerySource.FALLBACK,
+                text = "Please enter a valid request.",
+                success = false
+            )
+        }
+
+        if (!isOnline) {
+            return@withContext MONUQueryResponse(
+                source = MONUQuerySource.OFFLINE,
+                text = offlineRouter.handle(cleanQuery),
+                success = true
+            )
+        }
+
+        val lower = cleanQuery.lowercase()
+
+        if (
+            lower == "monu health" ||
+            lower == "monu intelligence health" ||
+            lower == "intelligence status" ||
+            lower == "capabilities"
+        ) {
+            return@withContext MONUQueryResponse(
+                source = MONUQuerySource.INTELLIGENCE_HUB,
+                text = intelligenceHub.healthReport(),
+                success = true
+            )
+        }
+
+        // Live query routing intentionally does not use demo knowledge.
+        // Static/demo knowledge must never masquerade as a real intelligence answer.
+
+        if (gemini.isConfigured()) {
+            val geminiResult =
+                gemini.ask(cleanQuery)
+
+            if (
+                geminiResult.success &&
+                geminiResult.text.isNotBlank()
+            ) {
+                return@withContext MONUQueryResponse(
+                    source = MONUQuerySource.GEMINI,
+                    text = geminiResult.text,
+                    success = true
+                )
+            }
+        }
+
+        val internetResult =
+            internet.search(cleanQuery)
+
+        val internetText =
+            when (internetResult.state) {
+                com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS -> {
+                    buildString {
+                        append(internetResult.title)
+
+                        if (internetResult.summary.isNotBlank()) {
+                            append("\n\n")
+                            append(internetResult.summary)
+                        }
+
+                        if (internetResult.source.isNotBlank()) {
+                            append("\n\nSource: ")
+                            append(internetResult.source)
+                        }
+                    }
+                }
+
+                com.monu.mobile.domain.model.InternetKnowledgeState.NOT_FOUND -> {
+                    "I could not find useful internet information."
+                }
+
+                com.monu.mobile.domain.model.InternetKnowledgeState.NETWORK_ERROR -> {
+                    "Internet search failed: " +
+                        (
+                            internetResult.errorMessage
+                                ?: "Unknown network error."
+                        )
+                }
+
+                com.monu.mobile.domain.model.InternetKnowledgeState.INVALID_QUERY -> {
+                    "Please enter a valid query."
+                }
+            }
+
+        MONUQueryResponse(
+            source = MONUQuerySource.INTERNET,
+            text = internetText,
+            success =
+                internetResult.state ==
+                    com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS
+        )
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt
+============================================================
+package com.monu.mobile.feature.intelligence
+
+import com.monu.mobile.domain.model.IntelligenceInsight
+import com.monu.mobile.domain.model.IntelligenceSignal
+import com.monu.mobile.domain.model.IntelligenceSnapshot
+import com.monu.mobile.domain.model.IntelligenceStatus
+
+class MONUUnifiedIntelligence {
+
+    fun collectSignals(): List<IntelligenceSignal> {
+        return emptyList()
+    }
+
+    fun analyze(
+        signals: List<IntelligenceSignal>
+    ): List<IntelligenceInsight> {
+        return emptyList()
+    }
+
+    fun snapshot(): IntelligenceSnapshot {
+        val signals = collectSignals()
+        val insights = analyze(signals)
+
+        return IntelligenceSnapshot(
+            id = "unknown",
+            signals = signals,
+            insights = insights,
+            status = IntelligenceStatus.UNKNOWN
+        )
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt
+============================================================
+package com.monu.mobile.feature.memory
+
+import android.content.Context
+import org.json.JSONArray
+import org.json.JSONObject
+import java.util.UUID
+
+data class MONUMemory(
+    val id: String,
+    val content: String,
+    val createdAt: Long,
+    val updatedAt: Long,
+    val accessCount: Int = 0
+)
+
+class MONUMemoryEngine(context: Context) {
+
+    private val appContext = context.applicationContext
+
+    private val preferences =
+        appContext.getSharedPreferences(
+            "monu_persistent_memory",
+            Context.MODE_PRIVATE
+        )
+
+    private val memoryKey = "memories_v1"
+
+    @Synchronized
+    fun remember(content: String): MONUMemory? {
+
+        val cleanContent = content
+            .trim()
+            .replace(Regex("\\s+"), " ")
+
+        if (cleanContent.isBlank()) {
+            return null
+        }
+
+        val memories = loadAll().toMutableList()
+
+        val existingIndex =
+            memories.indexOfFirst {
+                it.content.equals(
+                    cleanContent,
+                    ignoreCase = true
+                )
+            }
+
+        val now = System.currentTimeMillis()
+
+        if (existingIndex >= 0) {
+
+            val existing = memories[existingIndex]
+
+            val updated =
+                existing.copy(
+                    updatedAt = now,
+                    accessCount = existing.accessCount + 1
+                )
+
+            memories[existingIndex] = updated
+
+            saveAll(memories)
+
+            return updated
+        }
+
+        val memory =
+            MONUMemory(
+                id = UUID.randomUUID().toString(),
+                content = cleanContent,
+                createdAt = now,
+                updatedAt = now,
+                accessCount = 0
+            )
+
+        memories.add(memory)
+
+        saveAll(memories)
+
+        return memory
+    }
+
+    @Synchronized
+    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+
+        val cleanQuery =
+            query.trim()
+                .lowercase()
+
+        if (cleanQuery.isBlank()) {
+            return recent(limit)
+        }
+
+        val queryWords =
+            tokenize(cleanQuery)
+
+        if (queryWords.isEmpty()) {
+            return recent(limit)
+        }
+
+        val ranked =
+            loadAll()
+                .map { memory ->
+
+                    val memoryWords =
+                        tokenize(
+                            memory.content.lowercase()
+                        )
+
+                    val matchedWords =
+                        queryWords.count {
+                            it in memoryWords
+                        }
+
+                    val exactBonus =
+                        if (
+                            memory.content
+                                .lowercase()
+                                .contains(cleanQuery)
+                        ) {
+                            10
+                        } else {
+                            0
+                        }
+
+                    val frequencyBonus =
+                        memory.accessCount.coerceAtMost(5)
+
+                    val score =
+                        matchedWords * 5 +
+                        exactBonus +
+                        frequencyBonus
+
+                    memory to score
+                }
+                .filter { it.second > 0 }
+                .sortedWith(
+                    compareByDescending<Pair<MONUMemory, Int>> {
+                        it.second
+                    }.thenByDescending {
+                        it.first.updatedAt
+                    }
+                )
+                .take(limit)
+                .map { it.first }
+
+        if (ranked.isNotEmpty()) {
+
+            ranked.forEach { memory ->
+                touch(memory.id)
+            }
+        }
+
+        return ranked
+    }
+
+    @Synchronized
+    fun recent(limit: Int = 20): List<MONUMemory> {
+        return loadAll()
+            .sortedByDescending {
+                it.updatedAt
+            }
+            .take(limit)
+    }
+
+    @Synchronized
+    fun all(): List<MONUMemory> {
+        return loadAll()
+            .sortedByDescending {
+                it.updatedAt
+            }
+    }
+
+    @Synchronized
+    fun contextFor(
+        query: String,
+        limit: Int = 6,
+        maxCharacters: Int = 4000
+    ): String {
+
+        val relevant =
+            recall(query, limit)
+
+        if (relevant.isEmpty()) {
+            return ""
+        }
+
+        val builder = StringBuilder()
+
+        relevant.forEachIndexed { index, memory ->
+
+            val line =
+                "${index + 1}. ${memory.content}\n"
+
+            if (
+                builder.length + line.length <=
+                maxCharacters
+            ) {
+                builder.append(line)
+            }
+        }
+
+        return builder
+            .toString()
+            .trim()
+    }
+
+    @Synchronized
+    fun forget(memoryId: String): Boolean {
+
+        val memories =
+            loadAll().toMutableList()
+
+        val removed =
+            memories.removeAll {
+                it.id == memoryId
+            }
+
+        if (removed) {
+            saveAll(memories)
+        }
+
+        return removed
+    }
+
+    @Synchronized
+    fun forgetMatching(query: String): Int {
+
+        val clean =
+            query.trim()
+                .lowercase()
+
+        if (clean.isBlank()) {
+            return 0
+        }
+
+        val memories =
+            loadAll().toMutableList()
+
+        val before =
+            memories.size
+
+        memories.removeAll {
+            it.content
+                .lowercase()
+                .contains(clean)
+        }
+
+        val removed =
+            before - memories.size
+
+        if (removed > 0) {
+            saveAll(memories)
+        }
+
+        return removed
+    }
+
+    @Synchronized
+    fun clearAll() {
+        preferences.edit()
+            .remove(memoryKey)
+            .apply()
+    }
+
+    fun memoryCount(): Int {
+        return loadAll().size
+    }
+
+    private fun touch(memoryId: String) {
+
+        val memories =
+            loadAll().toMutableList()
+
+        val index =
+            memories.indexOfFirst {
+                it.id == memoryId
+            }
+
+        if (index >= 0) {
+
+            val old =
+                memories[index]
+
+            memories[index] =
+                old.copy(
+                    updatedAt =
+                        System.currentTimeMillis(),
+                    accessCount =
+                        old.accessCount + 1
+                )
+
+            saveAll(memories)
+        }
+    }
+
+    private fun tokenize(text: String): Set<String> {
+
+        return text
+            .lowercase()
+            .split(
+                Regex(
+                    "[^\\p{L}\\p{N}]+"
+                )
+            )
+            .map {
+                it.trim()
+            }
+            .filter {
+                it.length >= 2
+            }
+            .toSet()
+    }
+
+    private fun loadAll(): List<MONUMemory> {
+
+        val raw =
+            preferences.getString(
+                memoryKey,
+                "[]"
+            ) ?: "[]"
+
+        return try {
+
+            val array =
+                JSONArray(raw)
+
+            buildList {
+
+                for (
+                    index in 0 until array.length()
+                ) {
+
+                    val json =
+                        array.optJSONObject(index)
+                            ?: continue
+
+                    val content =
+                        json.optString("content", "")
+                            .trim()
+
+                    if (content.isBlank()) {
+                        continue
+                    }
+
+                    add(
+                        MONUMemory(
+                            id =
+                                json.optString(
+                                    "id",
+                                    UUID.randomUUID()
+                                        .toString()
+                                ),
+
+                            content = content,
+
+                            createdAt =
+                                json.optLong(
+                                    "createdAt",
+                                    System.currentTimeMillis()
+                                ),
+
+                            updatedAt =
+                                json.optLong(
+                                    "updatedAt",
+                                    System.currentTimeMillis()
+                                ),
+
+                            accessCount =
+                                json.optInt(
+                                    "accessCount",
+                                    0
+                                )
+                        )
+                    )
+                }
+            }
+
+        } catch (_: Exception) {
+            emptyList()
+        }
+    }
+
+    private fun saveAll(
+        memories: List<MONUMemory>
+    ) {
+
+        val array =
+            JSONArray()
+
+        memories.forEach { memory ->
+
+            array.put(
+                JSONObject().apply {
+
+                    put(
+                        "id",
+                        memory.id
+                    )
+
+                    put(
+                        "content",
+                        memory.content
+                    )
+
+                    put(
+                        "createdAt",
+                        memory.createdAt
+                    )
+
+                    put(
+                        "updatedAt",
+                        memory.updatedAt
+                    )
+
+                    put(
+                        "accessCount",
+                        memory.accessCount
+                    )
+                }
+            )
+        }
+
+        preferences.edit()
+            .putString(
+                memoryKey,
+                array.toString()
+            )
+            .apply()
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt
+============================================================
+package com.monu.mobile.feature.context
+
+import com.monu.mobile.domain.model.MONUContextItem
+import com.monu.mobile.domain.model.MONUContextSnapshot
+import com.monu.mobile.domain.model.MONUContextStatus
+import com.monu.mobile.domain.model.MONUContextType
+
+class MONUContextIntelligence {
+
+    fun demoContext(): List<MONUContextItem> {
+        return listOf(
+            MONUContextItem(
+                id = "project_context",
+                type = MONUContextType.PROJECT,
+                title = "Current Project Context",
+                summary = "Verified project information can be assembled here.",
+                status = MONUContextStatus.UNKNOWN,
+                priority = 10
+            ),
+            MONUContextItem(
+                id = "command_context",
+                type = MONUContextType.COMMAND,
+                title = "Recent Command Context",
+                summary = "Real command history may later provide contextual continuity.",
+                status = MONUContextStatus.UNKNOWN,
+                priority = 8
+            )
+        )
+    }
+
+    fun createSnapshot(
+        title: String,
+        items: List<MONUContextItem>
+    ): MONUContextSnapshot {
+        return MONUContextSnapshot(
+            id = "context_snapshot",
+            title = title,
+            items = items
+        )
+    }
+
+    fun prioritize(
+        items: List<MONUContextItem>
+    ): List<MONUContextItem> {
+        return items.sortedByDescending { it.priority }
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt
+============================================================
+package com.monu.mobile.feature.verification
+
+import com.monu.mobile.domain.model.VerificationEvidence
+import com.monu.mobile.domain.model.VerificationReport
+import com.monu.mobile.domain.model.VerificationRequest
+import com.monu.mobile.domain.model.VerificationResult
+import com.monu.mobile.domain.model.VerificationStatus
+
+class MONUVerificationEngine {
+
+    private val results = mutableListOf<VerificationResult>()
+
+    fun begin(
+        request: VerificationRequest
+    ): VerificationResult {
+
+        val result = VerificationResult(
+            verificationId = request.verificationId,
+            executionId = request.executionId,
+            status = VerificationStatus.PENDING,
+            message = "Verification requested"
+        )
+
+        results.removeAll {
+            it.verificationId == request.verificationId
+        }
+
+        results += result
+
+        return result
+    }
+
+    fun verify(
+        verificationId: String,
+        evidence: List<VerificationEvidence>,
+        message: String
+    ): VerificationResult? {
+
+        val index = results.indexOfFirst {
+            it.verificationId == verificationId
+        }
+
+        if (index == -1) return null
+
+        val trustedEvidence = evidence.filter {
+            it.trusted
+        }
+
+        val status = when {
+            trustedEvidence.isNotEmpty() ->
+                VerificationStatus.VERIFIED
+
+            evidence.isEmpty() ->
+                VerificationStatus.INCONCLUSIVE
+
+            else ->
+                VerificationStatus.INCONCLUSIVE
+        }
+
+        val updated = results[index].copy(
+            status = status,
+            evidence = evidence,
+            message = message,
+            verifiedAt = System.currentTimeMillis()
+        )
+
+        results[index] = updated
+
+        return updated
+    }
+
+    fun reject(
+        verificationId: String,
+        message: String
+    ): VerificationResult? {
+
+        val index = results.indexOfFirst {
+            it.verificationId == verificationId
+        }
+
+        if (index == -1) return null
+
+        val updated = results[index].copy(
+            status = VerificationStatus.REJECTED,
+            message = message,
+            verifiedAt = System.currentTimeMillis()
+        )
+
+        results[index] = updated
+
+        return updated
+    }
+
+    fun get(
+        verificationId: String
+    ): VerificationResult? {
+        return results.firstOrNull {
+            it.verificationId == verificationId
+        }
+    }
+
+    fun all(): List<VerificationResult> {
+        return results.toList()
+    }
+
+    fun report(): VerificationReport {
+
+        return VerificationReport(
+            results = results.toList(),
+            total = results.size,
+            verified = results.count {
+                it.status == VerificationStatus.VERIFIED
+            },
+            rejected = results.count {
+                it.status == VerificationStatus.REJECTED
+            },
+            inconclusive = results.count {
+                it.status == VerificationStatus.INCONCLUSIVE
+            },
+            unknown = results.count {
+                it.status == VerificationStatus.UNKNOWN
+            }
+        )
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt
+============================================================
+package com.monu.mobile.feature.knowledge
+
+import com.monu.mobile.domain.model.InternetKnowledgeResult
+import com.monu.mobile.domain.model.InternetKnowledgeState
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
+import java.net.URLEncoder
+import java.util.concurrent.TimeUnit
+
+class MONUInternetKnowledgeEngine {
+
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .build()
+
+    fun search(query: String): InternetKnowledgeResult {
+
+        val cleanedQuery = query.trim()
+
+        if (cleanedQuery.isBlank()) {
+            return InternetKnowledgeResult(
+                query = query,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.INVALID_QUERY,
+                errorMessage = "Query is empty"
+            )
+        }
+
+        return try {
+            val encoded =
+                URLEncoder.encode(cleanedQuery, "UTF-8")
+
+            val url =
+                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+
+            val request = Request.Builder()
+                .url(url)
+                .header(
+                    "User-Agent",
+                    "MONU-Mobile/1.0"
+                )
+                .build()
+
+            client.newCall(request).execute().use { response ->
+
+                if (!response.isSuccessful) {
+                    return InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = "",
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "Internet source returned HTTP ${response.code}"
+                    )
+                }
+
+                val body =
+                    response.body?.string().orEmpty()
+
+                val json = JSONObject(body)
+
+                val title =
+                    json.optString("title", cleanedQuery)
+
+                val extract =
+                    json.optString("extract", "")
+
+                if (extract.isBlank()) {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "No useful knowledge summary found"
+                    )
+                } else {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = extract,
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.SUCCESS
+                    )
+                }
+            }
+
+        } catch (error: Exception) {
+
+            InternetKnowledgeResult(
+                query = cleanedQuery,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.NETWORK_ERROR,
+                errorMessage =
+                    error.message ?: "Unknown network error"
+            )
+        }
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt
+============================================================
+package com.monu.mobile.feature.gemini
+
+import com.monu.mobile.BuildConfig
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
+
+data class MONUGeminiResult(
+    val success: Boolean,
+    val text: String,
+    val error: String? = null
+)
+
+class MONUGeminiIntelligenceEngine {
+
+    private val apiKey: String
+        get() = BuildConfig.GEMINI_API_KEY.trim()
+
+    fun isConfigured(): Boolean {
+        return apiKey.isNotBlank() &&
+            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+    }
+
+    suspend fun ask(
+        prompt: String
+    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+
+        val cleanPrompt = prompt.trim()
+
+        if (cleanPrompt.isBlank()) {
+            return@withContext MONUGeminiResult(
+                success = false,
+                text = "",
+                error = "Prompt is empty."
+            )
+        }
+
+        if (!isConfigured()) {
+            return@withContext MONUGeminiResult(
+                success = false,
+                text = "",
+                error = "Gemini API key is not configured."
+            )
+        }
+
+        var connection: HttpURLConnection? = null
+
+        try {
+            val url = URL(
+                "https://generativelanguage.googleapis.com/" +
+                    "v1beta/models/gemini-2.5-flash:generateContent" +
+                    "?key=$apiKey"
+            )
+
+            connection =
+                url.openConnection() as HttpURLConnection
+
+            connection.requestMethod = "POST"
+            connection.connectTimeout = 20000
+            connection.readTimeout = 30000
+            connection.doOutput = true
+
+            connection.setRequestProperty(
+                "Content-Type",
+                "application/json"
+            )
+
+            val body = JSONObject().apply {
+                put(
+                    "contents",
+                    JSONArray().put(
+                        JSONObject().apply {
+                            put(
+                                "parts",
+                                JSONArray().put(
+                                    JSONObject().apply {
+                                        put(
+                                            "text",
+                                            """
+You are MONU, an intelligent assistant.
+
+Give useful, accurate and concise answers.
+If you are uncertain, clearly say so.
+Do not invent facts.
+
+User request:
+$cleanPrompt
+                                            """.trimIndent()
+                                        )
+                                    }
+                                )
+                            )
+                        }
+                    )
+                )
+            }
+
+            connection.outputStream.use {
+                it.write(
+                    body.toString()
+                        .toByteArray(Charsets.UTF_8)
+                )
+            }
+
+            val code = connection.responseCode
+
+            val stream =
+                if (code in 200..299) {
+                    connection.inputStream
+                } else {
+                    connection.errorStream
+                }
+
+            val response =
+                stream?.bufferedReader()?.use { it.readText() }
+                    .orEmpty()
+
+            if (code !in 200..299) {
+                return@withContext MONUGeminiResult(
+                    success = false,
+                    text = "",
+                    error =
+                        "Gemini HTTP $code: " +
+                            response.take(500)
+                )
+            }
+
+            val json = JSONObject(response)
+
+            val candidates =
+                json.optJSONArray("candidates")
+
+            val text =
+                candidates
+                    ?.optJSONObject(0)
+                    ?.optJSONObject("content")
+                    ?.optJSONArray("parts")
+                    ?.optJSONObject(0)
+                    ?.optString("text")
+                    .orEmpty()
+
+            if (text.isBlank()) {
+                MONUGeminiResult(
+                    success = false,
+                    text = "",
+                    error =
+                        "Gemini returned no usable text."
+                )
+            } else {
+                MONUGeminiResult(
+                    success = true,
+                    text = text
+                )
+            }
+
+        } catch (error: Exception) {
+
+            MONUGeminiResult(
+                success = false,
+                text = "",
+                error =
+                    error.message
+                        ?: "Unknown Gemini error."
+            )
+
+        } finally {
+            connection?.disconnect()
+        }
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt
+============================================================
+package com.monu.mobile.feature.intelligence
+
+import com.monu.mobile.feature.context.MONUContextIntelligence
+import com.monu.mobile.feature.decision.MONUDecisionCenter
+import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+import com.monu.mobile.feature.planning.MONUPlanningIntelligence
+import com.monu.mobile.feature.rules.MONURulesEngine
+import com.monu.mobile.feature.verification.MONUVerificationEngine
+
+data class MONUIntelligenceCapability(
+    val name: String,
+    val available: Boolean,
+    val description: String
+)
+
+class MONUIntelligenceHub {
+
+    private val unifiedIntelligence =
+        MONUUnifiedIntelligence()
+
+    private val decisionCenter =
+        MONUDecisionCenter()
+
+    private val planningIntelligence =
+        MONUPlanningIntelligence()
+
+    private val contextIntelligence =
+        MONUContextIntelligence()
+
+    private val knowledgeCenter =
+        MONUKnowledgeCenter()
+
+    private val verificationEngine =
+        MONUVerificationEngine()
+
+    private val rulesEngine =
+        MONURulesEngine()
+
+    val gemini =
+        MONUGeminiIntelligenceEngine()
+
+    fun capabilities(): List<MONUIntelligenceCapability> {
+
+        val capabilities = mutableListOf<MONUIntelligenceCapability>()
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Unified Intelligence",
+            available = runCatching {
+                unifiedIntelligence.snapshot()
+            }.isSuccess,
+            description =
+                "Collects signals, analyzes insights and creates intelligence snapshots."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Decision Center",
+            available = runCatching {
+                decisionCenter
+            }.isSuccess,
+            description =
+                "Supports structured option and decision management."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Planning Intelligence",
+            available = runCatching {
+                planningIntelligence
+            }.isSuccess,
+            description =
+                "Creates plans and determines executable next steps."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Context Intelligence",
+            available = runCatching {
+                contextIntelligence.demoContext()
+            }.isSuccess,
+            description =
+                "Stores, prioritizes and snapshots contextual information."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Knowledge Center",
+            available = runCatching {
+                knowledgeCenter.demoKnowledge()
+            }.isSuccess,
+            description =
+                "Searches internal knowledge structures."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Verification Engine",
+            available = runCatching {
+                verificationEngine.report()
+            }.isSuccess,
+            description =
+                "Tracks evidence and verification results."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Rules Engine",
+            available = runCatching {
+                rulesEngine.demoRules()
+            }.isSuccess,
+            description =
+                "Evaluates structured MONU rules."
+        )
+
+        capabilities += MONUIntelligenceCapability(
+            name = "Gemini Intelligence",
+            available = gemini.isConfigured(),
+            description =
+                if (gemini.isConfigured()) {
+                    "Cloud AI reasoning is configured."
+                } else {
+                    "Gemini engine exists but API key is not configured."
+                }
+        )
+
+        return capabilities
+    }
+
+    fun healthReport(): String {
+
+        return buildString {
+
+            append("MONU INTELLIGENCE HUB\n\n")
+
+            capabilities().forEach {
+
+                append(
+                    if (it.available) "✓ " else "○ "
+                )
+
+                append(it.name)
+                append("\n")
+
+                append(it.description)
+                append("\n\n")
+            }
+        }.trim()
+    }
+}
+
+============================================================
+FILE: app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt
+============================================================
+package com.monu.mobile.core.network
+
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+
+class MONUNetworkMonitor(
+    private val context: Context
+) {
+    fun isOnline(): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                    as ConnectivityManager
+
+        val network =
+            connectivityManager.activeNetwork ?: return false
+
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(network)
+                ?: return false
+
+        return capabilities.hasCapability(
+            NetworkCapabilities.NET_CAPABILITY_INTERNET
+        )
+    }
+}
+

@@ -1,0 +1,38 @@
+No mirror or mirror group selected. You might want to select one by running 'termux-change-repo'
+Checking availability of current mirror:
+[*] https://mirrors.nju.edu.cn/termux/apt/termux-main: ok
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  fmt libprotobuf libzopfli
+The following NEW packages will be installed:
+  aapt2 fmt libprotobuf libzopfli
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 2637 kB of archives.
+After this operation, 14.3 MB of additional disk space will be used.
+Get:1 https://mirrors.nju.edu.cn/termux/apt/termux-main stable/main aarch64 libprotobuf aarch64 2:35.1 [1387 kB]
+Get:2 https://mirrors.nju.edu.cn/termux/apt/termux-main stable/main aarch64 fmt aarch64 1:11.2.0 [169 kB]
+Get:3 https://mirrors.nju.edu.cn/termux/apt/termux-main stable/main aarch64 libzopfli aarch64 1.0.3-5 [119 kB]
+Get:4 https://mirrors.nju.edu.cn/termux/apt/termux-main stable/main aarch64 aapt2 aarch64 16.0.0.4-2 [963 kB]
+Fetched 2637 kB in 14s (195 kB/s)
+Selecting previously unselected package libprotobuf.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 31534 files and directories currently installed.)
+Preparing to unpack .../libprotobuf_2%3a35.1_aarch64.deb ...
+Unpacking libprotobuf (2:35.1) ...
+Selecting previously unselected package fmt.
+Preparing to unpack .../fmt_1%3a11.2.0_aarch64.deb ...
+Unpacking fmt (1:11.2.0) ...
+Selecting previously unselected package libzopfli.
+Preparing to unpack .../libzopfli_1.0.3-5_aarch64.deb ...
+Unpacking libzopfli (1.0.3-5) ...
+Selecting previously unselected package aapt2.
+Preparing to unpack .../aapt2_16.0.0.4-2_aarch64.deb ...
+Unpacking aapt2 (16.0.0.4-2) ...
+Setting up fmt (1:11.2.0) ...
+Setting up libprotobuf (2:35.1) ...
+Setting up libzopfli (1.0.3-5) ...
+Setting up aapt2 (16.0.0.4-2) ...

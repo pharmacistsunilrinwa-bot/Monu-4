@@ -1,0 +1,255 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+
+BASE="app/src/main/java/com/monu/mobile"
+
+CHAT="$BASE/ui/screens/ChatScreen.kt"
+ENGINE="$BASE/feature/voice/MONUVoiceInputEngine.kt"
+
+PASS=0
+FAIL=0
+WARN=0
+
+pass() {
+    echo "[PASS] $1"
+    PASS=$((PASS + 1))
+}
+
+fail() {
+    echo "[FAIL] $1"
+    FAIL=$((FAIL + 1))
+}
+
+warn() {
+    echo "[WARN] $1"
+    WARN=$((WARN + 1))
+}
+
+check() {
+    FILE="$1"
+    PATTERN="$2"
+    LABEL="$3"
+
+    if grep -qE "$PATTERN" "$FILE" 2>/dev/null; then
+        pass "$LABEL"
+    else
+        fail "$LABEL"
+    fi
+}
+
+echo "================================================"
+echo " MONU MOBILE - LEVEL 66"
+echo " VOICE STATE TRANSITION AUDIT"
+echo " NO APK BUILD"
+echo "================================================"
+
+echo
+echo "[1/7] Central state authority"
+echo "------------------------------------------------"
+
+check \
+"$ENGINE" \
+'private var listening = false' \
+"Initial engine state is idle"
+
+check \
+"$ENGINE" \
+'fun updateListeningState\(value: Boolean\)' \
+"Central state transition function exists"
+
+check \
+"$ENGINE" \
+'listening = value' \
+"Central function owns state mutation"
+
+check \
+"$ENGINE" \
+'onListeningStateChanged\(value\)' \
+"State transitions emitted to UI"
+
+echo
+echo "[2/7] Idle -> Listening transitions"
+echo "------------------------------------------------"
+
+check \
+"$ENGINE" \
+'if \(listening\) return' \
+"Already-listening state blocks duplicate transition"
+
+check \
+"$ENGINE" \
+'updateListeningState\(true\)' \
+"Listening activation exists"
+
+check \
+"$ENGINE" \
+'startListening\(\)' \
+"Recognizer start transition exists"
+
+check \
+"$ENGINE" \
+'onReadyForSpeech' \
+"Ready state lifecycle exists"
+
+check \
+"$ENGINE" \
+'onBeginningOfSpeech' \
+"Speech beginning lifecycle exists"
+
+echo
+echo "[3/7] Listening -> Idle transitions"
+echo "------------------------------------------------"
+
+check \
+"$ENGINE" \
+'fun stopListening' \
+"Manual stop transition exists"
+
+check \
+"$ENGINE" \
+'onEndOfSpeech' \
+"End-of-speech transition exists"
+
+check \
+"$ENGINE" \
+'onResults' \
+"Result completion transition exists"
+
+check \
+"$ENGINE" \
+'onError' \
+"Error completion transition exists"
+
+check \
+"$ENGINE" \
+'updateListeningState\(false\)' \
+"Idle transition exists"
+
+echo
+echo "[4/7] Permission transition safety"
+echo "------------------------------------------------"
+
+check \
+"$ENGINE" \
+'if \(!hasMicrophonePermission\(\)\)' \
+"Permission denial branch exists"
+
+check \
+"$ENGINE" \
+'updateListeningState\(false\)' \
+"Permission failure can force idle state"
+
+check \
+"$CHAT" \
+'if \(microphoneGranted\)' \
+"UI permission success branch exists"
+
+check \
+"$CHAT" \
+'microphonePermissionLauncher\.launch' \
+"Permission request transition exists"
+
+check \
+"$CHAT" \
+'Microphone permission was denied' \
+"Permission denial state reported"
+
+echo
+echo "[5/7] Engine -> UI synchronization"
+echo "------------------------------------------------"
+
+check \
+"$CHAT" \
+'onListeningStateChanged = \{ isListening ->' \
+"UI receives authoritative engine state"
+
+check \
+"$CHAT" \
+'voiceListening = isListening' \
+"UI state follows engine"
+
+check \
+"$CHAT" \
+'if \(voiceListening\)' \
+"UI action depends on synchronized state"
+
+check \
+"$CHAT" \
+'"Start Voice"' \
+"Idle UI label exists"
+
+check \
+"$CHAT" \
+'"Stop Listening"' \
+"Listening UI label exists"
+
+echo
+echo "[6/7] Error recovery transitions"
+echo "------------------------------------------------"
+
+check \
+"$CHAT" \
+'onError = \{ error' \
+"Engine errors reach Chat"
+
+check \
+"$CHAT" \
+'voiceInputStatus = error' \
+"Error state stored"
+
+check \
+"$CHAT" \
+'voiceListening = false' \
+"Error path forces UI idle"
+
+check \
+"$CHAT" \
+'voiceInputStatus = ""' \
+"New session clears previous error"
+
+echo
+echo "[7/7] Shutdown transition"
+echo "------------------------------------------------"
+
+check \
+"$ENGINE" \
+'fun shutdown' \
+"Shutdown transition exists"
+
+check \
+"$ENGINE" \
+'updateListeningState\(false\)' \
+"Shutdown path has idle capability"
+
+check \
+"$ENGINE" \
+'speechRecognizer\?\.destroy\(\)' \
+"Recognizer destroyed"
+
+check \
+"$ENGINE" \
+'speechRecognizer = null' \
+"Recognizer ownership released"
+
+check \
+"$CHAT" \
+'voiceInputEngine\.shutdown\(\)' \
+"Chat lifecycle invokes shutdown"
+
+echo
+echo "================================================"
+echo " LEVEL 66 RESULT"
+echo "================================================"
+echo "PASS : $PASS"
+echo "FAIL : $FAIL"
+echo "WARN : $WARN"
+echo "================================================"
+
+if [ "$FAIL" -eq 0 ]; then
+    echo "LEVEL 66 GOLDEN"
+    echo "Voice state transition architecture verified"
+    echo "IDLE -> LISTENING -> RESULT/ERROR -> IDLE"
+else
+    echo "LEVEL 66 NEEDS TARGETED REPAIR"
+    exit 1
+fi

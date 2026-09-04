@@ -1,0 +1,125 @@
+
+FILE: app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt
+Lines: 43
+STATUS: NO OBVIOUS PLACEHOLDER
+3:enum class IntelligenceStatus {
+12:enum class IntelligenceConfidence {
+20:data class IntelligenceSignal(
+29:data class IntelligenceInsight(
+38:data class IntelligenceSnapshot(
+
+FILE: app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt
+Lines: 17
+STATUS: NO OBVIOUS PLACEHOLDER
+3:enum class InternetKnowledgeState {
+10:data class InternetKnowledgeResult(
+
+FILE: app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt
+Lines: 36
+STATUS: NO OBVIOUS PLACEHOLDER
+3:enum class MONUKnowledgeSource {
+13:enum class MONUKnowledgeStatus {
+20:data class MONUKnowledgeItem(
+31:data class MONUKnowledgeCollection(
+
+FILE: app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt
+Lines: 47
+STATUS: NO OBVIOUS PLACEHOLDER
+8:class MONUContextIntelligence {
+10:    fun demoContext(): List<MONUContextItem> {
+11:        return listOf(
+31:    fun createSnapshot(
+35:        return MONUContextSnapshot(
+42:    fun prioritize(
+45:        return items.sortedByDescending { it.priority }
+
+FILE: app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt
+Lines: 78
+STATUS: NO OBVIOUS PLACEHOLDER
+8:class MONUEventIntelligenceHub {
+12:    fun publish(event: MONUEvent): MONUEvent {
+15:        return event
+18:    fun updateStatus(
+27:        if (index == -1) return null
+35:        return updated
+38:    fun getEvents(): List<MONUEvent> {
+39:        return events.sortedByDescending {
+44:    fun analyze(eventId: String): EventInsight? {
+48:        } ?: return null
+50:        return EventInsight(
+60:    fun report(): EventReport {
+61:        return EventReport(
+
+FILE: app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt
+Lines: 173
+STATUS: NO OBVIOUS PLACEHOLDER
+11:data class MONUGeminiResult(
+17:class MONUGeminiIntelligenceEngine {
+22:    fun isConfigured(): Boolean {
+23:        return apiKey.isNotBlank() &&
+27:    suspend fun ask(
+53:                "https://generativelanguage.googleapis.com/" +
+
+FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt
+Lines: 144
+STATUS: NO OBVIOUS PLACEHOLDER
+11:data class MONUIntelligenceCapability(
+17:class MONUIntelligenceHub {
+43:    fun capabilities(): List<MONUIntelligenceCapability> {
+121:        return capabilities
+124:    fun healthReport(): String {
+126:        return buildString {
+
+FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt
+Lines: 31
+STATUS: NO OBVIOUS PLACEHOLDER
+8:class MONUUnifiedIntelligence {
+10:    fun collectSignals(): List<IntelligenceSignal> {
+11:        return emptyList()
+14:    fun analyze(
+17:        return emptyList()
+20:    fun snapshot(): IntelligenceSnapshot {
+24:        return IntelligenceSnapshot(
+
+FILE: app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt
+Lines: 107
+STATUS: NO OBVIOUS PLACEHOLDER
+11:class MONUInternetKnowledgeEngine {
+18:    fun search(query: String): InternetKnowledgeResult {
+23:            return InternetKnowledgeResult(
+33:        return try {
+38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+51:                    return InternetKnowledgeResult(
+
+FILE: app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt
+Lines: 42
+STATUS: NO OBVIOUS PLACEHOLDER
+7:class MONUKnowledgeCenter {
+9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+10:        return listOf(
+30:    fun search(
+34:        if (query.isBlank()) return items
+36:        return items.filter {
+
+FILE: app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt
+Lines: 55
+STATUS: NO OBVIOUS PLACEHOLDER
+9:class MONUPlanningIntelligence {
+11:    fun createPlan(
+17:        return MONUPlan(
+31:    fun nextExecutableStep(
+34:        return plan.steps.firstOrNull { step ->
+40:    fun updateStepStatus(
+53:        return plan.copy(steps = updatedSteps)
+
+FILE: app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt
+Lines: 618
+STATUS: POSSIBLE INCOMPLETE IMPLEMENTATION
+57:fun ChatScreen() {
+107:fun addMessage(
+119:fun buildResponse(
+122:    return when (result.state) {
+169:fun handleOfflineCommand(
+505:fun MessageCard(
+580:private fun copyToClipboard(
+598:private fun shareText(

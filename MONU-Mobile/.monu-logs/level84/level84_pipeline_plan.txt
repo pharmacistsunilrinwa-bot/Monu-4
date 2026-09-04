@@ -1,0 +1,22 @@
+LEVEL 84 PIPELINE
+=================
+
+CURRENT:
+ChatScreen
+    ->
+MONUOfflineCommandRouter
+    ->
+MONUOfflineCommandIntentParser
+    ->
+Router / LocalDeviceEngine
+
+NEW PRODUCTION CONTRACT:
+MONUOfflineCommandRequest
+    ->
+MONUOfflineCommandContract
+    ->
+MONUOfflineCommandResponse
+
+NEXT BATCH:
+84-87 = Structured Chat Integration +
+Conversation State + Persistence Foundation

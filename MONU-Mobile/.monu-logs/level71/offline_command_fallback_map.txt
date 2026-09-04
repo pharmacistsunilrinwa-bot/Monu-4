@@ -1,0 +1,8 @@
+LEVEL 71 OFFLINE COMMAND FALLBACK MAP
+=====================================
+39:    fun buildOfflineCommandFallback(
+50:                "Hello. MONU is running in offline mode."
+56:                "MONU offline runtime is ready."
+69:    fun handleOfflineCommand(
+77:            buildOfflineCommandFallback(cleanCommand)
+195:                            handleOfflineCommand(cleanCommand)

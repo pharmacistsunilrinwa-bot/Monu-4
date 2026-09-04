@@ -1,0 +1,167 @@
+     1	package com.monu.mobile.feature.intelligence
+     2	
+     3	import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+     4	import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+     5	import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+     6	import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+     7	import kotlinx.coroutines.Dispatchers
+     8	import kotlinx.coroutines.withContext
+     9	
+    10	enum class MONUQuerySource {
+    11	    OFFLINE,
+    12	    INTERNAL_KNOWLEDGE,
+    13	    INTELLIGENCE_HUB,
+    14	    GEMINI,
+    15	    INTERNET,
+    16	    FALLBACK
+    17	}
+    18	
+    19	data class MONUQueryResponse(
+    20	    val source: MONUQuerySource,
+    21	    val text: String,
+    22	    val success: Boolean
+    23	)
+    24	
+    25	class MONUQueryRouter {
+    26	
+    27	    private val offlineRouter =
+    28	        MONUOfflineCommandRouter()
+    29	
+    30	    private val knowledgeCenter =
+    31	        MONUKnowledgeCenter()
+    32	
+    33	    private val intelligenceHub =
+    34	        MONUIntelligenceHub()
+    35	
+    36	    private val gemini =
+    37	        MONUGeminiIntelligenceEngine()
+    38	
+    39	    private val internet =
+    40	        MONUInternetKnowledgeEngine()
+    41	
+    42	    suspend fun route(
+    43	        query: String,
+    44	        isOnline: Boolean
+    45	    ): MONUQueryResponse = withContext(Dispatchers.IO) {
+    46	
+    47	        val cleanQuery = query.trim()
+    48	
+    49	        if (cleanQuery.isBlank()) {
+    50	            return@withContext MONUQueryResponse(
+    51	                source = MONUQuerySource.FALLBACK,
+    52	                text = "Please enter a valid request.",
+    53	                success = false
+    54	            )
+    55	        }
+    56	
+    57	        if (!isOnline) {
+    58	            return@withContext MONUQueryResponse(
+    59	                source = MONUQuerySource.OFFLINE,
+    60	                text = offlineRouter.handle(cleanQuery),
+    61	                success = true
+    62	            )
+    63	        }
+    64	
+    65	        val lower = cleanQuery.lowercase()
+    66	
+    67	        if (
+    68	            lower == "monu health" ||
+    69	            lower == "monu intelligence health" ||
+    70	            lower == "intelligence status" ||
+    71	            lower == "capabilities"
+    72	        ) {
+    73	            return@withContext MONUQueryResponse(
+    74	                source = MONUQuerySource.INTELLIGENCE_HUB,
+    75	                text = intelligenceHub.healthReport(),
+    76	                success = true
+    77	            )
+    78	        }
+    79	
+    80	        val internalKnowledge =
+    81	            runCatching {
+    82	                knowledgeCenter.search(
+    83	                    cleanQuery,
+    84	                    knowledgeCenter.demoKnowledge()
+    85	                )
+    86	            }.getOrElse {
+    87	                emptyList()
+    88	            }
+    89	
+    90	        if (internalKnowledge.isNotEmpty()) {
+    91	            val response =
+    92	                internalKnowledge.joinToString(
+    93	                    separator = "\n\n"
+    94	                ) { item ->
+    95	                    item.toString()
+    96	                }
+    97	
+    98	            return@withContext MONUQueryResponse(
+    99	                source = MONUQuerySource.INTERNAL_KNOWLEDGE,
+   100	                text = response,
+   101	                success = true
+   102	            )
+   103	        }
+   104	
+   105	        if (gemini.isConfigured()) {
+   106	            val geminiResult =
+   107	                gemini.ask(cleanQuery)
+   108	
+   109	            if (
+   110	                geminiResult.success &&
+   111	                geminiResult.text.isNotBlank()
+   112	            ) {
+   113	                return@withContext MONUQueryResponse(
+   114	                    source = MONUQuerySource.GEMINI,
+   115	                    text = geminiResult.text,
+   116	                    success = true
+   117	                )
+   118	            }
+   119	        }
+   120	
+   121	        val internetResult =
+   122	            internet.search(cleanQuery)
+   123	
+   124	        val internetText =
+   125	            when (internetResult.state) {
+   126	                com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS -> {
+   127	                    buildString {
+   128	                        append(internetResult.title)
+   129	
+   130	                        if (internetResult.summary.isNotBlank()) {
+   131	                            append("\n\n")
+   132	                            append(internetResult.summary)
+   133	                        }
+   134	
+   135	                        if (internetResult.source.isNotBlank()) {
+   136	                            append("\n\nSource: ")
+   137	                            append(internetResult.source)
+   138	                        }
+   139	                    }
+   140	                }
+   141	
+   142	                com.monu.mobile.domain.model.InternetKnowledgeState.NOT_FOUND -> {
+   143	                    "I could not find useful internet information."
+   144	                }
+   145	
+   146	                com.monu.mobile.domain.model.InternetKnowledgeState.NETWORK_ERROR -> {
+   147	                    "Internet search failed: " +
+   148	                        (
+   149	                            internetResult.errorMessage
+   150	                                ?: "Unknown network error."
+   151	                        )
+   152	                }
+   153	
+   154	                com.monu.mobile.domain.model.InternetKnowledgeState.INVALID_QUERY -> {
+   155	                    "Please enter a valid query."
+   156	                }
+   157	            }
+   158	
+   159	        MONUQueryResponse(
+   160	            source = MONUQuerySource.INTERNET,
+   161	            text = internetText,
+   162	            success =
+   163	                internetResult.state ==
+   164	                    com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS
+   165	        )
+   166	    }
+   167	}

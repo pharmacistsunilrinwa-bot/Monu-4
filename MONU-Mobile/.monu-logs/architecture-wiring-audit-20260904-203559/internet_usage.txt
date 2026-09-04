@@ -1,0 +1,16 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:100:            internet.search(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:40:        MONUInternetKnowledgeEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:4:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:55:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:78:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:88:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine

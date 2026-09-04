@@ -1,0 +1,9 @@
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:3:enum class ConnectionState {
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:20:data class MONUDiagnosticResult(
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:3:enum class CommandSyncState {
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:28:data class RecoveryResult(
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:12:enum class WebSocketState {
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:35:data class SyncResult(
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:40:data class VerificationResult(
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:3:enum class InternetKnowledgeState {
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:10:data class InternetKnowledgeResult(

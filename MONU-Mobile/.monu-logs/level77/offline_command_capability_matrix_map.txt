@@ -1,0 +1,40 @@
+LEVEL 77 OFFLINE COMMAND CAPABILITY MATRIX MAP
+===============================================
+
+3:data class MONUOfflineCommandCapability(
+4:    val intent: MONUOfflineCommandIntent,
+5:    val executionOwner: String,
+9:class MONUOfflineCommandCapabilityMatrix {
+11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+13:            MONUOfflineCommandCapability(
+14:                intent = MONUOfflineCommandIntent.EMPTY,
+15:                executionOwner = "Router",
+19:            MONUOfflineCommandCapability(
+20:                intent = MONUOfflineCommandIntent.GREETING,
+21:                executionOwner = "Router",
+25:            MONUOfflineCommandCapability(
+26:                intent = MONUOfflineCommandIntent.HELP,
+27:                executionOwner = "Router",
+31:            MONUOfflineCommandCapability(
+32:                intent = MONUOfflineCommandIntent.STATUS,
+33:                executionOwner = "Router",
+37:            MONUOfflineCommandCapability(
+38:                intent = MONUOfflineCommandIntent.IDENTITY,
+39:                executionOwner = "Router",
+43:            MONUOfflineCommandCapability(
+44:                intent = MONUOfflineCommandIntent.TIME,
+45:                executionOwner = "LocalDeviceEngine",
+49:            MONUOfflineCommandCapability(
+50:                intent = MONUOfflineCommandIntent.DATE,
+51:                executionOwner = "LocalDeviceEngine",
+55:            MONUOfflineCommandCapability(
+56:                intent = MONUOfflineCommandIntent.LOCAL_STATUS,
+57:                executionOwner = "LocalDeviceEngine",
+61:            MONUOfflineCommandCapability(
+62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+63:                executionOwner = "Router",
+69:    fun ownerFor(
+70:        intent: MONUOfflineCommandIntent
+74:            ?.executionOwner
+77:    fun supports(
+78:        intent: MONUOfflineCommandIntent

@@ -1,0 +1,53 @@
+10:app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:3:enum class MONUBackupStatus {
+13:app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:27:enum class MONURestoreStatus {
+14:app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:3:data class ChatConversation(
+15:app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:10:enum class MessageRole {
+16:app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:16:data class ChatMessage(
+17:app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:3:enum class MONUCommandStatus {
+20:app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:3:enum class ConnectionState {
+21:app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:11:data class ConnectionStatus(
+22:app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:19:data class CapabilityStatus(
+24:app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:14:enum class MONUContextStatus {
+27:app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:3:enum class MONUDecisionStatus {
+32:app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:3:enum class MONUCapabilityStatus {
+34:app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:3:enum class MONUDiagnosticStatus {
+39:app/src/main/java/com/monu/mobile/domain/model/EmployeeModels.kt:3:enum class MONUEmployeeStatus {
+43:app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:15:enum class MONUEventStatus {
+47:app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:3:enum class ExecutionStatus {
+54:app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:8:enum class MONUTransferStatus {
+60:app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt:3:enum class MONUSessionStatus {
+64:app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:11:enum class IntegrationStatus {
+67:app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:3:enum class IntelligenceStatus {
+73:app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:13:enum class MONUKnowledgeStatus {
+81:app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:40:enum class MONUMediaJobStatus {
+84:app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:3:enum class CommandSyncState {
+86:app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:3:enum class OptimizationStatus {
+90:app/src/main/java/com/monu/mobile/domain/model/PermissionModels.kt:3:enum class MONUPermissionStatus {
+92:app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:3:enum class MONUPlanStatus {
+93:app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:15:enum class MONUPlanStepStatus {
+97:app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:3:enum class PlatformComponentStatus {
+101:app/src/main/java/com/monu/mobile/domain/model/ProjectModels.kt:3:enum class MONUProjectStatus {
+105:app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:3:enum class RecoveryStatus {
+110:app/src/main/java/com/monu/mobile/domain/model/ResumableTransferModels.kt:11:data class MONUResumableTransferState(
+111:app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:3:enum class MONURuleStatus {
+117:app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:3:enum class MONUSecurityStatus {
+122:app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:12:enum class WebSocketState {
+123:app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:20:data class WebSocketStatus(
+125:app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:13:enum class ServiceStatus {
+131:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:3:enum class SyncStatus {
+132:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:13:enum class SyncDirection {
+133:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:20:data class StateSnapshot(
+134:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:28:data class SyncRequest(
+135:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:35:data class SyncResult(
+136:app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:44:data class SyncReport(
+137:app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:3:enum class MONUHealthStatus {
+141:app/src/main/java/com/monu/mobile/domain/model/TaskModels.kt:3:enum class MONUTaskStatus {
+144:app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:3:enum class VerificationStatus {
+150:app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:3:enum class MONUWorkflowStatus {
+155:app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:3:enum class InternetKnowledgeState {
+157:app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:3:enum class MONUConversationRole {
+158:app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:9:data class MONUConversationMessage(
+159:app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:16:data class MONUConversationSnapshot(
+160:app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:3:data class MONUConversationState(
+161:app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:8:data class MONUConversationExecutionResult(
+162:app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:3:data class MONUConversationUiState(

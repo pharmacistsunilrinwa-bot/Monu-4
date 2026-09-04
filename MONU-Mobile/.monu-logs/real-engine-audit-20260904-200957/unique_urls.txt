@@ -1,0 +1,5 @@
+http://192.168.1.100:8000
+http://192.168.x.x:8000
+https://en.wikipedia.org/api/rest_v1/page/summary/$encoded
+https://generativelanguage.googleapis.com/
+https://your-server-domain.com

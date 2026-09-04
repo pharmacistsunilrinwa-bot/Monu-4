@@ -1,0 +1,216 @@
+import kotlinx.coroutines.withContext
+import java.util.UUID
+import com.monu.mobile.feature.conversation.MONUChatScreenIntegration
+
+@Composable
+fun ChatScreen() {
+
+    // MONU_LEVEL_91_95_CONVERSATION_PIPELINE
+    // Production conversation pipeline authority.
+    val monuChatScreenIntegration =
+        remember {
+            MONUChatScreenIntegration()
+        }
+
+    fun buildOfflineCommandFallback(
+        command: String
+    ): String {
+        val normalized = command.trim().lowercase()
+
+        return when {
+            normalized.isBlank() ->
+                "Please say or type a command."
+
+            normalized.contains("hello") ||
+                normalized.contains("hi monu") ->
+                "Hello. MONU is running in offline mode."
+
+            normalized.contains("help") ->
+                "Offline commands available: hello, help, status, time."
+
+            normalized.contains("status") ->
+                "MONU offline runtime is ready."
+
+            normalized.contains("time") ->
+                "Time information requires a connected knowledge source."
+
+            else ->
+                "I am currently offline. Your command was received: $command"
+        }
+    }
+
+    val offlineCommandRouter = remember {
+        MONUOfflineCommandRouter()
+    }
+
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    fun handleOfflineCommand(
+        command: String
+    ) {
+        val cleanCommand = command.trim()
+
+        if (cleanCommand.isBlank()) return
+
+        val offlineResponse =
+            offlineCommandRouter.handle(cleanCommand)
+
+        messages = messages + ChatMessage(
+            id = UUID.randomUUID().toString(),
+            role = MessageRole.ASSISTANT,
+            content = offlineResponse
+        )
+    }
+
+    var voiceReady by remember {
+        mutableStateOf(false)
+    }
+
+    var searching by remember {
+        mutableStateOf(false)
+    }
+
+    val voiceEngine = remember {
+        MONUVoiceEngine(context) {
+            voiceReady = it
+        }
+    }
+
+    val knowledgeEngine = remember {
+        MONUInternetKnowledgeEngine()
+    }
+
+    val microphonePermissionLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission()
+        ) { granted ->
+            if (granted) {
+                voiceInputStatus = ""
+                voiceInputEngine.startListening()
+            } else {
+                voiceInputStatus =
+                    "Microphone permission was denied."
+                voiceListening = false
+            }
+        }
+
+    DisposableEffect(voiceInputEngine) {
+        onDispose {
+            voiceInputEngine.shutdown()
+        }
+    }
+
+    var voiceRuntimeHealth by remember {
+        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+    }
+
+    var voiceListening by remember {
+        mutableStateOf(false)
+    }
+
+    var voiceInputStatus by remember {
+        mutableStateOf("")
+    }
+
+    val voiceInputEngine = remember {
+        MONUVoiceInputEngine(
+            context = context,
+            onResult = { recognizedCommand ->
+                val cleanCommand = recognizedCommand.trim()
+
+                if (cleanCommand.isNotBlank()) {
+                    messages = messages + ChatMessage(
+                        role = MessageRole.OWNER,
+                        content = cleanCommand
+                    )
+
+                    scope.launch {
+                        if (!networkMonitor.isOnline()) {
+                            messages = messages + ChatMessage(
+                                role = MessageRole.SYSTEM,
+                                content = "Internet connection is unavailable."
+                            )
+                            return@launch
+                        }
+
+                        searching = true
+
+                        try {
+                            when (
+                                val result =
+                                    withContext(Dispatchers.IO) {
+                                        knowledgeEngine.search(cleanCommand)
+                                    }
+                            ) {
+                                is InternetKnowledgeState.SUCCESS -> {
+                                    messages = messages + ChatMessage(
+                                        role = MessageRole.MONU,
+                                        content = result.answer
+                                    )
+                                }
+
+                                is InternetKnowledgeState.NOT_FOUND -> {
+                                    messages = messages + ChatMessage(
+                                        role = MessageRole.SYSTEM,
+                                        content = "No information found for this command."
+                                    )
+                                }
+
+                                is InternetKnowledgeState.NETWORK_ERROR -> {
+                                    messages = messages + ChatMessage(
+                                        role = MessageRole.SYSTEM,
+                                        content = "Network error while processing voice command."
+                                    )
+                                }
+
+                                is InternetKnowledgeState.INVALID_QUERY -> {
+                                    messages = messages + ChatMessage(
+                                        role = MessageRole.SYSTEM,
+                                        content = "Voice command was invalid."
+                                    )
+                                }
+                            }
+                        } catch (error: Exception) {
+                            handleOfflineCommand(cleanCommand)
+                        } finally {
+                            searching = false
+                        }
+                    }
+                }
+            },
+            onError = { error ->
+                voiceInputStatus = error
+                voiceListening = false
+            },
+            onListeningStateChanged = { isListening ->
+                voiceListening = isListening
+                voiceRuntimeHealth =
+                    voiceInputEngine.getRuntimeHealth()
+            }
+        )
+    }
+
+    val networkMonitor = remember {
+        MONUNetworkMonitor(context.applicationContext)
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            voiceEngine.shutdown()
+        voiceInputEngine.shutdown()
+        }
+    }
+
+    var messages by remember {
+        mutableStateOf(
+            listOf(
+                ChatMessage(
+                    id = UUID.randomUUID().toString(),
+                    conversationId = "default",
+                    content =
+                        "MONU Command Center ready. Internet knowledge is available.",
+                    role = MessageRole.SYSTEM
+                )
+            )
+        )

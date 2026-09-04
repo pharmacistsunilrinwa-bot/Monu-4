@@ -1,0 +1,350 @@
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:23:            .putString("commandPath", config.commandPath)
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:49:            commandPath =
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:51:                    "commandPath",
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:1:package com.monu.mobile.data.local
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:10:        MONULocalDatabase? = null
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:14:    ): MONULocalDatabase {
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:20:                MONULocalDatabase::class.java,
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:1:package com.monu.mobile.data.local
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:5:import com.monu.mobile.data.local.dao.OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:6:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:10:        OfflineCommandEntity::class
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:15:abstract class MONULocalDatabase :
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:18:    abstract fun offlineCommandDao():
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:19:        OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:1:package com.monu.mobile.data.local.dao
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:4:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:7:interface OfflineCommandDao {
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:13:        command: OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:17:        "SELECT * FROM offline_commands ORDER BY createdAt ASC"
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:20:        List<OfflineCommandEntity>
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:24:        SELECT * FROM offline_commands
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:30:        List<OfflineCommandEntity>
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:34:        command: OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:38:        "DELETE FROM offline_commands WHERE id = :id"
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:45:        "SELECT COUNT(*) FROM offline_commands"
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt:1:package com.monu.mobile.data.local.entity
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt:6:@Entity(tableName = "offline_commands")
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt:7:data class OfflineCommandEntity(
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt:11:    val command: String,
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:45:                "Your Mobile Command Center"
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:46:            ) ?: "Your Mobile Command Center"
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:3:enum class MONUCommandStatus {
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:11:data class MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:13:    val command: String,
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:15:    val status: MONUCommandStatus,
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:21:data class MONUCommandPattern(
+app/src/main/java/com/monu/mobile/domain/model/HomeModels.kt:14:    val subtitle: String = "Your Mobile Command Center"
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:3:enum class CommandSyncState {
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:12:data class OfflineCommand(
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:14:    val command: String,
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:16:    val syncState: CommandSyncState,
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:7:    val commandPath: String = "",
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:16:    val offlineModeEnabled: Boolean = true
+app/src/main/java/com/monu/mobile/feature/backup/MONUBackupCenter.kt:11:            id = "local-backup-status",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:21:                id = "command_context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:23:                title = "Recent Command Context",
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:24:                summary = "Real command history may later provide contextual continuity.",
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:63:            title = "Local Storage Access",
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:3:import com.monu.mobile.domain.model.MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:4:import com.monu.mobile.domain.model.MONUCommandPattern
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:6:class MONUCommandHistory {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:8:    private val commands = mutableListOf<MONUCommandHistoryEntry>()
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:10:    fun add(entry: MONUCommandHistoryEntry) {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:11:        commands += entry
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:14:    fun all(): List<MONUCommandHistoryEntry> {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:15:        return commands.sortedByDescending { it.timestamp }
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:18:    fun analyzePatterns(): List<MONUCommandPattern> {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:19:        if (commands.isEmpty()) return emptyList()
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:21:        val grouped = commands
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:22:            .groupBy { it.command.trim().lowercase() }
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:24:        return grouped.map { (command, entries) ->
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:25:            MONUCommandPattern(
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:26:                pattern = command,
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:28:                description = "This command pattern occurred ${entries.size} time(s)."
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:34:        commands.clear()
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:12:            subtitle = "Your Mobile Command Center"
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:23:            subtitle = "Personalized Command Center"
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:7:        OfflineCommandQueue,
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:15:     * pretend to send commands.
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:17:     * Real command API integration will be
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:19:     * command contract is verified.
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:47:                "Server connected, but command endpoint is not configured. Queue preserved."
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:4:import com.monu.mobile.data.local.MONUDatabaseProvider
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:5:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:6:import com.monu.mobile.domain.model.CommandSyncState
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:9:class OfflineCommandQueue(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:16:            .offlineCommandDao()
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:19:        command: String
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:26:            OfflineCommandEntity(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:28:                command = command,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:32:                    CommandSyncState.PENDING.name
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:40:        List<OfflineCommandEntity> {
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:46:        command:
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:47:            OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:50:            command.copy(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:52:                    CommandSyncState.SYNCING.name
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:58:        command:
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:59:            OfflineCommandEntity,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:63:            command.copy(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:65:                    CommandSyncState.RETRY_PENDING.name,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:67:                    command.retryCount + 1,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:74:        command:
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:75:            OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:78:            command.copy(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:80:                    CommandSyncState.ACKNOWLEDGED.name
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:2:import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:3:import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:4:import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:9:        MONUOfflineCommandIntentParser()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:11:    private val localDeviceCommandEngine =
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:12:        MONULocalDeviceCommandEngine()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:16:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:18:        return canHandle(request.command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:21:    fun canHandle(command: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:22:        val intent = intentParser.parse(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:24:        return intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:27:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:28:        return when (intentParser.parse(command)) {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:29:            MONUOfflineCommandIntent.EMPTY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:30:                "Please say or type a command."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:32:            MONUOfflineCommandIntent.GREETING ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:33:                "Hello. MONU is running locally in offline mode."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:35:            MONUOfflineCommandIntent.HELP ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:37:                MONU offline commands:
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:47:            MONUOfflineCommandIntent.STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:48:                "MONU local runtime is ready. Offline command system is active."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:50:            MONUOfflineCommandIntent.IDENTITY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:51:                "I am MONU, your personal AI assistant. I can operate with local offline capabilities."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:53:            MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:54:            MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:55:            MONUOfflineCommandIntent.LOCAL_STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:56:                localDeviceCommandEngine.handle(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:58:            MONUOfflineCommandIntent.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:59:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:64:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:65:    ): MONUOfflineCommandResponse {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:66:        val command = request.command
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:67:        val intent = intentParser.parse(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:68:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:70:        return MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:73:            response = handle(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:5:import java.util.Locale
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:7:class MONULocalDeviceCommandEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:9:    fun canHandle(command: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:10:        val normalized = command.trim().lowercase()
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:16:            normalized.contains("local status")
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:19:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:20:        val normalized = command.trim().lowercase()
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:31:                normalized.contains("local status") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:32:                localRuntimeStatus()
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:35:                "This local device command is not available."
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:41:            SimpleDateFormat("hh:mm a", Locale.getDefault())
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:43:        return "Current local time: ${formatter.format(Date())}"
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:50:                Locale.getDefault()
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:56:    private fun localRuntimeStatus(): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:57:        return "MONU local device command engine is ready."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:3:enum class MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:15:class MONUOfflineCommandIntentParser {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:17:    fun parse(command: String): MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:18:        val normalized = command.trim().lowercase()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:22:                MONUOfflineCommandIntent.EMPTY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:26:                MONUOfflineCommandIntent.GREETING
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:30:                MONUOfflineCommandIntent.HELP
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:33:                MONUOfflineCommandIntent.IDENTITY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:36:                normalized.contains("local status") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:37:                MONUOfflineCommandIntent.LOCAL_STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:40:                MONUOfflineCommandIntent.STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:43:                MONUOfflineCommandIntent.TIME
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:47:                MONUOfflineCommandIntent.DATE
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:50:                MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:3:data class MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:4:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:9:class MONUOfflineCommandCapabilityMatrix {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:13:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:14:                intent = MONUOfflineCommandIntent.EMPTY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:16:                description = "Handles blank commands safely."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:19:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:20:                intent = MONUOfflineCommandIntent.GREETING,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:22:                description = "Handles local greetings."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:25:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:26:                intent = MONUOfflineCommandIntent.HELP,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:28:                description = "Provides available offline commands."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:31:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:32:                intent = MONUOfflineCommandIntent.STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:34:                description = "Reports MONU offline runtime status."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:37:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:38:                intent = MONUOfflineCommandIntent.IDENTITY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:43:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:44:                intent = MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:45:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:46:                description = "Reads current local device time."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:49:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:50:                intent = MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:51:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:52:                description = "Reads current local device date."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:55:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:56:                intent = MONUOfflineCommandIntent.LOCAL_STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:57:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:58:                description = "Reports local device command runtime status."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:61:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:64:                description = "Safely handles unsupported offline commands."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:70:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:78:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:1:package com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:3:data class MONUOfflineCommandRequest(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:4:    val command: String
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:7:data class MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:9:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:13:interface MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:16:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:20:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:21:    ): MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:41:                id = "offline",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:42:                title = "Offline Mode",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:43:                description = "Persistent command queue behavior.",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:44:                enabled = settings.offlineModeEnabled
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:14:    fun updateLocalState(
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:65:                    "Local state prepared for synchronization"
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:5:import java.util.Locale
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:20:            textToSpeech.language = Locale.getDefault()
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:169:        val command =
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:175:        if (command.isNotBlank()) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:176:            onResult(command)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:178:            onError("No voice command recognized.")
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository :
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:12:        MONULocalConversationRepository(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:14:        MONULocalConversationSnapshotStore()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:3:import com.monu.mobile.feature.offline.MONUOfflineCommandContract
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:4:import com.monu.mobile.feature.offline.MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:5:import com.monu.mobile.feature.offline.MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:11:    val commandResponse: MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:14:class MONUOfflineConversationBridge(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:15:    private val commandContract: MONUOfflineCommandContract =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:16:        MONUOfflineCommandRouter(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:26:        command: String
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:35:                    content = command
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:39:                commandContract.execute(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:40:                    MONUOfflineCommandRequest(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:41:                        command = command
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:55:                commandResponse = response
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:62:                    ?: "MONU could not process the command locally."
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:68:                    content = command
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:79:                commandResponse =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:80:                    MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:83:                            com.monu.mobile.feature.offline
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:84:                                .MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:4:    private val bridge: MONUOfflineConversationBridge =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:5:        MONUOfflineConversationBridge()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:17:        command: String
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:19:        return coordinator.submit(command)
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:3:class MONULocalConversationSnapshotStore :
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:119:                            onOpenCommand = {
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:11:fun CommandInput(
+app/src/main/java/com/monu/mobile/ui/components/MONUSidebar.kt:34:                text = "Personal Command OS",
+app/src/main/java/com/monu/mobile/ui/components/MONUSidebar.kt:44:                Text("+ New Command")
+app/src/main/java/com/monu/mobile/ui/components/MONUSidebar.kt:77:                text = "MONU Mobile Command Center",
+app/src/main/java/com/monu/mobile/ui/navigation/MONUDestination.kt:9:    CHAT("Command Center", "◉"),
+app/src/main/java/com/monu/mobile/ui/screens/ActivityLogScreen.kt:38:            description = "Commands, planning, assignments and execution events can be recorded here."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:37:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:46:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:49:import com.monu.mobile.ui.components.CommandInput
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:57:val context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:68:val offlineCommandRouter = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:69:    MONUOfflineCommandRouter()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:99:                    "MONU Command Center ready. Internet knowledge is available.",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:168:fun handleOfflineCommand(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:169:    command: String
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:171:    val cleanCommand = command.trim()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:173:    if (cleanCommand.isBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:175:            content = "Please say or type a command.",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:182:        offlineCommandRouter.handle(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:199:        onResult = { recognizedCommand ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:200:            val cleanCommand = recognizedCommand.trim()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:            if (cleanCommand.isBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:207:                content = cleanCommand,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:213:                    handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:222:                            knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:230:                    handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:434:    CommandInput { command, attachments ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:435:        val cleanCommand = command.trim()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:447:        if (cleanCommand.isBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:463:            return@CommandInput
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:468:                cleanCommand + attachmentText,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:474:                handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:483:                        knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:491:                handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:16:import com.monu.mobile.domain.model.MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:17:import com.monu.mobile.domain.model.MONUCommandStatus
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:20:fun CommandHistoryScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:23:        MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:25:            command = "Command history architecture",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:27:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:28:            resultSummary = "Real command events will appear here after integration.",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:31:        MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:33:            command = "Command pattern intelligence",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:35:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:36:            resultSummary = "Patterns will be calculated from real recorded commands.",
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:47:        Text("MONU Command History")
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:50:            "Command history and intelligence must be based on real recorded commands."
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:58:                CommandHistoryCard(entry)
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:65:private fun CommandHistoryCard(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:66:    entry: MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:74:            Text(entry.command)
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:17:import java.util.Locale
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:96:                        Locale.getDefault()
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:15:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:22:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:19:    onOpenCommand: () -> Unit
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:22:        MONUFeatureCard("Command Center", "Text, voice and multimodal commands", "◉"),
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:28:        MONUFeatureCard("Voice", "Voice commands and spoken responses", "◌"),
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:56:                onClick = onOpenCommand
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:69:                        if (feature.title == "Command Center") {
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:70:                            onOpenCommand()
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:9:import com.monu.mobile.feature.offline.OfflineCommandQueue
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:15:fun OfflineQueueScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:18:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:25:            OfflineCommandQueue(context)
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:28:    var command by remember {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:38:            "Local queue ready"
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:80:                        "Pending local commands: $queueCount"
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:92:            value = command,
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:94:                command = it
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:98:                    "Test offline command"
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:105:                command.isNotBlank(),
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:109:                    command.trim()
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:119:                    command = ""
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:122:                        "Command stored locally"
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:15:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/PermissionControlScreen.kt:22:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/PlanningIntelligenceScreen.kt:33:                description = "Analyze the real command or objective.",
+app/src/main/java/com/monu/mobile/ui/screens/ProjectCenterScreen.kt:25:            name = "MONU Mobile Command OS",
+app/src/main/java/com/monu/mobile/ui/screens/ProjectCenterScreen.kt:26:            description = "Android owner command center",
+app/src/main/java/com/monu/mobile/ui/screens/ProjectCenterScreen.kt:45:        Text("MONU Project Command Center")
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:17:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:21:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:29:    val context: Context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:41:        Text("MONU Security Command Center")
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:19:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:26:    val context = LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:7:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:16:        LocalContext.current
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:106:            value = config.commandPath,
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:110:                        commandPath = it
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:114:                Text("Command endpoint")
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:158:                    "Configuration saved locally. Endpoints are not verified until real connection testing."
+app/src/main/java/com/monu/mobile/ui/screens/SettingsCenterScreen.kt:27:        Text("MONU Settings Command Center")
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:14:import androidx.compose.ui.platform.LocalContext
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:21:    val context = LocalContext.current

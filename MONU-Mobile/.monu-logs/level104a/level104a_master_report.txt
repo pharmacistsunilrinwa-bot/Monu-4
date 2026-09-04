@@ -1,0 +1,32 @@
+MONU MOBILE LEVEL 104A
+EXACT CHAT INTEGRATION CONTRACT BUNDLE
+========================================
+
+COMPILE_EXIT=1
+ERROR_LINES=49
+
+PRIMARY SOURCE
+--------------
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt
+
+CONTRACT FILES
+--------------
+ChatScreen_exact.txt
+ChatModels_exact.txt
+conversation_exact_sources.txt
+voice_exact_sources.txt
+MONUNetworkMonitor_exact.txt
+offline_exact_sources.txt
+knowledge_exact_sources.txt
+exact_symbol_evidence.txt
+current_errors.txt
+
+RULE
+----
+Level 104B must repair ChatScreen only against
+actual constructors, methods, enums and state APIs
+captured in this evidence bundle.
+
+PASS=10
+FAIL=0
+WARN=0

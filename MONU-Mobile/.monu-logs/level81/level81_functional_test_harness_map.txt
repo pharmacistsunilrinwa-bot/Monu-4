@@ -1,0 +1,25 @@
+LEVEL 81 FUNCTIONAL TEST HARNESS MAP
+====================================
+
+PRODUCTION:
+IntentParser -> Router -> LocalDeviceEngine
+
+FUNCTIONAL CASES:
+blank -> EMPTY
+hello -> GREETING
+hi monu -> GREETING
+help -> HELP
+what can you do -> HELP
+status -> STATUS
+who are you -> IDENTITY
+time -> TIME
+date -> DATE
+today -> DATE
+device status -> LOCAL_STATUS
+local status -> LOCAL_STATUS
+unsupported -> UNKNOWN
+
+RESULT:
+PASS=20
+FAIL=0
+WARN=2

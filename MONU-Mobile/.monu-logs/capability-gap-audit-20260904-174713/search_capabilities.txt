@@ -1,0 +1,16 @@
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:11:    val query: String,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:31:        query: String,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:34:        if (query.isBlank()) return items
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:37:            it.title.contains(query, ignoreCase = true) ||
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:38:            it.content.contains(query, ignoreCase = true) ||
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:39:            it.tags.any { tag -> tag.contains(query, ignoreCase = true) }
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:20:        val cleanedQuery = query.trim()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:24:                query = query,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:52:                        query = cleanedQuery,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:75:                        query = cleanedQuery,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:85:                        query = cleanedQuery,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:97:                query = cleanedQuery,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:141:                    "I could not find a useful internet summary for this query."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:163:            "Please enter a valid query."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:458:                        "Please enter a text query.",

@@ -1,0 +1,117 @@
+INTERNET FILE: app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt
+
+--- URLS ---
+38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+40:            val request = Request.Builder()
+
+--- METHODS ---
+18:    fun search(query: String): InternetKnowledgeResult {
+
+--- COMPLETE SOURCE ---
+package com.monu.mobile.feature.knowledge
+
+import com.monu.mobile.domain.model.InternetKnowledgeResult
+import com.monu.mobile.domain.model.InternetKnowledgeState
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
+import java.net.URLEncoder
+import java.util.concurrent.TimeUnit
+
+class MONUInternetKnowledgeEngine {
+
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .build()
+
+    fun search(query: String): InternetKnowledgeResult {
+
+        val cleanedQuery = query.trim()
+
+        if (cleanedQuery.isBlank()) {
+            return InternetKnowledgeResult(
+                query = query,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.INVALID_QUERY,
+                errorMessage = "Query is empty"
+            )
+        }
+
+        return try {
+            val encoded =
+                URLEncoder.encode(cleanedQuery, "UTF-8")
+
+            val url =
+                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+
+            val request = Request.Builder()
+                .url(url)
+                .header(
+                    "User-Agent",
+                    "MONU-Mobile/1.0"
+                )
+                .build()
+
+            client.newCall(request).execute().use { response ->
+
+                if (!response.isSuccessful) {
+                    return InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = "",
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "Internet source returned HTTP ${response.code}"
+                    )
+                }
+
+                val body =
+                    response.body?.string().orEmpty()
+
+                val json = JSONObject(body)
+
+                val title =
+                    json.optString("title", cleanedQuery)
+
+                val extract =
+                    json.optString("extract", "")
+
+                if (extract.isBlank()) {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "No useful knowledge summary found"
+                    )
+                } else {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = extract,
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.SUCCESS
+                    )
+                }
+            }
+
+        } catch (error: Exception) {
+
+            InternetKnowledgeResult(
+                query = cleanedQuery,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.NETWORK_ERROR,
+                errorMessage =
+                    error.message ?: "Unknown network error"
+            )
+        }
+    }
+}

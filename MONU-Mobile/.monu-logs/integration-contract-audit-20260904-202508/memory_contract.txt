@@ -1,0 +1,12 @@
+8:data class MONUMemory(
+16:class MONUMemoryEngine(context: Context) {
+29:    fun remember(content: String): MONUMemory? {
+85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+159:    fun recent(limit: Int = 20): List<MONUMemory> {
+168:    fun all(): List<MONUMemory> {
+176:    fun contextFor(
+183:            recall(query, limit)
+210:    fun forget(memoryId: String): Boolean {
+228:    fun forgetMatching(query: String): Int {
+261:    fun clearAll() {
+267:    fun memoryCount(): Int {

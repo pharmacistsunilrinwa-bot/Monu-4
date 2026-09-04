@@ -1,0 +1,171 @@
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:22:        return capabilities.hasCapability(
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:23:            NetworkCapabilities.NET_CAPABILITY_INTERNET
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:6:object MONUDatabaseProvider {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:4:import com.monu.mobile.domain.model.CapabilityStatus
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:82:    fun discoverCapabilities(): CapabilityStatus {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:85:            return CapabilityStatus(
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:104:                CapabilityStatus(
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:117:            CapabilityStatus(
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:121:                    ?: "Capability discovery failed"
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:19:data class CapabilityStatus(
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:3:enum class MONUCapabilityStatus {
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:11:data class MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:15:    val status: MONUCapabilityStatus,
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:19:data class PlatformCapability(
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:29:    val capabilities: List<PlatformCapability>
+app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:19:data class MONUSystemHealthReport(
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:4:import com.monu.mobile.domain.model.CapabilityStatus
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:15:    fun discoverCapabilities(): CapabilityStatus {
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:6:import com.monu.mobile.domain.model.MONUCapabilityStatus
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:7:import com.monu.mobile.domain.model.MONUDeviceCapability
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:9:class MONUDeviceCapabilityInspector(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:13:    fun inspect(): List<MONUDeviceCapability> {
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:37:            MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:42:                    MONUCapabilityStatus.AVAILABLE
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:44:                    MONUCapabilityStatus.UNAVAILABLE,
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:47:            MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:52:                    MONUCapabilityStatus.AVAILABLE
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:54:                    MONUCapabilityStatus.UNAVAILABLE,
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:57:            MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:61:                status = MONUCapabilityStatus.AVAILABLE,
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:64:            MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:68:                status = MONUCapabilityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:7:class HeartbeatEngine(
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:39:                "MONU self-diagnostic engine executed successfully.",
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:112:            title = "Internet Capability",
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:7:import com.monu.mobile.domain.model.MONUSystemHealthReport
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:9:class MONUSystemHealthEngine(
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:13:    fun inspect(): MONUSystemHealthReport {
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:60:                "Server truth is determined by the real connection engine.",
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:69:                "Android capability limits apply. Kernel authority is not assumed.",
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:91:        return MONUSystemHealthReport(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:8:import com.monu.mobile.feature.rules.MONURulesEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:9:import com.monu.mobile.feature.verification.MONUVerificationEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:11:data class MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:17:class MONUIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:34:    private val verificationEngine =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:35:        MONUVerificationEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:37:    private val rulesEngine =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:38:        MONURulesEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:43:    fun capabilities(): List<MONUIntelligenceCapability> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:45:        val capabilities = mutableListOf<MONUIntelligenceCapability>()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:47:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:56:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:65:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:74:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:83:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:92:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:93:            name = "Verification Engine",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:95:                verificationEngine.report()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:101:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:102:            name = "Rules Engine",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:104:                rulesEngine.demoRules()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:110:        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:124:    fun healthReport(): String {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:4:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:40:        MONUInternetKnowledgeEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:75:                text = intelligenceHub.healthReport(),
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:5:class MONUSyncEngine(
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:14:     * This engine intentionally does NOT
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:4:import com.monu.mobile.data.local.MONUDatabaseProvider
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:14:        MONUDatabaseProvider
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:4:import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:11:    private val localDeviceCommandEngine =
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:12:        MONULocalDeviceCommandEngine()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:56:                localDeviceCommandEngine.handle(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:59:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:7:class MONULocalDeviceCommandEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:57:        return "MONU local device command engine is ready."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:3:data class MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:9:class MONUOfflineCommandCapabilityMatrix {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:13:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:19:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:25:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:31:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:37:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:43:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:45:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:49:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:51:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:55:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:57:                executionOwner = "LocalDeviceEngine",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:61:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:6:class MONUOptimizationEngine {
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:4:import com.monu.mobile.domain.model.PlatformCapability
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:13:    fun capabilities(): List<PlatformCapability> {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:10:class MONUWebSocketEngine {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:7:class MONURecoveryEngine {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:6:class MONURulesEngine {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:9:class MONUStateSynchronizationEngine {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:8:class MONUTransferEngine {
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:9:class MONUVerificationEngine {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:31:            message = "Real workflow execution requires a verified execution engine."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:18:import com.monu.mobile.ui.screens.DeviceCapabilityScreen
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:154:                        DeviceCapabilityScreen()
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:5:import android.provider.OpenableColumns
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:48:import com.monu.mobile.feature.voice.MONUVoiceEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:49:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:191:val voiceEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:192:    MONUVoiceEngine(context) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:197:val voiceInputEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:198:    MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:204:                return@MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:250:        voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:253:        voiceEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:254:        voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:265:            voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:267:                voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:273:                voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:334:                    voiceEngine.speak(message.content)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:337:                    voiceEngine.stop()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:386:                    voiceInputEngine.stopListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:398:                        voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:407:                    voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:21:    val engine = MONUContextIntelligence()
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:22:    val context = engine.prioritize(engine.demoContext())
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:17:import com.monu.mobile.feature.capabilities.MONUDeviceCapabilityInspector
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:20:fun DeviceCapabilityScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:24:        MONUDeviceCapabilityInspector(context).inspect()
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:31:        Text("MONU Device Capability Inspector")
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:36:            items(capabilities) { capability ->
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:43:                        Text(capability.title)
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:44:                        Text(capability.description)
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:45:                        Text("Status: ${capability.status}")
+app/src/main/java/com/monu/mobile/ui/screens/DeviceCapabilityScreen.kt:46:                        Text("Verified: ${capability.verified}")
+app/src/main/java/com/monu/mobile/ui/screens/FeatureScreen.kt:38:                text = "This module is registered in the MONU architecture and will receive its real operational engine in a dedicated implementation level."
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:23:        MONUFeatureCard("Server", "Real connection and capability status", "◆"),
+app/src/main/java/com/monu/mobile/ui/screens/PlatformArchitectureScreen.kt:21:        Text("Platform composition and capability architecture.")
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:11:import com.monu.mobile.feature.realtime.MONUWebSocketEngine
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:24:    val engine =
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:26:            MONUWebSocketEngine()
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:30:        engine.status.collectAsState()
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:92:                engine.connect(
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:104:                engine.disconnect()
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:16:import com.monu.mobile.feature.rules.MONURulesEngine
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:19:fun RulesEngineScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:21:    val rules = MONURulesEngine().demoRules()
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:28:        Text("MONU Rules Engine")
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:16:import com.monu.mobile.feature.sync.MONUStateSynchronizationEngine
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:21:    val engine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:22:        MONUStateSynchronizationEngine()
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:25:    val report = engine.report()
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:33:        Text("State Synchronization Engine")
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:16:import com.monu.mobile.feature.health.MONUSystemHealthEngine
+app/src/main/java/com/monu/mobile/ui/screens/SystemHealthScreen.kt:24:        MONUSystemHealthEngine(context).inspect()
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:16:import com.monu.mobile.feature.verification.MONUVerificationEngine
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:19:fun VerificationEngineScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:21:    val engine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:22:        MONUVerificationEngine()
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:25:    val report = engine.report()
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:33:        Text("Verification Engine")

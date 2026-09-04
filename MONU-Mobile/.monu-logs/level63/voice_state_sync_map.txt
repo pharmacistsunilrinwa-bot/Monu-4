@@ -1,0 +1,36 @@
+LEVEL 63 VOICE STATE SYNCHRONIZATION
+=====================================
+
+ENGINE STATE:
+13:    private val onError: (String) -> Unit = {},
+14:    private val onListeningStateChanged: (Boolean) -> Unit = {}
+23:    private fun updateListeningState(value: Boolean) {
+25:        onListeningStateChanged(value)
+36:            onError("Speech recognition is not available on this device.")
+61:        updateListeningState(true)
+67:        updateListeningState(false)
+72:        updateListeningState(false)
+78:    override fun onReadyForSpeech(params: Bundle?) {
+79:        updateListeningState(true)
+83:        updateListeningState(true)
+90:    override fun onEndOfSpeech() {
+91:        updateListeningState(false)
+94:    override fun onError(error: Int) {
+95:        updateListeningState(false)
+97:        onError(
+132:    override fun onResults(results: Bundle?) {
+133:        updateListeningState(false)
+149:            onError("No voice command recognized.")
+
+CHAT STATE:
+53:    var voiceListening by remember {
+57:    var voiceInputStatus by remember {
+126:                voiceInputStatus = error
+127:                voiceListening = false
+129:            onListeningStateChanged = { isListening ->
+130:                voiceListening = isListening
+237:                    if (voiceListening) {
+240:                        voiceInputStatus = ""
+246:                    if (voiceListening) {
+254:            if (voiceInputStatus.isNotBlank()) {
+255:                Text(voiceInputStatus)

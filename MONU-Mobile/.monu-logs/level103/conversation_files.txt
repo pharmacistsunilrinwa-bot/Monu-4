@@ -1,0 +1,12 @@
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt

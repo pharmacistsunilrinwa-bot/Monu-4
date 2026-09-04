@@ -1,0 +1,35 @@
+LEVEL 69 VOICE RUNTIME HEALTH MAP
+=================================
+
+ENGINE:
+17:    private val onListeningStateChanged: (Boolean) -> Unit = {}
+26:    private fun updateListeningState(value: Boolean) {
+28:        onListeningStateChanged(value)
+31:    fun getRuntimeHealth(): String {
+34:                "Microphone permission required"
+36:                "Speech recognition unavailable"
+38:                "Listening"
+40:                "Ready"
+55:    fun startListening() {
+59:            onError("Microphone permission is required.")
+60:            updateListeningState(false)
+90:        updateListeningState(true)
+92:        speechRecognizer?.startListening(intent)
+95:    fun stopListening() {
+96:        updateListeningState(false)
+97:        speechRecognizer?.stopListening()
+101:        updateListeningState(false)
+107:    override fun onReadyForSpeech(params: Bundle?) {
+108:        updateListeningState(true)
+112:        updateListeningState(true)
+120:        updateListeningState(false)
+124:        updateListeningState(false)
+135:                    "Microphone permission denied."
+162:        updateListeningState(false)
+
+CHAT:
+80:    var voiceRuntimeHealth by remember {
+81:        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+160:            onListeningStateChanged = { isListening ->
+162:                voiceRuntimeHealth =
+163:                    voiceInputEngine.getRuntimeHealth()

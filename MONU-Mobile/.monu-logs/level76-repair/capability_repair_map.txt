@@ -1,0 +1,8 @@
+LEVEL 76 CAPABILITY REPAIR MAP
+===============================
+
+14:    fun canHandle(command: String): Boolean {
+15:        val intent = intentParser.parse(command)
+17:        return intent != MONUOfflineCommandIntent.UNKNOWN
+21:        return when (intentParser.parse(command)) {
+51:            MONUOfflineCommandIntent.UNKNOWN ->

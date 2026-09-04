@@ -1,0 +1,12 @@
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt
+app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt
+app/src/main/java/com/monu/mobile/ui/screens/IdentitySessionScreen.kt

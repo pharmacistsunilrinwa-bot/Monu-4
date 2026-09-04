@@ -1,0 +1,9 @@
+FOUND: app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt
+MISSING: app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeState.kt
+FOUND: app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt
+FOUND: app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt
+FOUND: app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt
+FOUND: app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt
+FOUND: app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt
+FOUND: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+FOUND: app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt

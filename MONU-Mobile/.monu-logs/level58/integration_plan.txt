@@ -1,0 +1,10 @@
+LEVEL 58 SAFE INTEGRATION PLAN
+
+1. Preserve existing CommandInput pipeline.
+2. Do not replace ChatScreen.
+3. Reuse existing message state.
+4. Reuse existing owner message creation.
+5. Connect MONUVoiceInputEngine callback.
+6. Voice recognized text must enter same command flow.
+7. Keep voice lifecycle cleanup.
+8. No duplicate ChatMessage pipeline.

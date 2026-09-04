@@ -1,0 +1,63 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:33:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:94:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:12:enum class WebSocketState {
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:20:data class WebSocketStatus(
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:21:    val state: WebSocketState,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:40:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:3:import com.monu.mobile.domain.model.WebSocketState
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:4:import com.monu.mobile.domain.model.WebSocketStatus
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:10:class MONUWebSocketEngine {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:16:        WebSocket? = null
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:20:            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:22:                    WebSocketState.NOT_CONFIGURED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:24:                    "WebSocket URL not configured"
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:29:        StateFlow<WebSocketStatus> =
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:39:                WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:41:                        WebSocketState.NOT_CONFIGURED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:43:                        "WebSocket URL not configured"
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:52:            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:54:                    WebSocketState.CONNECTING,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:60:            Request.Builder()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:65:            client.newWebSocket(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:67:                object : WebSocketListener() {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:70:                        webSocket: WebSocket,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:75:                            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:77:                                    WebSocketState.CONNECTED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:79:                                    "Real WebSocket connected",
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:86:                        webSocket: WebSocket,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:91:                            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:93:                                    WebSocketState.CONNECTED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:102:                        webSocket: WebSocket,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:108:                            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:110:                                    WebSocketState.DISCONNECTED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:117:                        webSocket: WebSocket,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:123:                            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:125:                                    WebSocketState.DISCONNECTED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:127:                                    "WebSocket closed: $reason"
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:132:                        webSocket: WebSocket,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:138:                            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:140:                                    WebSocketState.FAILED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:143:                                        ?: "WebSocket connection failed"
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:169:            WebSocketStatus(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:171:                    WebSocketState.DISCONNECTED,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:173:                    "WebSocket disconnected"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:8:import java.net.HttpURLConnection
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:49:        var connection: HttpURLConnection? = null
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:59:                url.openConnection() as HttpURLConnection
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:10:import com.monu.mobile.domain.model.WebSocketState
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:11:import com.monu.mobile.feature.realtime.MONUWebSocketEngine
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:26:            MONUWebSocketEngine()
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:72:                    "WebSocket URL: " +
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:90:                    WebSocketState.CONNECTING,
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:111:            "Truth Rule: CONNECTED appears only after WebSocket onOpen()."
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:144:                Text("WebSocket URL")

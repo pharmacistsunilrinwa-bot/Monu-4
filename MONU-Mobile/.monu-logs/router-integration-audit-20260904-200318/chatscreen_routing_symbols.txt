@@ -1,0 +1,19 @@
+45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+49:import com.monu.mobile.ui.components.CommandInput
+64:val knowledgeEngine = remember {
+65:    MONUInternetKnowledgeEngine()
+118:fun buildResponse(
+168:fun handleOfflineCommand(
+199:        onResult = { recognizedCommand ->
+211:            scope.launch {
+213:                    handleOfflineCommand(cleanCommand)
+222:                            knowledgeEngine.search(cleanCommand)
+226:                        content = buildResponse(result),
+230:                    handleOfflineCommand(cleanCommand)
+434:    CommandInput { command, attachments ->
+463:            return@CommandInput
+472:        scope.launch {
+474:                handleOfflineCommand(cleanCommand)
+483:                        knowledgeEngine.search(cleanCommand)
+487:                    content = buildResponse(result),
+491:                handleOfflineCommand(cleanCommand)

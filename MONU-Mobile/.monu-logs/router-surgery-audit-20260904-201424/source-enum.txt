@@ -1,0 +1,45 @@
+package com.monu.mobile.feature.intelligence
+
+import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+enum class MONUQuerySource {
+    OFFLINE,
+    INTERNAL_KNOWLEDGE,
+    INTELLIGENCE_HUB,
+    GEMINI,
+    INTERNET,
+    FALLBACK
+}
+
+data class MONUQueryResponse(
+    val source: MONUQuerySource,
+    val text: String,
+    val success: Boolean
+)
+
+class MONUQueryRouter {
+
+    private val offlineRouter =
+        MONUOfflineCommandRouter()
+
+    private val knowledgeCenter =
+        MONUKnowledgeCenter()
+
+    private val intelligenceHub =
+        MONUIntelligenceHub()
+
+    private val gemini =
+        MONUGeminiIntelligenceEngine()
+
+    private val internet =
+        MONUInternetKnowledgeEngine()
+
+    suspend fun route(
+        query: String,
+        isOnline: Boolean
+    ): MONUQueryResponse = withContext(Dispatchers.IO) {

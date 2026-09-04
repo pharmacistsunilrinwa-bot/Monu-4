@@ -8,12 +8,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.launch
+
 import com.monu.mobile.ui.components.MONUSidebar
 import com.monu.mobile.ui.navigation.MONUDestination
+
+import com.monu.mobile.ui.screens.ActivityLogScreen
 import com.monu.mobile.ui.screens.ChatScreen
+import com.monu.mobile.ui.screens.ConnectionScreen
+import com.monu.mobile.ui.screens.DeviceCapabilityScreen
 import com.monu.mobile.ui.screens.FeatureScreen
 import com.monu.mobile.ui.screens.HomeScreen
-import com.monu.mobile.ui.screens.ConnectionScreen
+import com.monu.mobile.ui.screens.MediaStudioScreen
+import com.monu.mobile.ui.screens.ProjectCenterScreen
+import com.monu.mobile.ui.screens.SecurityCenterScreen
+import com.monu.mobile.ui.screens.ServerContractScreen
+import com.monu.mobile.ui.screens.SettingsCenterScreen
+import com.monu.mobile.ui.screens.TaskCenterScreen
+import com.monu.mobile.ui.screens.TransferCenterScreen
 
 @Composable
 fun MONUApp() {
@@ -31,6 +42,7 @@ fun MONUApp() {
 
 @Composable
 private fun MONURoot() {
+
     var currentDestination by remember {
         mutableStateOf(MONUDestination.HOME)
     }
@@ -46,14 +58,19 @@ private fun MONURoot() {
         drawerContent = {
             MONUSidebar(
                 current = currentDestination,
+
                 onNavigate = { destination ->
                     currentDestination = destination
+
                     scope.launch {
                         drawerState.close()
                     }
                 },
+
                 onNewChat = {
-                    currentDestination = MONUDestination.CHAT
+                    currentDestination =
+                        MONUDestination.CHAT
+
                     scope.launch {
                         drawerState.close()
                     }
@@ -61,14 +78,17 @@ private fun MONURoot() {
             )
         }
     ) {
+
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = {
                         Text(
-                            text = currentDestination.title
+                            text =
+                                currentDestination.title
                         )
                     },
+
                     navigationIcon = {
                         IconButton(
                             onClick = {
@@ -82,36 +102,62 @@ private fun MONURoot() {
                     }
                 )
             }
-        ) {
+        ) { _ ->
+
             Surface(
-                modifier = Modifier.fillMaxSize()
+                modifier =
+                    Modifier.fillMaxSize()
             ) {
+
                 when (currentDestination) {
 
-                    MONUDestination.HOME -> {
+                    MONUDestination.CONNECTION ->
+                        ConnectionScreen()
+
+                    MONUDestination.HOME ->
                         HomeScreen(
                             onOpenCommand = {
                                 currentDestination =
                                     MONUDestination.CHAT
                             }
                         )
-                    }
 
-                    MONUDestination.CHAT -> {
+                    MONUDestination.CHAT ->
                         ChatScreen()
-                    }
 
-                    MONUDestination.CONNECTION -> {
-                        ConnectionScreen()
-                    }
+                    MONUDestination.TASKS ->
+                        TaskCenterScreen()
 
-                    else -> {
+                    MONUDestination.PROJECTS ->
+                        ProjectCenterScreen()
+
+                    MONUDestination.MEDIA ->
+                        MediaStudioScreen()
+
+                    MONUDestination.FILES ->
+                        TransferCenterScreen()
+
+                    MONUDestination.VOICE ->
                         FeatureScreen(
-                            title = currentDestination.title,
+                            title = "Voice",
                             description =
-                                "MONU ${currentDestination.title} module."
+                                "MONU voice intelligence module."
                         )
-                    }
+
+                    MONUDestination.SERVER ->
+                        ServerContractScreen()
+
+                    MONUDestination.SECURITY ->
+                        SecurityCenterScreen()
+
+                    MONUDestination.DEVICE ->
+                        DeviceCapabilityScreen()
+
+                    MONUDestination.ACTIVITY ->
+                        ActivityLogScreen()
+
+                    MONUDestination.SETTINGS ->
+                        SettingsCenterScreen()
                 }
             }
         }

@@ -6,6 +6,23 @@ plugins {
 }
 
 android {
+
+    // MONU_GEMINI_BUILD_CONFIG
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        val geminiApiKey =
+            project.properties["GEMINI_API_KEY"]?.toString()
+                ?: ""
+        buildConfigField(
+            "String",
+            "GEMINI_API_KEY",
+            "\"$geminiApiKey\""
+        )
+    }
+
     namespace = "com.monu.mobile"
     compileSdk = 35
 
@@ -37,6 +54,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.room:room-runtime:2.6.1")

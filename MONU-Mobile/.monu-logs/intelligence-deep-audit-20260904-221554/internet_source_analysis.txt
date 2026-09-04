@@ -1,0 +1,23 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:33:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:94:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:100:            internet.search(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:30:    fun search(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:40:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:55:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:78:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:88:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:60:            Request.Builder()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:8:import java.net.HttpURLConnection
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:49:        var connection: HttpURLConnection? = null
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:59:                url.openConnection() as HttpURLConnection
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")

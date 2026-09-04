@@ -1,0 +1,56 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:4:import android.net.ConnectivityManager
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:7:class MONUNetworkMonitor(
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:13:                    as ConnectivityManager
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:33:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:94:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:3:enum class InternetKnowledgeState {
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:10:data class InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:15:    val state: InternetKnowledgeState,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:4:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:40:        MONUInternetKnowledgeEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:100:            internet.search(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:104:                com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS -> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:120:                com.monu.mobile.domain.model.InternetKnowledgeState.NOT_FOUND -> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:124:                com.monu.mobile.domain.model.InternetKnowledgeState.NETWORK_ERROR -> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:132:                com.monu.mobile.domain.model.InternetKnowledgeState.INVALID_QUERY -> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:142:                    com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:30:    fun search(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:3:import com.monu.mobile.domain.model.InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:4:import com.monu.mobile.domain.model.InternetKnowledgeState
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:23:            return InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:28:                state = InternetKnowledgeState.INVALID_QUERY,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:40:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:51:                    return InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:56:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:74:                    InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:79:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:84:                    InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:89:                        state = InternetKnowledgeState.SUCCESS
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:96:            InternetKnowledgeResult(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:101:                state = InternetKnowledgeState.NETWORK_ERROR,
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:60:            Request.Builder()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:8:import java.net.HttpURLConnection
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:49:        var connection: HttpURLConnection? = null
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:59:                url.openConnection() as HttpURLConnection
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:40:import com.monu.mobile.core.network.MONUNetworkMonitor
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:42:import com.monu.mobile.domain.model.InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:43:import com.monu.mobile.domain.model.InternetKnowledgeState
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:62:    MONUNetworkMonitor(context.applicationContext)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:120:    result: InternetKnowledgeResult
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:123:        InternetKnowledgeState.SUCCESS -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:        InternetKnowledgeState.NOT_FOUND -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:152:        InternetKnowledgeState.NETWORK_ERROR -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:163:        InternetKnowledgeState.INVALID_QUERY -> {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")

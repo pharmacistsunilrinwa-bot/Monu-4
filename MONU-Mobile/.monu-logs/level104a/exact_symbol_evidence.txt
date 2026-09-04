@@ -1,0 +1,134 @@
+
+================================================
+SYMBOL: messages
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:6:    val messages: List<ChatMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:17:    val messages: List<MONUConversationMessage>,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:5:    fun messages(): List<MONUConversationMessage>
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:11:    override fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:40:            messages = messages(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:95:                    messages = snapshot.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:115:            messages = currentState.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:123:                messages = repository.messages()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:18:            messages = state.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:8:    fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:9:        return coordinator.state().messages
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:13:            messages = snapshot.messages.toList()
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:19:            messages = storedSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:20:                ?.messages
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:        messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:157:                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:164:                            messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:181:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:188:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:195:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:239:    var messages by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:285:            items(messages) { message ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:386:            messages = messages + ownerMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:397:                messages = messages + systemMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:408:                messages = messages + systemMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:462:                    messages = messages + monuMessage
+
+================================================
+SYMBOL: MessageRole
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:10:enum class MessageRole {
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:20:    val role: MessageRole,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:27:import com.monu.mobile.domain.model.MessageRole
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:95:            role = MessageRole.ASSISTANT,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:158:                        role = MessageRole.OWNER,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:165:                                role = MessageRole.SYSTEM,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:182:                                        role = MessageRole.MONU,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:189:                                        role = MessageRole.SYSTEM,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:196:                                        role = MessageRole.SYSTEM,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:203:                                        role = MessageRole.SYSTEM,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:247:                    role = MessageRole.SYSTEM
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:383:                role = MessageRole.OWNER
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:394:                    role = MessageRole.SYSTEM
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:405:                    role = MessageRole.SYSTEM
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:459:                        role = MessageRole.MONU
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:485:                MessageRole.OWNER -> "YOU"
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:486:                MessageRole.MONU -> "MONU"
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:487:                MessageRole.SYSTEM -> "SYSTEM"
+
+================================================
+SYMBOL: ChatMessage
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:6:    val messages: List<ChatMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:16:data class ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:25:import com.monu.mobile.domain.model.ChatMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:        messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:157:                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:164:                            messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:181:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:188:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:195:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:242:                ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:379:            val ownerMessage = ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:389:                val systemMessage = ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:400:                val systemMessage = ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:455:                    val monuMessage = ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:471:    message: ChatMessage,
+
+================================================
+SYMBOL: MONUChatScreenIntegration
+================================================
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:3:class MONUChatScreenIntegration(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:37:import com.monu.mobile.feature.conversation.MONUChatScreenIntegration
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:46:            MONUChatScreenIntegration()
+
+================================================
+SYMBOL: MONUVoiceEngine
+================================================
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:30:import com.monu.mobile.feature.voice.MONUVoiceEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:109:        MONUVoiceEngine(context) {
+
+================================================
+SYMBOL: MONUVoiceInputEngine
+================================================
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:32:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:151:        MONUVoiceInputEngine(
+
+================================================
+SYMBOL: MONUNetworkMonitor
+================================================
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:7:class MONUNetworkMonitor(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:24:import com.monu.mobile.core.network.MONUNetworkMonitor
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:229:        MONUNetworkMonitor(context.applicationContext)
+
+================================================
+SYMBOL: MONUOfflineCommandRouter
+================================================
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:16:        MONUOfflineCommandRouter(),
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:2:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:77:        MONUOfflineCommandRouter()
+
+================================================
+SYMBOL: MONUInternetKnowledgeEngine
+================================================
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:29:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:115:        MONUInternetKnowledgeEngine()
+
+================================================
+SYMBOL: conversationId
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:18:    val conversationId: String,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:244:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:381:                conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:391:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:402:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:457:                        conversationId = "default",
+
+================================================
+SYMBOL: answer
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:                                        content = result.answer

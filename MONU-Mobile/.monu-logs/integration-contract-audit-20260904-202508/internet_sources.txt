@@ -1,0 +1,7 @@
+18:    fun search(query: String): InternetKnowledgeResult {
+27:                source = "Internet",
+38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+55:                        source = "Wikipedia",
+78:                        source = "Wikipedia",
+88:                        source = "Wikipedia",
+100:                source = "Internet",

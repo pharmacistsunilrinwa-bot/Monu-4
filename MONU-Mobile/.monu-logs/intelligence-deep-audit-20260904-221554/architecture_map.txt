@@ -1,0 +1,449 @@
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:7:class MONUActivityCenter {
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:11:    fun addActivity(
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:17:    fun getActivities(): List<MONUActivityLog> {
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:24:    fun getActivitiesBySource(
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:32:    fun getActivitiesBySeverity(
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:40:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt:8:class MONUAuditTrail {
+app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt:12:    fun record(
+app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt:32:    fun all(): List<MONUAuditEntry> {
+app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt:36:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/backup/MONUBackupCenter.kt:7:class MONUBackupCenter {
+app/src/main/java/com/monu/mobile/feature/backup/MONUBackupCenter.kt:9:    fun currentBackup(): MONUBackupInfo {
+app/src/main/java/com/monu/mobile/feature/backup/MONUBackupCenter.kt:25:    fun backupScopes(): List<MONUBackupScope> {
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:9:class MONUDeviceCapabilityInspector(
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:13:    fun inspect(): List<MONUDeviceCapability> {
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:7:class HeartbeatEngine(
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:17:    fun start(
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:40:    fun stop() {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:8:class MONUContextIntelligence {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:10:    fun demoContext(): List<MONUContextItem> {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:31:    fun createSnapshot(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:42:    fun prioritize(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:7:class MONUDecisionCenter {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:9:    fun createDecision(
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:29:    fun selectOption(
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:10:class MONUSelfDiagnostics(
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:14:    fun runDiagnostics(): MONUDiagnosticReport {
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:7:class MONUEmployeeCenter {
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:11:    fun replaceEmployees(
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:18:    fun getEmployees(): List<MONUEmployee> {
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:22:    fun getEmployee(
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:30:    fun updateEmployeeStatus(
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:51:    fun countByStatus(
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:59:    fun countByType(
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:8:class MONUEventIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:12:    fun publish(event: MONUEvent): MONUEvent {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:18:    fun updateStatus(
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:38:    fun getEvents(): List<MONUEvent> {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:44:    fun analyze(eventId: String): EventInsight? {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:60:    fun report(): EventReport {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:9:class MONUExecutionOrchestrator {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:13:    fun register(request: ExecutionRequest): ExecutionRecord {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:31:    fun updateStatus(
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:72:    fun getExecution(
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:80:    fun getAll(): List<ExecutionRecord> {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:84:    fun report(): ExecutionReport {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:104:    fun createUnknownExecution(
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:9:class MONUSystemHealthEngine(
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:13:    fun inspect(): MONUSystemHealthReport {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:6:class MONUCommandHistory {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:10:    fun add(entry: MONUCommandHistoryEntry) {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:14:    fun all(): List<MONUCommandHistoryEntry> {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:18:    fun analyzePatterns(): List<MONUCommandPattern> {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:33:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:6:class MONUHomePersonalization {
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:8:    fun defaultAppearance(): HomeAppearance {
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:16:    fun imageAppearance(
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:27:    fun generatedImageAppearance(
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:7:class MONUIdentityCenter {
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:9:    fun currentIdentity(): MONUUserIdentity {
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:19:    fun currentSession(): MONUSession {
+app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt:6:class MONUIntegrationHub {
+app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt:8:    fun snapshot(
+app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt:16:    fun knownIntegrations(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:8:class MONUUnifiedIntelligence {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:10:    fun collectSignals(): List<IntelligenceSignal> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:14:    fun analyze(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:20:    fun snapshot(): IntelligenceSnapshot {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:11:data class MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:17:class MONUIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:43:    fun capabilities(): List<MONUIntelligenceCapability> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:124:    fun healthReport(): String {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:10:enum class MONUQuerySource {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:19:data class MONUQueryResponse(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:25:class MONUQueryRouter {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:42:    suspend fun route(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:7:class MONUKnowledgeCenter {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:30:    fun search(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:8:class MONUMediaStudio {
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:12:    fun createJob(
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:29:    fun getJobs(): List<MONUMediaJob> {
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:34:    fun getJob(
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:40:    fun updateStatus(
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:8:class MONUNotificationCenter {
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:12:    fun add(
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:32:    fun all(): List<MONUNotification> {
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:36:    fun unreadCount(): Int {
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:40:    fun bySource(
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:5:class MONUSyncEngine(
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:22:    suspend fun synchronize(): SyncResult {
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:52:data class SyncResult(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:9:class OfflineCommandQueue(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:18:    suspend fun enqueue(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:39:    suspend fun pending():
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:45:    suspend fun markSyncing(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:57:    suspend fun markRetry(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:73:    suspend fun markAcknowledged(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:85:    suspend fun count(): Int {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:15:    override fun canHandle(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:21:    fun canHandle(command: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:27:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:63:    override fun execute(
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:7:class MONULocalDeviceCommandEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:9:    fun canHandle(command: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:19:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:3:enum class MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:15:class MONUOfflineCommandIntentParser {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:17:    fun parse(command: String): MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:3:data class MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:9:class MONUOfflineCommandCapabilityMatrix {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:69:    fun ownerFor(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:77:    fun supports(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:3:data class MONUOfflineCommandRequest(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:7:data class MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:13:interface MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:15:    fun canHandle(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:19:    fun execute(
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:6:class MONUOptimizationEngine {
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:8:    fun analyze(
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:14:    fun recommendations(
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:10:class MONUPermissionCenter(
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:14:    fun inspect(): List<MONUPermission> {
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:9:class MONUPlanningIntelligence {
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:11:    fun createPlan(
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:31:    fun nextExecutableStep(
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:40:    fun updateStepStatus(
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:7:class MONUPlatformCoordinator {
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:9:    fun components(): List<PlatformComponent> {
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:13:    fun capabilities(): List<PlatformCapability> {
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:17:    fun architectureSnapshot(): PlatformArchitectureSnapshot {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:6:class MONUProjectCenter {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:10:    fun addProject(project: MONUProject) {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:14:    fun allProjects(): List<MONUProject> {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:18:    fun activeProjects(): List<MONUProject> {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:24:    fun findProject(id: String): MONUProject? {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:10:class MONUWebSocketEngine {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:32:    fun connect(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:69:                    override fun onOpen(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:85:                    override fun onMessage(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:101:                    override fun onClosing(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:116:                    override fun onClosed(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:131:                    override fun onFailure(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:150:    fun send(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:159:    fun disconnect() {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:7:class MONURecoveryEngine {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:9:    fun checkpoints(): List<RecoveryCheckpoint> {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:13:    fun planRecovery(): List<RecoveryPlan> {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:17:    fun recover(plan: RecoveryPlan): RecoveryResult? {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:6:class MONURulesEngine {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:8:    fun demoRules(): List<MONURule> {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:25:    fun evaluate(rule: MONURule): MONURuleStatus {
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:9:class MONUSecurityCenter(
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:13:    fun inspect(): MONUSecurityReport {
+app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt:6:class MONUServiceCoordinator {
+app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt:8:    fun snapshot(
+app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt:16:    fun registeredServices(
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:6:class MONUSettingsCenter {
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:8:    fun currentSettings(): MONUSettings {
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:12:    fun availableSettings(): List<MONUSettingItem> {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:9:class MONUStateSynchronizationEngine {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:14:    fun updateLocalState(
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:23:    fun getState(
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:29:    fun allStates(): List<StateSnapshot> {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:35:    fun requestSync(
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:83:    fun getResults(): List<SyncResult> {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:87:    fun report(): SyncReport {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:6:class MONUTaskCenter {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:10:    fun addTask(task: MONUTask) {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:14:    fun allTasks(): List<MONUTask> {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:18:    fun activeTasks(): List<MONUTask> {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:32:    fun completedTasks(): List<MONUTask> {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:38:    fun failedTasks(): List<MONUTask> {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:6:class MONUChunkPlanner {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:8:    fun createChunks(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:8:class MONUTransferEngine {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:12:    fun createTransfer(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:33:    fun getTransfers(): List<MONUFileTransfer> {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:38:    fun updateStatus(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:57:    fun updateProgress(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:74:    fun pause(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:83:    fun resume(
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:92:    fun cancel(
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:9:class MONUVerificationEngine {
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:13:    fun begin(
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:33:    fun verify(
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:72:    fun reject(
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:94:    fun get(
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:102:    fun all(): List<VerificationResult> {
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:106:    fun report(): VerificationReport {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:16:    override fun onInit(status: Int) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:28:    fun speak(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:46:    fun stop() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:52:    fun shutdown() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:31:    fun getRuntimeHealth(): String {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:44:    fun isAvailable(): Boolean {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:48:    fun hasMicrophonePermission(): Boolean {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:55:    fun startListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:95:    fun stopListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:100:    fun shutdown() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:107:    override fun onReadyForSpeech(params: Bundle?) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:111:    override fun onBeginningOfSpeech() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:115:    override fun onRmsChanged(rmsdB: Float) = Unit
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:117:    override fun onBufferReceived(buffer: ByteArray?) = Unit
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:119:    override fun onEndOfSpeech() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:123:    override fun onError(error: Int) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:161:    override fun onResults(results: Bundle?) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:182:    override fun onPartialResults(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:186:    override fun onEvent(
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:7:class MONUWorkflowCenter {
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:9:    fun demoWorkflows(): List<MONUWorkflow> {
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:26:    fun createRun(workflow: MONUWorkflow): MONUWorkflowRun {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:3:enum class MONUConversationRole {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:9:data class MONUConversationMessage(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:16:data class MONUConversationSnapshot(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:3:interface MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:5:    fun messages(): List<MONUConversationMessage>
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:7:    fun append(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:12:    fun clear()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:14:    fun snapshot(): MONUConversationSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:11:    override fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:15:    override fun append(
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:33:    override fun clear() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:38:    override fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:3:data class MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:10:class MONUConversationStateController(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:20:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:24:    fun beginProcessing() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:32:    fun finishProcessing() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:41:    fun addUserMessage(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:57:    fun addAssistantMessage(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:73:    fun setError(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:85:    fun restoreConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:103:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:113:    fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:8:data class MONUConversationExecutionResult(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:14:class MONUOfflineConversationBridge(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:21:    fun conversationState(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:25:    fun execute(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:91:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:3:class MONUConversationPipeline(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:8:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:12:    fun submit(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:21:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:3:data class MONUConversationUiState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:9:class MONUConversationUiAdapter(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:14:    fun currentState(): MONUConversationUiState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:24:    fun submit(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:30:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:3:data class MONUChatSubmission(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:9:class MONUChatCoordinator(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:14:    fun state(): MONUConversationUiState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:18:    fun submit(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:41:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:3:class MONUChatScreenIntegration(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:8:    fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:12:    fun isProcessing(): Boolean {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:16:    fun submit(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:22:    fun clear() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:3:interface MONUConversationPersistence {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:5:    fun save(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:9:    fun restore(): MONUConversationSnapshot?
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:11:    fun clear()
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:3:class MONULocalConversationSnapshotStore :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:9:    override fun save(
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:17:    override fun restore(): MONUConversationSnapshot? {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:26:    override fun clear() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:3:class MONUConversationLifecycle(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:9:    fun start(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:14:    fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:18:    fun clear(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:22:    fun isConfigured(): Boolean {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:27:    suspend fun ask(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:8:data class MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:16:class MONUMemoryEngine(context: Context) {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:29:    fun remember(content: String): MONUMemory? {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:159:    fun recent(limit: Int = 20): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:168:    fun all(): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:176:    fun contextFor(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:210:    fun forget(memoryId: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:228:    fun forgetMatching(query: String): Int {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:261:    fun clearAll() {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:267:    fun memoryCount(): Int {
+app/src/main/java/com/monu/mobile/domain/model/ActivityLogModels.kt:3:enum class MONUActivitySource {
+app/src/main/java/com/monu/mobile/domain/model/ActivityLogModels.kt:14:enum class MONUActivitySeverity {
+app/src/main/java/com/monu/mobile/domain/model/ActivityLogModels.kt:22:data class MONUActivityLog(
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:3:enum class AttachmentType {
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:11:data class MONUAttachment(
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:3:enum class MONUAuditActor {
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:12:enum class MONUAuditAction {
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:29:enum class MONUAuditResult {
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:36:data class MONUAuditEntry(
+app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:3:enum class MONUBackupStatus {
+app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:12:enum class MONUBackupScope {
+app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:19:data class MONUBackupInfo(
+app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:27:enum class MONURestoreStatus {
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:3:data class ChatConversation(
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:10:enum class MessageRole {
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:16:data class ChatMessage(
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:3:enum class MONUCommandStatus {
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:11:data class MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:21:data class MONUCommandPattern(
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:3:enum class ConnectionState {
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:11:data class ConnectionStatus(
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:19:data class CapabilityStatus(
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:3:enum class MONUContextType {
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:14:enum class MONUContextStatus {
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:21:data class MONUContextItem(
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:31:data class MONUContextSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:3:enum class MONUDecisionStatus {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:13:enum class MONUDecisionFactorType {
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:24:data class MONUDecisionFactor(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:32:data class MONUDecisionOption(
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:39:data class MONUDecision(
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:3:enum class MONUCapabilityStatus {
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:11:data class MONUDeviceCapability(
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:3:enum class MONUDiagnosticStatus {
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:10:enum class MONUDiagnosticCategory {
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:20:data class MONUDiagnosticResult(
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:29:data class MONUDiagnosticReport(
+app/src/main/java/com/monu/mobile/domain/model/EmployeeActivityModels.kt:3:data class MONUEmployeeActivity(
+app/src/main/java/com/monu/mobile/domain/model/EmployeeModels.kt:3:enum class MONUEmployeeStatus {
+app/src/main/java/com/monu/mobile/domain/model/EmployeeModels.kt:16:enum class MONUEmployeeType {
+app/src/main/java/com/monu/mobile/domain/model/EmployeeModels.kt:28:data class MONUEmployee(
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:3:enum class MONUEventType {
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:15:enum class MONUEventStatus {
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:24:data class MONUEvent(
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:34:data class EventInsight(
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:41:data class EventReport(
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:3:enum class ExecutionStatus {
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:15:enum class ExecutionType {
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:24:data class ExecutionRequest(
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:32:data class ExecutionStep(
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:41:data class ExecutionRecord(
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:52:data class ExecutionReport(
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:3:enum class MONUTransferDirection {
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:8:enum class MONUTransferStatus {
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:22:data class MONUTransferProgress(
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:30:data class MONUFileTransfer(
+app/src/main/java/com/monu/mobile/domain/model/HomeModels.kt:3:enum class HomeBackgroundMode {
+app/src/main/java/com/monu/mobile/domain/model/HomeModels.kt:10:data class HomeAppearance(
+app/src/main/java/com/monu/mobile/domain/model/HomeModels.kt:17:data class HomeQuickAction(
+app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt:3:enum class MONUSessionStatus {
+app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt:10:data class MONUUserIdentity(
+app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt:18:data class MONUSession(
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:3:enum class IntegrationType {
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:11:enum class IntegrationStatus {
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:21:data class IntegrationEndpoint(
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:29:data class IntegrationSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:3:enum class IntelligenceStatus {
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:12:enum class IntelligenceConfidence {
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:20:data class IntelligenceSignal(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:29:data class IntelligenceInsight(
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:38:data class IntelligenceSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:3:enum class MONUKnowledgeSource {
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:13:enum class MONUKnowledgeStatus {
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:20:data class MONUKnowledgeItem(
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:31:data class MONUKnowledgeCollection(
+app/src/main/java/com/monu/mobile/domain/model/MONUNotificationModels.kt:3:enum class MONUNotificationSource {
+app/src/main/java/com/monu/mobile/domain/model/MONUNotificationModels.kt:13:enum class MONUNotificationPriority {
+app/src/main/java/com/monu/mobile/domain/model/MONUNotificationModels.kt:20:data class MONUNotification(
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:3:enum class MONUMediaType {
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:12:enum class MONUMediaOperation {
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:40:enum class MONUMediaJobStatus {
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:55:data class MONUMediaAsset(
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:64:data class MONUMediaJob(
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:3:enum class CommandSyncState {
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:12:data class OfflineCommand(
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:3:enum class OptimizationStatus {
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:13:enum class OptimizationConfidence {
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:20:data class OptimizationOpportunity(
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:29:data class OptimizationRecommendation(
+app/src/main/java/com/monu/mobile/domain/model/PermissionModels.kt:3:enum class MONUPermissionStatus {
+app/src/main/java/com/monu/mobile/domain/model/PermissionModels.kt:10:data class MONUPermission(
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:3:enum class MONUPlanStatus {
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:15:enum class MONUPlanStepStatus {
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:26:data class MONUPlanStep(
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:35:data class MONUPlanRisk(
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:42:data class MONUPlan(
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:3:enum class PlatformComponentStatus {
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:12:data class PlatformComponent(
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:19:data class PlatformCapability(
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:27:data class PlatformArchitectureSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/ProjectModels.kt:3:enum class MONUProjectStatus {
+app/src/main/java/com/monu/mobile/domain/model/ProjectModels.kt:12:data class MONUProject(
+app/src/main/java/com/monu/mobile/domain/model/ProjectModels.kt:22:data class MONUProjectSummary(
+app/src/main/java/com/monu/mobile/domain/model/RealtimeEvent.kt:3:data class RealtimeEvent(
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:3:enum class RecoveryStatus {
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:14:data class RecoveryCheckpoint(
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:21:data class RecoveryPlan(
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:28:data class RecoveryResult(
+app/src/main/java/com/monu/mobile/domain/model/ResumableTransferModels.kt:3:data class MONUTransferChunk(
+app/src/main/java/com/monu/mobile/domain/model/ResumableTransferModels.kt:11:data class MONUResumableTransferState(
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:3:enum class MONURuleStatus {
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:12:enum class MONURuleConditionType {
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:21:enum class MONURuleActionType {
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:30:data class MONURuleCondition(
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:35:data class MONURuleAction(
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:40:data class MONURule(
+app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:3:enum class MONUSecurityStatus {
+app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:11:enum class MONUSecurityCategory {
+app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:22:data class MONUSecurityFinding(
+app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:32:data class MONUSecurityReport(
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:3:data class ServerEndpointConfig(
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:12:enum class WebSocketState {
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:20:data class WebSocketStatus(
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:3:enum class ServiceType {
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:13:enum class ServiceStatus {
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:22:data class ServiceDescriptor(
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:29:data class ServiceCoordinationSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:3:enum class MONUThemeMode {
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:10:data class MONUSettings(
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:19:data class MONUSettingItem(
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:3:enum class SyncStatus {
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:13:enum class SyncDirection {
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:20:data class StateSnapshot(
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:28:data class SyncRequest(
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:35:data class SyncResult(
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:44:data class SyncReport(
+app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:3:enum class MONUHealthStatus {
+app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:10:data class MONUHealthMetric(
+app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:19:data class MONUSystemHealthReport(
+app/src/main/java/com/monu/mobile/domain/model/TaskActivityModels.kt:3:data class TaskActivity(
+app/src/main/java/com/monu/mobile/domain/model/TaskModels.kt:3:enum class MONUTaskStatus {
+app/src/main/java/com/monu/mobile/domain/model/TaskModels.kt:17:enum class MONUTaskPriority {
+app/src/main/java/com/monu/mobile/domain/model/TaskModels.kt:24:data class MONUTask(
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:3:enum class VerificationStatus {
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:13:enum class EvidenceType {
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:24:data class VerificationEvidence(
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:33:data class VerificationRequest(
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:40:data class VerificationResult(
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:49:data class VerificationReport(
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:3:enum class MONUWorkflowStatus {
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:13:enum class MONUWorkflowTriggerType {
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:22:data class MONUWorkflowStep(
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:30:data class MONUWorkflow(
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:40:data class MONUWorkflowRun(
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:3:enum class InternetKnowledgeState {
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:10:data class InternetKnowledgeResult(

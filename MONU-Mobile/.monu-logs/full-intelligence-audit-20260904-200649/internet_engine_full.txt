@@ -1,0 +1,107 @@
+     1	package com.monu.mobile.feature.knowledge
+     2	
+     3	import com.monu.mobile.domain.model.InternetKnowledgeResult
+     4	import com.monu.mobile.domain.model.InternetKnowledgeState
+     5	import okhttp3.OkHttpClient
+     6	import okhttp3.Request
+     7	import org.json.JSONObject
+     8	import java.net.URLEncoder
+     9	import java.util.concurrent.TimeUnit
+    10	
+    11	class MONUInternetKnowledgeEngine {
+    12	
+    13	    private val client = OkHttpClient.Builder()
+    14	        .connectTimeout(15, TimeUnit.SECONDS)
+    15	        .readTimeout(20, TimeUnit.SECONDS)
+    16	        .build()
+    17	
+    18	    fun search(query: String): InternetKnowledgeResult {
+    19	
+    20	        val cleanedQuery = query.trim()
+    21	
+    22	        if (cleanedQuery.isBlank()) {
+    23	            return InternetKnowledgeResult(
+    24	                query = query,
+    25	                title = "",
+    26	                summary = "",
+    27	                source = "Internet",
+    28	                state = InternetKnowledgeState.INVALID_QUERY,
+    29	                errorMessage = "Query is empty"
+    30	            )
+    31	        }
+    32	
+    33	        return try {
+    34	            val encoded =
+    35	                URLEncoder.encode(cleanedQuery, "UTF-8")
+    36	
+    37	            val url =
+    38	                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+    39	
+    40	            val request = Request.Builder()
+    41	                .url(url)
+    42	                .header(
+    43	                    "User-Agent",
+    44	                    "MONU-Mobile/1.0"
+    45	                )
+    46	                .build()
+    47	
+    48	            client.newCall(request).execute().use { response ->
+    49	
+    50	                if (!response.isSuccessful) {
+    51	                    return InternetKnowledgeResult(
+    52	                        query = cleanedQuery,
+    53	                        title = "",
+    54	                        summary = "",
+    55	                        source = "Wikipedia",
+    56	                        state = InternetKnowledgeState.NOT_FOUND,
+    57	                        errorMessage =
+    58	                            "Internet source returned HTTP ${response.code}"
+    59	                    )
+    60	                }
+    61	
+    62	                val body =
+    63	                    response.body?.string().orEmpty()
+    64	
+    65	                val json = JSONObject(body)
+    66	
+    67	                val title =
+    68	                    json.optString("title", cleanedQuery)
+    69	
+    70	                val extract =
+    71	                    json.optString("extract", "")
+    72	
+    73	                if (extract.isBlank()) {
+    74	                    InternetKnowledgeResult(
+    75	                        query = cleanedQuery,
+    76	                        title = title,
+    77	                        summary = "",
+    78	                        source = "Wikipedia",
+    79	                        state = InternetKnowledgeState.NOT_FOUND,
+    80	                        errorMessage =
+    81	                            "No useful knowledge summary found"
+    82	                    )
+    83	                } else {
+    84	                    InternetKnowledgeResult(
+    85	                        query = cleanedQuery,
+    86	                        title = title,
+    87	                        summary = extract,
+    88	                        source = "Wikipedia",
+    89	                        state = InternetKnowledgeState.SUCCESS
+    90	                    )
+    91	                }
+    92	            }
+    93	
+    94	        } catch (error: Exception) {
+    95	
+    96	            InternetKnowledgeResult(
+    97	                query = cleanedQuery,
+    98	                title = "",
+    99	                summary = "",
+   100	                source = "Internet",
+   101	                state = InternetKnowledgeState.NETWORK_ERROR,
+   102	                errorMessage =
+   103	                    error.message ?: "Unknown network error"
+   104	            )
+   105	        }
+   106	    }
+   107	}

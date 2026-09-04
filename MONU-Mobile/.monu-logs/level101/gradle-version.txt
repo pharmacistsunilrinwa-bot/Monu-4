@@ -1,0 +1,15 @@
+
+------------------------------------------------------------
+Gradle 8.9
+------------------------------------------------------------
+
+Build time:    2024-07-11 14:37:41 UTC
+Revision:      d536ef36a19186ccc596d8817123e5445f30fef8
+
+Kotlin:        1.9.23
+Groovy:        3.0.21
+Ant:           Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+Launcher JVM:  21.0.12 (Termux 21.0.12)
+Daemon JVM:    /data/data/com.termux/files/usr/lib/jvm/java-21-openjdk (no JDK specified, using current Java home)
+OS:            Linux 4.19.191+ aarch64
+

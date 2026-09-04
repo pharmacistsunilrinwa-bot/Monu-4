@@ -1,0 +1,17 @@
+LEVEL 64 RUNTIME PERMISSION MAP
+================================
+
+ENGINE:
+35:    fun hasMicrophonePermission(): Boolean {
+36:        return ContextCompat.checkSelfPermission(
+38:            Manifest.permission.RECORD_AUDIO
+45:        if (!hasMicrophonePermission()) {
+
+CHAT:
+59:    val microphonePermissionLauncher =
+61:            contract = ActivityResultContracts.RequestPermission()
+262:                        val microphoneGranted =
+265:                                Manifest.permission.RECORD_AUDIO
+268:                        if (microphoneGranted) {
+271:                            microphonePermissionLauncher.launch(
+272:                                Manifest.permission.RECORD_AUDIO

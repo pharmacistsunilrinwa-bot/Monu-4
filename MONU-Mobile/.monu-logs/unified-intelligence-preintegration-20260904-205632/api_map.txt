@@ -1,0 +1,49 @@
+14:enum class MONUQuerySource {
+23:data class MONUQueryResponse(
+29:class MONUQueryRouter {
+46:    suspend fun route(
+162:data class MONUMemory(
+170:class MONUMemoryEngine(context: Context) {
+183:    fun remember(content: String): MONUMemory? {
+239:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+313:    fun recent(limit: Int = 20): List<MONUMemory> {
+322:    fun all(): List<MONUMemory> {
+330:    fun contextFor(
+364:    fun forget(memoryId: String): Boolean {
+382:    fun forgetMatching(query: String): Int {
+415:    fun clearAll() {
+421:    fun memoryCount(): Int {
+425:    private fun touch(memoryId: String) {
+452:    private fun tokenize(text: String): Set<String> {
+470:    private fun loadAll(): List<MONUMemory> {
+539:    private fun saveAll(
+602:class MONUInternetKnowledgeEngine {
+609:    fun search(query: String): InternetKnowledgeResult {
+714:data class MONUGeminiResult(
+720:class MONUGeminiIntelligenceEngine {
+725:    fun isConfigured(): Boolean {
+730:    suspend fun ask(
+892:data class MONUIntelligenceCapability(
+898:class MONUIntelligenceHub {
+924:    fun capabilities(): List<MONUIntelligenceCapability> {
+1005:    fun healthReport(): String {
+1038:class MONUContextIntelligence {
+1040:    fun demoContext(): List<MONUContextItem> {
+1061:    fun createSnapshot(
+1072:    fun prioritize(
+1091:class MONUVerificationEngine {
+1095:    fun begin(
+1115:    fun verify(
+1154:    fun reject(
+1176:    fun get(
+1184:    fun all(): List<VerificationResult> {
+1188:    fun report(): VerificationReport {
+1219:class MONUNetworkMonitor(
+1222:    fun isOnline(): Boolean {
+1300:fun ChatScreen() {
+1350:fun addMessage(
+1362:fun buildResponse(
+1412:fun handleOfflineCommand(
+1748:fun MessageCard(
+1823:private fun copyToClipboard(
+1841:private fun shareText(

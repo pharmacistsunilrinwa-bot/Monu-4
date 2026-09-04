@@ -1,0 +1,39 @@
+3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+10:enum class MONUQuerySource {
+19:data class MONUQueryResponse(
+20:    val source: MONUQuerySource,
+27:    private val offlineRouter =
+36:    private val gemini =
+39:    private val internet =
+42:    suspend fun route(
+45:    ): MONUQueryResponse = withContext(Dispatchers.IO) {
+50:            return@withContext MONUQueryResponse(
+51:                source = MONUQuerySource.FALLBACK,
+58:            return@withContext MONUQueryResponse(
+59:                source = MONUQuerySource.OFFLINE,
+60:                text = offlineRouter.handle(cleanQuery),
+73:            return@withContext MONUQueryResponse(
+74:                source = MONUQuerySource.INTELLIGENCE_HUB,
+83:        if (gemini.isConfigured()) {
+84:            val geminiResult =
+85:                gemini.ask(cleanQuery)
+88:                geminiResult.success &&
+89:                geminiResult.text.isNotBlank()
+91:                return@withContext MONUQueryResponse(
+92:                    source = MONUQuerySource.GEMINI,
+93:                    text = geminiResult.text,
+99:        val internetResult =
+100:            internet.search(cleanQuery)
+102:        val internetText =
+103:            when (internetResult.state) {
+106:                        append(internetResult.title)
+108:                        if (internetResult.summary.isNotBlank()) {
+110:                            append(internetResult.summary)
+113:                        if (internetResult.source.isNotBlank()) {
+115:                            append(internetResult.source)
+121:                    "I could not find useful internet information."
+127:                            internetResult.errorMessage
+137:        MONUQueryResponse(
+138:            source = MONUQuerySource.INTERNET,
+139:            text = internetText,
+141:                internetResult.state ==

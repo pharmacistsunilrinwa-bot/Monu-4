@@ -1,0 +1,25 @@
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:8:import okhttp3.Request
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:33:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:38:            client.newCall(request).execute().use { response ->
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:94:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:99:            client.newCall(request).execute().use { response ->
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:6:import okhttp3.Request
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:40:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:48:            client.newCall(request).execute().use { response ->
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:18:    suspend fun enqueue(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:63:    override fun execute(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:19:    fun execute(
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:8:import okhttp3.*
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:60:            Request.Builder()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:25:    fun execute(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:39:                commandContract.execute(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:18:        return bridge.execute(cleanInput)
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:8:import java.net.HttpURLConnection
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:49:        var connection: HttpURLConnection? = null
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:59:                url.openConnection() as HttpURLConnection
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:116:                        queue.enqueue(value)

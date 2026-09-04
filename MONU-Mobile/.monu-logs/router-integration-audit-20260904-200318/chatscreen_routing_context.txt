@@ -1,0 +1,871 @@
+
+======================================================================
+LINES 27-89
+======================================================================
+0027: import androidx.compose.material3.OutlinedButton
+0028: import androidx.compose.material3.Text
+0029: import androidx.compose.runtime.Composable
+0030: import androidx.compose.runtime.DisposableEffect
+0031: import androidx.compose.runtime.getValue
+0032: import androidx.compose.runtime.mutableStateOf
+0033: import androidx.compose.runtime.remember
+0034: import androidx.compose.runtime.rememberCoroutineScope
+0035: import androidx.compose.runtime.setValue
+0036: import androidx.compose.ui.Modifier
+0037: import androidx.compose.ui.platform.LocalContext
+0038: import androidx.compose.ui.unit.dp
+0039: import androidx.core.content.ContextCompat
+0040: import com.monu.mobile.core.network.MONUNetworkMonitor
+0041: import com.monu.mobile.domain.model.ChatMessage
+0042: import com.monu.mobile.domain.model.InternetKnowledgeResult
+0043: import com.monu.mobile.domain.model.InternetKnowledgeState
+0044: import com.monu.mobile.domain.model.MessageRole
+0045: import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+0046: import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+0047: import com.monu.mobile.feature.voice.MONUVoiceEngine
+0048: import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+0049: import com.monu.mobile.ui.components.CommandInput
+0050: import kotlinx.coroutines.Dispatchers
+0051: import kotlinx.coroutines.launch
+0052: import kotlinx.coroutines.withContext
+0053: import java.util.UUID
+0054: 
+0055: @Composable
+0056: fun ChatScreen() {
+0057: val context = LocalContext.current
+0058: val scope = rememberCoroutineScope()
+0059: 
+0060: val networkMonitor = remember {
+0061:     MONUNetworkMonitor(context.applicationContext)
+0062: }
+0063: 
+0064: val knowledgeEngine = remember {
+0065:     MONUInternetKnowledgeEngine()
+0066: }
+0067: 
+0068: val offlineCommandRouter = remember {
+0069:     MONUOfflineCommandRouter()
+0070: }
+0071: 
+0072: var voiceReady by remember {
+0073:     mutableStateOf(false)
+0074: }
+0075: 
+0076: var searching by remember {
+0077:     mutableStateOf(false)
+0078: }
+0079: 
+0080: var voiceListening by remember {
+0081:     mutableStateOf(false)
+0082: }
+0083: 
+0084: var voiceInputStatus by remember {
+0085:     mutableStateOf("")
+0086: }
+0087: 
+0088: var voiceRuntimeHealth by remember {
+0089:     mutableStateOf("Initializing")
+
+======================================================================
+LINES 31-93
+======================================================================
+0031: import androidx.compose.runtime.getValue
+0032: import androidx.compose.runtime.mutableStateOf
+0033: import androidx.compose.runtime.remember
+0034: import androidx.compose.runtime.rememberCoroutineScope
+0035: import androidx.compose.runtime.setValue
+0036: import androidx.compose.ui.Modifier
+0037: import androidx.compose.ui.platform.LocalContext
+0038: import androidx.compose.ui.unit.dp
+0039: import androidx.core.content.ContextCompat
+0040: import com.monu.mobile.core.network.MONUNetworkMonitor
+0041: import com.monu.mobile.domain.model.ChatMessage
+0042: import com.monu.mobile.domain.model.InternetKnowledgeResult
+0043: import com.monu.mobile.domain.model.InternetKnowledgeState
+0044: import com.monu.mobile.domain.model.MessageRole
+0045: import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+0046: import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+0047: import com.monu.mobile.feature.voice.MONUVoiceEngine
+0048: import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+0049: import com.monu.mobile.ui.components.CommandInput
+0050: import kotlinx.coroutines.Dispatchers
+0051: import kotlinx.coroutines.launch
+0052: import kotlinx.coroutines.withContext
+0053: import java.util.UUID
+0054: 
+0055: @Composable
+0056: fun ChatScreen() {
+0057: val context = LocalContext.current
+0058: val scope = rememberCoroutineScope()
+0059: 
+0060: val networkMonitor = remember {
+0061:     MONUNetworkMonitor(context.applicationContext)
+0062: }
+0063: 
+0064: val knowledgeEngine = remember {
+0065:     MONUInternetKnowledgeEngine()
+0066: }
+0067: 
+0068: val offlineCommandRouter = remember {
+0069:     MONUOfflineCommandRouter()
+0070: }
+0071: 
+0072: var voiceReady by remember {
+0073:     mutableStateOf(false)
+0074: }
+0075: 
+0076: var searching by remember {
+0077:     mutableStateOf(false)
+0078: }
+0079: 
+0080: var voiceListening by remember {
+0081:     mutableStateOf(false)
+0082: }
+0083: 
+0084: var voiceInputStatus by remember {
+0085:     mutableStateOf("")
+0086: }
+0087: 
+0088: var voiceRuntimeHealth by remember {
+0089:     mutableStateOf("Initializing")
+0090: }
+0091: 
+0092: var messages by remember {
+0093:     mutableStateOf(
+
+======================================================================
+LINES 47-109
+======================================================================
+0047: import com.monu.mobile.feature.voice.MONUVoiceEngine
+0048: import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+0049: import com.monu.mobile.ui.components.CommandInput
+0050: import kotlinx.coroutines.Dispatchers
+0051: import kotlinx.coroutines.launch
+0052: import kotlinx.coroutines.withContext
+0053: import java.util.UUID
+0054: 
+0055: @Composable
+0056: fun ChatScreen() {
+0057: val context = LocalContext.current
+0058: val scope = rememberCoroutineScope()
+0059: 
+0060: val networkMonitor = remember {
+0061:     MONUNetworkMonitor(context.applicationContext)
+0062: }
+0063: 
+0064: val knowledgeEngine = remember {
+0065:     MONUInternetKnowledgeEngine()
+0066: }
+0067: 
+0068: val offlineCommandRouter = remember {
+0069:     MONUOfflineCommandRouter()
+0070: }
+0071: 
+0072: var voiceReady by remember {
+0073:     mutableStateOf(false)
+0074: }
+0075: 
+0076: var searching by remember {
+0077:     mutableStateOf(false)
+0078: }
+0079: 
+0080: var voiceListening by remember {
+0081:     mutableStateOf(false)
+0082: }
+0083: 
+0084: var voiceInputStatus by remember {
+0085:     mutableStateOf("")
+0086: }
+0087: 
+0088: var voiceRuntimeHealth by remember {
+0089:     mutableStateOf("Initializing")
+0090: }
+0091: 
+0092: var messages by remember {
+0093:     mutableStateOf(
+0094:         listOf(
+0095:             ChatMessage(
+0096:                 id = UUID.randomUUID().toString(),
+0097:                 conversationId = "default",
+0098:                 content =
+0099:                     "MONU Command Center ready. Internet knowledge is available.",
+0100:                 role = MessageRole.SYSTEM
+0101:             )
+0102:         )
+0103:     )
+0104: }
+0105: 
+0106: fun addMessage(
+0107:     content: String,
+0108:     role: MessageRole
+0109: ) {
+
+======================================================================
+LINES 150-212
+======================================================================
+0150: 
+0151:         InternetKnowledgeState.NETWORK_ERROR -> {
+0152:             buildString {
+0153:                 append("Internet request failed.")
+0154: 
+0155:                 if (!result.errorMessage.isNullOrBlank()) {
+0156:                     append("\n")
+0157:                     append(result.errorMessage)
+0158:                 }
+0159:             }
+0160:         }
+0161: 
+0162:         InternetKnowledgeState.INVALID_QUERY -> {
+0163:             "Please enter a valid query."
+0164:         }
+0165:     }
+0166: }
+0167: 
+0168: fun handleOfflineCommand(
+0169:     command: String
+0170: ) {
+0171:     val cleanCommand = command.trim()
+0172: 
+0173:     if (cleanCommand.isBlank()) {
+0174:         addMessage(
+0175:             content = "Please say or type a command.",
+0176:             role = MessageRole.SYSTEM
+0177:         )
+0178:         return
+0179:     }
+0180: 
+0181:     val response =
+0182:         offlineCommandRouter.handle(cleanCommand)
+0183: 
+0184:     addMessage(
+0185:         content = response,
+0186:         role = MessageRole.MONU
+0187:     )
+0188: }
+0189: 
+0190: val voiceEngine = remember {
+0191:     MONUVoiceEngine(context) {
+0192:         voiceReady = it
+0193:     }
+0194: }
+0195: 
+0196: val voiceInputEngine = remember {
+0197:     MONUVoiceInputEngine(
+0198:         context = context,
+0199:         onResult = { recognizedCommand ->
+0200:             val cleanCommand = recognizedCommand.trim()
+0201: 
+0202:             if (cleanCommand.isBlank()) {
+0203:                 return@MONUVoiceInputEngine
+0204:             }
+0205: 
+0206:             addMessage(
+0207:                 content = cleanCommand,
+0208:                 role = MessageRole.OWNER
+0209:             )
+0210: 
+0211:             scope.launch {
+0212:                 if (!networkMonitor.isOnline()) {
+
+======================================================================
+LINES 181-243
+======================================================================
+0181:     val response =
+0182:         offlineCommandRouter.handle(cleanCommand)
+0183: 
+0184:     addMessage(
+0185:         content = response,
+0186:         role = MessageRole.MONU
+0187:     )
+0188: }
+0189: 
+0190: val voiceEngine = remember {
+0191:     MONUVoiceEngine(context) {
+0192:         voiceReady = it
+0193:     }
+0194: }
+0195: 
+0196: val voiceInputEngine = remember {
+0197:     MONUVoiceInputEngine(
+0198:         context = context,
+0199:         onResult = { recognizedCommand ->
+0200:             val cleanCommand = recognizedCommand.trim()
+0201: 
+0202:             if (cleanCommand.isBlank()) {
+0203:                 return@MONUVoiceInputEngine
+0204:             }
+0205: 
+0206:             addMessage(
+0207:                 content = cleanCommand,
+0208:                 role = MessageRole.OWNER
+0209:             )
+0210: 
+0211:             scope.launch {
+0212:                 if (!networkMonitor.isOnline()) {
+0213:                     handleOfflineCommand(cleanCommand)
+0214:                     return@launch
+0215:                 }
+0216: 
+0217:                 searching = true
+0218: 
+0219:                 try {
+0220:                     val result =
+0221:                         withContext(Dispatchers.IO) {
+0222:                             knowledgeEngine.search(cleanCommand)
+0223:                         }
+0224: 
+0225:                     addMessage(
+0226:                         content = buildResponse(result),
+0227:                         role = MessageRole.MONU
+0228:                     )
+0229:                 } catch (_: Exception) {
+0230:                     handleOfflineCommand(cleanCommand)
+0231:                 } finally {
+0232:                     searching = false
+0233:                 }
+0234:             }
+0235:         },
+0236:         onError = { error ->
+0237:             voiceInputStatus = error
+0238:             voiceListening = false
+0239:         },
+0240:         onListeningStateChanged = { isListening ->
+0241:             voiceListening = isListening
+0242:         }
+0243:     )
+
+======================================================================
+LINES 195-257
+======================================================================
+0195: 
+0196: val voiceInputEngine = remember {
+0197:     MONUVoiceInputEngine(
+0198:         context = context,
+0199:         onResult = { recognizedCommand ->
+0200:             val cleanCommand = recognizedCommand.trim()
+0201: 
+0202:             if (cleanCommand.isBlank()) {
+0203:                 return@MONUVoiceInputEngine
+0204:             }
+0205: 
+0206:             addMessage(
+0207:                 content = cleanCommand,
+0208:                 role = MessageRole.OWNER
+0209:             )
+0210: 
+0211:             scope.launch {
+0212:                 if (!networkMonitor.isOnline()) {
+0213:                     handleOfflineCommand(cleanCommand)
+0214:                     return@launch
+0215:                 }
+0216: 
+0217:                 searching = true
+0218: 
+0219:                 try {
+0220:                     val result =
+0221:                         withContext(Dispatchers.IO) {
+0222:                             knowledgeEngine.search(cleanCommand)
+0223:                         }
+0224: 
+0225:                     addMessage(
+0226:                         content = buildResponse(result),
+0227:                         role = MessageRole.MONU
+0228:                     )
+0229:                 } catch (_: Exception) {
+0230:                     handleOfflineCommand(cleanCommand)
+0231:                 } finally {
+0232:                     searching = false
+0233:                 }
+0234:             }
+0235:         },
+0236:         onError = { error ->
+0237:             voiceInputStatus = error
+0238:             voiceListening = false
+0239:         },
+0240:         onListeningStateChanged = { isListening ->
+0241:             voiceListening = isListening
+0242:         }
+0243:     )
+0244: }
+0245: 
+0246: DisposableEffect(Unit) {
+0247:     voiceRuntimeHealth =
+0248:         voiceInputEngine.getRuntimeHealth()
+0249: 
+0250:     onDispose {
+0251:         voiceEngine.shutdown()
+0252:         voiceInputEngine.shutdown()
+0253:     }
+0254: }
+0255: 
+0256: val microphonePermissionLauncher =
+0257:     rememberLauncherForActivityResult(
+
+======================================================================
+LINES 204-266
+======================================================================
+0204:             }
+0205: 
+0206:             addMessage(
+0207:                 content = cleanCommand,
+0208:                 role = MessageRole.OWNER
+0209:             )
+0210: 
+0211:             scope.launch {
+0212:                 if (!networkMonitor.isOnline()) {
+0213:                     handleOfflineCommand(cleanCommand)
+0214:                     return@launch
+0215:                 }
+0216: 
+0217:                 searching = true
+0218: 
+0219:                 try {
+0220:                     val result =
+0221:                         withContext(Dispatchers.IO) {
+0222:                             knowledgeEngine.search(cleanCommand)
+0223:                         }
+0224: 
+0225:                     addMessage(
+0226:                         content = buildResponse(result),
+0227:                         role = MessageRole.MONU
+0228:                     )
+0229:                 } catch (_: Exception) {
+0230:                     handleOfflineCommand(cleanCommand)
+0231:                 } finally {
+0232:                     searching = false
+0233:                 }
+0234:             }
+0235:         },
+0236:         onError = { error ->
+0237:             voiceInputStatus = error
+0238:             voiceListening = false
+0239:         },
+0240:         onListeningStateChanged = { isListening ->
+0241:             voiceListening = isListening
+0242:         }
+0243:     )
+0244: }
+0245: 
+0246: DisposableEffect(Unit) {
+0247:     voiceRuntimeHealth =
+0248:         voiceInputEngine.getRuntimeHealth()
+0249: 
+0250:     onDispose {
+0251:         voiceEngine.shutdown()
+0252:         voiceInputEngine.shutdown()
+0253:     }
+0254: }
+0255: 
+0256: val microphonePermissionLauncher =
+0257:     rememberLauncherForActivityResult(
+0258:         contract =
+0259:             ActivityResultContracts.RequestPermission()
+0260:     ) { granted ->
+0261:         if (granted) {
+0262:             voiceInputStatus = ""
+0263:             voiceInputEngine.startListening()
+0264:             voiceRuntimeHealth =
+0265:                 voiceInputEngine.getRuntimeHealth()
+0266:         } else {
+
+======================================================================
+LINES 212-274
+======================================================================
+0212:                 if (!networkMonitor.isOnline()) {
+0213:                     handleOfflineCommand(cleanCommand)
+0214:                     return@launch
+0215:                 }
+0216: 
+0217:                 searching = true
+0218: 
+0219:                 try {
+0220:                     val result =
+0221:                         withContext(Dispatchers.IO) {
+0222:                             knowledgeEngine.search(cleanCommand)
+0223:                         }
+0224: 
+0225:                     addMessage(
+0226:                         content = buildResponse(result),
+0227:                         role = MessageRole.MONU
+0228:                     )
+0229:                 } catch (_: Exception) {
+0230:                     handleOfflineCommand(cleanCommand)
+0231:                 } finally {
+0232:                     searching = false
+0233:                 }
+0234:             }
+0235:         },
+0236:         onError = { error ->
+0237:             voiceInputStatus = error
+0238:             voiceListening = false
+0239:         },
+0240:         onListeningStateChanged = { isListening ->
+0241:             voiceListening = isListening
+0242:         }
+0243:     )
+0244: }
+0245: 
+0246: DisposableEffect(Unit) {
+0247:     voiceRuntimeHealth =
+0248:         voiceInputEngine.getRuntimeHealth()
+0249: 
+0250:     onDispose {
+0251:         voiceEngine.shutdown()
+0252:         voiceInputEngine.shutdown()
+0253:     }
+0254: }
+0255: 
+0256: val microphonePermissionLauncher =
+0257:     rememberLauncherForActivityResult(
+0258:         contract =
+0259:             ActivityResultContracts.RequestPermission()
+0260:     ) { granted ->
+0261:         if (granted) {
+0262:             voiceInputStatus = ""
+0263:             voiceInputEngine.startListening()
+0264:             voiceRuntimeHealth =
+0265:                 voiceInputEngine.getRuntimeHealth()
+0266:         } else {
+0267:             voiceInputStatus =
+0268:                 "Microphone permission was denied."
+0269:             voiceListening = false
+0270:             voiceRuntimeHealth =
+0271:                 voiceInputEngine.getRuntimeHealth()
+0272:         }
+0273:     }
+0274: 
+
+======================================================================
+LINES 416-478
+======================================================================
+0416: 
+0417:         Column {
+0418:             Text(
+0419:                 text = voiceRuntimeHealth,
+0420:                 style =
+0421:                     MaterialTheme.typography.labelSmall
+0422:             )
+0423: 
+0424:             if (voiceInputStatus.isNotBlank()) {
+0425:                 Text(
+0426:                     text = voiceInputStatus,
+0427:                     style =
+0428:                         MaterialTheme.typography.labelSmall
+0429:                 )
+0430:             }
+0431:         }
+0432:     }
+0433: 
+0434:     CommandInput { command, attachments ->
+0435:         val cleanCommand = command.trim()
+0436: 
+0437:         val attachmentText =
+0438:             if (attachments.isEmpty()) {
+0439:                 ""
+0440:             } else {
+0441:                 "\nAttachments selected: " +
+0442:                     attachments.joinToString {
+0443:                         it.name
+0444:                     }
+0445:             }
+0446: 
+0447:         if (cleanCommand.isBlank()) {
+0448:             if (attachments.isNotEmpty()) {
+0449:                 addMessage(
+0450:                     content =
+0451:                         "Attachments selected but attachment analysis is not available yet." +
+0452:                             attachmentText,
+0453:                     role = MessageRole.SYSTEM
+0454:                 )
+0455:             } else {
+0456:                 addMessage(
+0457:                     content =
+0458:                         "Please enter a text query.",
+0459:                     role = MessageRole.SYSTEM
+0460:                 )
+0461:             }
+0462: 
+0463:             return@CommandInput
+0464:         }
+0465: 
+0466:         addMessage(
+0467:             content =
+0468:                 cleanCommand + attachmentText,
+0469:             role = MessageRole.OWNER
+0470:         )
+0471: 
+0472:         scope.launch {
+0473:             if (!networkMonitor.isOnline()) {
+0474:                 handleOfflineCommand(cleanCommand)
+0475:                 return@launch
+0476:             }
+0477: 
+0478:             searching = true
+
+======================================================================
+LINES 445-507
+======================================================================
+0445:             }
+0446: 
+0447:         if (cleanCommand.isBlank()) {
+0448:             if (attachments.isNotEmpty()) {
+0449:                 addMessage(
+0450:                     content =
+0451:                         "Attachments selected but attachment analysis is not available yet." +
+0452:                             attachmentText,
+0453:                     role = MessageRole.SYSTEM
+0454:                 )
+0455:             } else {
+0456:                 addMessage(
+0457:                     content =
+0458:                         "Please enter a text query.",
+0459:                     role = MessageRole.SYSTEM
+0460:                 )
+0461:             }
+0462: 
+0463:             return@CommandInput
+0464:         }
+0465: 
+0466:         addMessage(
+0467:             content =
+0468:                 cleanCommand + attachmentText,
+0469:             role = MessageRole.OWNER
+0470:         )
+0471: 
+0472:         scope.launch {
+0473:             if (!networkMonitor.isOnline()) {
+0474:                 handleOfflineCommand(cleanCommand)
+0475:                 return@launch
+0476:             }
+0477: 
+0478:             searching = true
+0479: 
+0480:             try {
+0481:                 val result =
+0482:                     withContext(Dispatchers.IO) {
+0483:                         knowledgeEngine.search(cleanCommand)
+0484:                     }
+0485: 
+0486:                 addMessage(
+0487:                     content = buildResponse(result),
+0488:                     role = MessageRole.MONU
+0489:                 )
+0490:             } catch (_: Exception) {
+0491:                 handleOfflineCommand(cleanCommand)
+0492:             } finally {
+0493:                 searching = false
+0494:             }
+0495:         }
+0496:     }
+0497: }
+0498: 
+0499: }
+0500: 
+0501: @Composable
+0502: fun MessageCard(
+0503: message: ChatMessage,
+0504: onCopy: () -> Unit,
+0505: onListen: () -> Unit,
+0506: onStop: () -> Unit,
+0507: onShare: () -> Unit
+
+======================================================================
+LINES 456-518
+======================================================================
+0456:                 addMessage(
+0457:                     content =
+0458:                         "Please enter a text query.",
+0459:                     role = MessageRole.SYSTEM
+0460:                 )
+0461:             }
+0462: 
+0463:             return@CommandInput
+0464:         }
+0465: 
+0466:         addMessage(
+0467:             content =
+0468:                 cleanCommand + attachmentText,
+0469:             role = MessageRole.OWNER
+0470:         )
+0471: 
+0472:         scope.launch {
+0473:             if (!networkMonitor.isOnline()) {
+0474:                 handleOfflineCommand(cleanCommand)
+0475:                 return@launch
+0476:             }
+0477: 
+0478:             searching = true
+0479: 
+0480:             try {
+0481:                 val result =
+0482:                     withContext(Dispatchers.IO) {
+0483:                         knowledgeEngine.search(cleanCommand)
+0484:                     }
+0485: 
+0486:                 addMessage(
+0487:                     content = buildResponse(result),
+0488:                     role = MessageRole.MONU
+0489:                 )
+0490:             } catch (_: Exception) {
+0491:                 handleOfflineCommand(cleanCommand)
+0492:             } finally {
+0493:                 searching = false
+0494:             }
+0495:         }
+0496:     }
+0497: }
+0498: 
+0499: }
+0500: 
+0501: @Composable
+0502: fun MessageCard(
+0503: message: ChatMessage,
+0504: onCopy: () -> Unit,
+0505: onListen: () -> Unit,
+0506: onStop: () -> Unit,
+0507: onShare: () -> Unit
+0508: ) {
+0509: Card(
+0510: modifier = Modifier.fillMaxWidth()
+0511: ) {
+0512: Column(
+0513: modifier = Modifier.padding(14.dp)
+0514: ) {
+0515: val roleName =
+0516: when (message.role) {
+0517: MessageRole.OWNER -> "YOU"
+0518: MessageRole.MONU -> "MONU"
+
+======================================================================
+LINES 465-527
+======================================================================
+0465: 
+0466:         addMessage(
+0467:             content =
+0468:                 cleanCommand + attachmentText,
+0469:             role = MessageRole.OWNER
+0470:         )
+0471: 
+0472:         scope.launch {
+0473:             if (!networkMonitor.isOnline()) {
+0474:                 handleOfflineCommand(cleanCommand)
+0475:                 return@launch
+0476:             }
+0477: 
+0478:             searching = true
+0479: 
+0480:             try {
+0481:                 val result =
+0482:                     withContext(Dispatchers.IO) {
+0483:                         knowledgeEngine.search(cleanCommand)
+0484:                     }
+0485: 
+0486:                 addMessage(
+0487:                     content = buildResponse(result),
+0488:                     role = MessageRole.MONU
+0489:                 )
+0490:             } catch (_: Exception) {
+0491:                 handleOfflineCommand(cleanCommand)
+0492:             } finally {
+0493:                 searching = false
+0494:             }
+0495:         }
+0496:     }
+0497: }
+0498: 
+0499: }
+0500: 
+0501: @Composable
+0502: fun MessageCard(
+0503: message: ChatMessage,
+0504: onCopy: () -> Unit,
+0505: onListen: () -> Unit,
+0506: onStop: () -> Unit,
+0507: onShare: () -> Unit
+0508: ) {
+0509: Card(
+0510: modifier = Modifier.fillMaxWidth()
+0511: ) {
+0512: Column(
+0513: modifier = Modifier.padding(14.dp)
+0514: ) {
+0515: val roleName =
+0516: when (message.role) {
+0517: MessageRole.OWNER -> "YOU"
+0518: MessageRole.MONU -> "MONU"
+0519: MessageRole.SYSTEM -> "SYSTEM"
+0520: }
+0521: 
+0522:         Text(
+0523:             text = roleName,
+0524:             style =
+0525:                 MaterialTheme.typography.labelMedium
+0526:         )
+0527: 
+
+======================================================================
+LINES 473-535
+======================================================================
+0473:             if (!networkMonitor.isOnline()) {
+0474:                 handleOfflineCommand(cleanCommand)
+0475:                 return@launch
+0476:             }
+0477: 
+0478:             searching = true
+0479: 
+0480:             try {
+0481:                 val result =
+0482:                     withContext(Dispatchers.IO) {
+0483:                         knowledgeEngine.search(cleanCommand)
+0484:                     }
+0485: 
+0486:                 addMessage(
+0487:                     content = buildResponse(result),
+0488:                     role = MessageRole.MONU
+0489:                 )
+0490:             } catch (_: Exception) {
+0491:                 handleOfflineCommand(cleanCommand)
+0492:             } finally {
+0493:                 searching = false
+0494:             }
+0495:         }
+0496:     }
+0497: }
+0498: 
+0499: }
+0500: 
+0501: @Composable
+0502: fun MessageCard(
+0503: message: ChatMessage,
+0504: onCopy: () -> Unit,
+0505: onListen: () -> Unit,
+0506: onStop: () -> Unit,
+0507: onShare: () -> Unit
+0508: ) {
+0509: Card(
+0510: modifier = Modifier.fillMaxWidth()
+0511: ) {
+0512: Column(
+0513: modifier = Modifier.padding(14.dp)
+0514: ) {
+0515: val roleName =
+0516: when (message.role) {
+0517: MessageRole.OWNER -> "YOU"
+0518: MessageRole.MONU -> "MONU"
+0519: MessageRole.SYSTEM -> "SYSTEM"
+0520: }
+0521: 
+0522:         Text(
+0523:             text = roleName,
+0524:             style =
+0525:                 MaterialTheme.typography.labelMedium
+0526:         )
+0527: 
+0528:         Spacer(
+0529:             modifier =
+0530:                 Modifier.height(6.dp)
+0531:         )
+0532: 
+0533:         Text(
+0534:             text = message.content,
+0535:             style =

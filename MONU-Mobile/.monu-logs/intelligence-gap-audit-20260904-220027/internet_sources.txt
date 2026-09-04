@@ -1,0 +1,5 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")

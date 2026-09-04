@@ -1,0 +1,137 @@
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:5:import com.monu.mobile.data.local.dao.OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:6:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:10:        OfflineCommandEntity::class
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:19:        OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:4:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:7:interface OfflineCommandDao {
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:13:        command: OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:20:        List<OfflineCommandEntity>
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:30:        List<OfflineCommandEntity>
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:34:        command: OfflineCommandEntity
+app/src/main/java/com/monu/mobile/data/local/entity/OfflineCommandEntity.kt:7:data class OfflineCommandEntity(
+app/src/main/java/com/monu/mobile/domain/model/OfflineCommandModels.kt:12:data class OfflineCommand(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:28:        MONUOfflineCommandRouter()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:37:            it.title.contains(query, ignoreCase = true) ||
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:38:            it.content.contains(query, ignoreCase = true) ||
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:39:            it.tags.any { tag -> tag.contains(query, ignoreCase = true) }
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:7:        OfflineCommandQueue,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:5:import com.monu.mobile.data.local.entity.OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:9:class OfflineCommandQueue(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:26:            OfflineCommandEntity(
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:40:        List<OfflineCommandEntity> {
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:47:            OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:59:            OfflineCommandEntity,
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:75:            OfflineCommandEntity
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:2:import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:3:import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:9:        MONUOfflineCommandIntentParser()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:16:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:24:        return intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:27:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:28:        return when (intentParser.parse(command)) {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:29:            MONUOfflineCommandIntent.EMPTY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:32:            MONUOfflineCommandIntent.GREETING ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:35:            MONUOfflineCommandIntent.HELP ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:47:            MONUOfflineCommandIntent.STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:50:            MONUOfflineCommandIntent.IDENTITY ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:53:            MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:54:            MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:55:            MONUOfflineCommandIntent.LOCAL_STATUS ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:56:                localDeviceCommandEngine.handle(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:58:            MONUOfflineCommandIntent.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:64:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:65:    ): MONUOfflineCommandResponse {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:68:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:70:        return MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:73:            response = handle(command)
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:12:        return normalized.contains("time") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:13:            normalized.contains("date") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:14:            normalized.contains("today") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:15:            normalized.contains("device status") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:16:            normalized.contains("local status")
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:19:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:23:            normalized.contains("time") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:26:            normalized.contains("date") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:27:                normalized.contains("today") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:30:            normalized.contains("device status") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:31:                normalized.contains("local status") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:3:enum class MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:15:class MONUOfflineCommandIntentParser {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:17:    fun parse(command: String): MONUOfflineCommandIntent {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:22:                MONUOfflineCommandIntent.EMPTY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:24:            normalized.contains("hello") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:25:                normalized.contains("hi monu") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:26:                MONUOfflineCommandIntent.GREETING
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:28:            normalized.contains("help") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:29:                normalized.contains("what can you do") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:30:                MONUOfflineCommandIntent.HELP
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:32:            normalized.contains("who are you") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:33:                MONUOfflineCommandIntent.IDENTITY
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:35:            normalized.contains("device status") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:36:                normalized.contains("local status") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:37:                MONUOfflineCommandIntent.LOCAL_STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:39:            normalized.contains("status") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:40:                MONUOfflineCommandIntent.STATUS
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:42:            normalized.contains("time") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:43:                MONUOfflineCommandIntent.TIME
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:45:            normalized.contains("date") ||
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:46:                normalized.contains("today") ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:47:                MONUOfflineCommandIntent.DATE
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:50:                MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:3:data class MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:4:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:9:class MONUOfflineCommandCapabilityMatrix {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:13:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:14:                intent = MONUOfflineCommandIntent.EMPTY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:19:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:20:                intent = MONUOfflineCommandIntent.GREETING,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:25:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:26:                intent = MONUOfflineCommandIntent.HELP,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:31:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:32:                intent = MONUOfflineCommandIntent.STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:37:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:38:                intent = MONUOfflineCommandIntent.IDENTITY,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:43:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:44:                intent = MONUOfflineCommandIntent.TIME,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:49:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:50:                intent = MONUOfflineCommandIntent.DATE,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:55:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:56:                intent = MONUOfflineCommandIntent.LOCAL_STATUS,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:61:            MONUOfflineCommandCapability(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:70:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:78:        intent: MONUOfflineCommandIntent
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:3:data class MONUOfflineCommandRequest(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:7:data class MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:9:    val intent: MONUOfflineCommandIntent,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:13:interface MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:16:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:20:        request: MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:21:    ): MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:3:import com.monu.mobile.feature.offline.MONUOfflineCommandContract
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:4:import com.monu.mobile.feature.offline.MONUOfflineCommandRequest
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:5:import com.monu.mobile.feature.offline.MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:11:    val commandResponse: MONUOfflineCommandResponse
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:15:    private val commandContract: MONUOfflineCommandContract =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:16:        MONUOfflineCommandRouter(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:40:                    MONUOfflineCommandRequest(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:80:                    MONUOfflineCommandResponse(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:84:                                .MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:120:                                .contains(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:247:                .contains(clean)
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:83:        mime.contains("image", ignoreCase = true) ->
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:86:        mime.contains("video", ignoreCase = true) ->
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:89:        mime.contains("pdf", ignoreCase = true) ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:47:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:70:    MONUOfflineCommandRouter()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:169:fun handleOfflineCommand(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:214:                    handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:232:                    handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:476:                handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:494:                handleOfflineCommand(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:9:import com.monu.mobile.feature.offline.OfflineCommandQueue
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:25:            OfflineCommandQueue(context)

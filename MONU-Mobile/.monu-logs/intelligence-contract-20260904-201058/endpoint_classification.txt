@@ -1,0 +1,5 @@
+LOCAL_SERVER_PLACEHOLDER : http://192.168.1.100:8000
+LOCAL_SERVER_PLACEHOLDER : http://192.168.x.x:8000
+WIKIPEDIA : https://en.wikipedia.org/api/rest_v1/page/summary/$encoded
+GOOGLE_AI : https://generativelanguage.googleapis.com/
+SERVER_PLACEHOLDER : https://your-server-domain.com

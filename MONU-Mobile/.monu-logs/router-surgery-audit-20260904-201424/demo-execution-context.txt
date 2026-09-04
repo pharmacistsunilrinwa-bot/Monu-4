@@ -1,0 +1,63 @@
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-72-        ) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-73-            return@withContext MONUQueryResponse(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-74-                source = MONUQuerySource.INTELLIGENCE_HUB,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-75-                text = intelligenceHub.healthReport(),
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-76-                success = true
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-77-            )
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-78-        }
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-79-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-80-        val internalKnowledge =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-81-            runCatching {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-82-                knowledgeCenter.search(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-83-                    cleanQuery,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:84:                    knowledgeCenter.demoKnowledge()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-85-                )
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-86-            }.getOrElse {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-87-                emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-88-            }
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-89-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-90-        if (internalKnowledge.isNotEmpty()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-91-            val response =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-92-                internalKnowledge.joinToString(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-93-                    separator = "\n\n"
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-94-                ) { item ->
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-95-                    item.toString()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-96-                }
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-97-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-98-            return@withContext MONUQueryResponse(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-99-                source = MONUQuerySource.INTERNAL_KNOWLEDGE,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-100-                text = response,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-101-                success = true
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt-102-            )
+--
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-74-        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-75-            name = "Context Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-76-            available = runCatching {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-77-                contextIntelligence.demoContext()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-78-            }.isSuccess,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-79-            description =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-80-                "Stores, prioritizes and snapshots contextual information."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-81-        )
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-82-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-83-        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-84-            name = "Knowledge Center",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-85-            available = runCatching {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:86:                knowledgeCenter.demoKnowledge()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-87-            }.isSuccess,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-88-            description =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-89-                "Searches internal knowledge structures."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-90-        )
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-91-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-92-        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-93-            name = "Verification Engine",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-94-            available = runCatching {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-95-                verificationEngine.report()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-96-            }.isSuccess,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-97-            description =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-98-                "Tracks evidence and verification results."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-99-        )
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-100-
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-101-        capabilities += MONUIntelligenceCapability(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-102-            name = "Rules Engine",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-103-            available = runCatching {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt-104-                rulesEngine.demoRules()

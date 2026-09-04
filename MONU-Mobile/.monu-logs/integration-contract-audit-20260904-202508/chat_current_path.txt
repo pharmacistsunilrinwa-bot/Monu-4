@@ -1,0 +1,16 @@
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+66:    MONUQueryRouter()
+107:fun addMessage(
+169:fun handleOfflineCommand(
+175:        addMessage(
+185:    addMessage(
+207:            addMessage(
+214:                    handleOfflineCommand(cleanCommand)
+227:                    addMessage(
+232:                    handleOfflineCommand(cleanCommand)
+451:                addMessage(
+458:                addMessage(
+468:        addMessage(
+476:                handleOfflineCommand(cleanCommand)
+489:                addMessage(
+494:                handleOfflineCommand(cleanCommand)

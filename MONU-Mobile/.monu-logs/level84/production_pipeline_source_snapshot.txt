@@ -1,0 +1,130 @@
+LEVEL 84 PRODUCTION SOURCE SNAPSHOT
+====================================
+
+===== CHATSCREEN =====
+27:import com.monu.mobile.domain.model.MessageRole
+39:fun ChatScreen() {
+40:    fun buildOfflineCommandFallback(
+67:    val offlineCommandRouter = remember {
+74:    fun handleOfflineCommand(
+84:        messages = messages + ChatMessage(
+86:            role = MessageRole.ASSISTANT,
+148:                    messages = messages + ChatMessage(
+149:                        role = MessageRole.OWNER,
+155:                            messages = messages + ChatMessage(
+156:                                role = MessageRole.SYSTEM,
+172:                                    messages = messages + ChatMessage(
+173:                                        role = MessageRole.MONU,
+179:                                    messages = messages + ChatMessage(
+180:                                        role = MessageRole.SYSTEM,
+186:                                    messages = messages + ChatMessage(
+187:                                        role = MessageRole.SYSTEM,
+193:                                    messages = messages + ChatMessage(
+194:                                        role = MessageRole.SYSTEM,
+200:                            handleOfflineCommand(cleanCommand)
+230:    var messages by remember {
+238:                    role = MessageRole.SYSTEM
+276:            items(messages) { message ->
+374:                role = MessageRole.OWNER
+377:            messages = messages + ownerMessage
+385:                    role = MessageRole.SYSTEM
+388:                messages = messages + systemMessage
+396:                    role = MessageRole.SYSTEM
+399:                messages = messages + systemMessage
+450:                        role = MessageRole.MONU
+453:                    messages = messages + monuMessage
+461:fun MessageCard(
+476:                MessageRole.OWNER -> "YOU"
+477:                MessageRole.MONU -> "MONU"
+478:                MessageRole.SYSTEM -> "SYSTEM"
+518:private fun copyToClipboard(
+534:private fun shareText(
+
+===== ROUTER =====
+6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+8:    private val intentParser =
+11:    private val localDeviceCommandEngine =
+15:    override fun canHandle(
+21:    fun canHandle(command: String): Boolean {
+22:        val intent = intentParser.parse(command)
+27:    fun handle(command: String): String {
+28:        return when (intentParser.parse(command)) {
+56:                localDeviceCommandEngine.handle(command)
+63:    override fun execute(
+67:        val intent = intentParser.parse(command)
+
+===== CONTRACT =====
+package com.monu.mobile.feature.offline
+
+data class MONUOfflineCommandRequest(
+    val command: String
+)
+
+data class MONUOfflineCommandResponse(
+    val handled: Boolean,
+    val intent: MONUOfflineCommandIntent,
+    val response: String
+)
+
+interface MONUOfflineCommandContract {
+
+    fun canHandle(
+        request: MONUOfflineCommandRequest
+    ): Boolean
+
+    fun execute(
+        request: MONUOfflineCommandRequest
+    ): MONUOfflineCommandResponse
+}
+
+===== INTENT PARSER =====
+3:enum class MONUOfflineCommandIntent {
+4:    EMPTY,
+5:    GREETING,
+6:    HELP,
+7:    STATUS,
+8:    IDENTITY,
+9:    TIME,
+10:    DATE,
+11:    LOCAL_STATUS,
+12:    UNKNOWN
+15:class MONUOfflineCommandIntentParser {
+17:    fun parse(command: String): MONUOfflineCommandIntent {
+22:                MONUOfflineCommandIntent.EMPTY
+26:                MONUOfflineCommandIntent.GREETING
+30:                MONUOfflineCommandIntent.HELP
+33:                MONUOfflineCommandIntent.IDENTITY
+37:                MONUOfflineCommandIntent.LOCAL_STATUS
+40:                MONUOfflineCommandIntent.STATUS
+43:                MONUOfflineCommandIntent.TIME
+47:                MONUOfflineCommandIntent.DATE
+50:                MONUOfflineCommandIntent.UNKNOWN
+
+===== LOCAL ENGINE =====
+7:class MONULocalDeviceCommandEngine {
+9:    fun canHandle(command: String): Boolean {
+19:    fun handle(command: String): String {
+24:                currentTime()
+28:                currentDate()
+32:                localRuntimeStatus()
+39:    private fun currentTime(): String {
+46:    private fun currentDate(): String {
+56:    private fun localRuntimeStatus(): String {
+
+===== CAPABILITY MATRIX =====
+3:data class MONUOfflineCommandCapability(
+5:    val executionOwner: String,
+9:class MONUOfflineCommandCapabilityMatrix {
+11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+15:                executionOwner = "Router",
+21:                executionOwner = "Router",
+27:                executionOwner = "Router",
+33:                executionOwner = "Router",
+39:                executionOwner = "Router",
+45:                executionOwner = "LocalDeviceEngine",
+51:                executionOwner = "LocalDeviceEngine",
+57:                executionOwner = "LocalDeviceEngine",
+63:                executionOwner = "Router",
+69:    fun ownerFor(
+74:            ?.executionOwner
+77:    fun supports(

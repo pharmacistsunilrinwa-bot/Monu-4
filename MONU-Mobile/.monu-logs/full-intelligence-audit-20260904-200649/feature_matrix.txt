@@ -1,0 +1,8 @@
+DETECTED : Wikipedia
+DETECTED : General Web Search
+MISSING  : News Provider
+MISSING  : Weather Provider
+DETECTED : AI Intelligence
+DETECTED : Internal Knowledge
+DETECTED : Offline Commands
+DETECTED : Network Monitoring

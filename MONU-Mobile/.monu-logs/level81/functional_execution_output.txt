@@ -1,0 +1,10 @@
+STATIC FUNCTIONAL MAP
+blank -> EMPTY
+hello -> GREETING
+help -> HELP
+status -> STATUS
+who are you -> IDENTITY
+time -> TIME
+date/today -> DATE
+device status -> LOCAL_STATUS
+unknown -> UNKNOWN

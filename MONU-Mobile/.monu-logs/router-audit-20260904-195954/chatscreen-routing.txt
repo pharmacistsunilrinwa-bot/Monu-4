@@ -1,0 +1,5 @@
+64:val knowledgeEngine = remember {
+68:val offlineCommandRouter = remember {
+182:        offlineCommandRouter.handle(cleanCommand)
+222:                            knowledgeEngine.search(cleanCommand)
+483:                        knowledgeEngine.search(cleanCommand)

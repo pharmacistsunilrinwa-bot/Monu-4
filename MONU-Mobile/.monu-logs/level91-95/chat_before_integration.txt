@@ -1,0 +1,46 @@
+7:import androidx.activity.compose.rememberLauncherForActivityResult
+27:import com.monu.mobile.domain.model.MessageRole
+39:fun ChatScreen() {
+67:    val offlineCommandRouter = remember {
+72:    val scope = rememberCoroutineScope()
+74:    fun handleOfflineCommand(
+82:            offlineCommandRouter.handle(cleanCommand)
+84:        messages = messages + ChatMessage(
+86:            role = MessageRole.ASSISTANT,
+91:    var voiceReady by remember {
+95:    var searching by remember {
+99:    val voiceEngine = remember {
+105:    val knowledgeEngine = remember {
+110:        rememberLauncherForActivityResult(
+129:    var voiceRuntimeHealth by remember {
+133:    var voiceListening by remember {
+137:    var voiceInputStatus by remember {
+141:    val voiceInputEngine = remember {
+148:                    messages = messages + ChatMessage(
+149:                        role = MessageRole.OWNER,
+155:                            messages = messages + ChatMessage(
+156:                                role = MessageRole.SYSTEM,
+172:                                    messages = messages + ChatMessage(
+173:                                        role = MessageRole.MONU,
+179:                                    messages = messages + ChatMessage(
+180:                                        role = MessageRole.SYSTEM,
+186:                                    messages = messages + ChatMessage(
+187:                                        role = MessageRole.SYSTEM,
+193:                                    messages = messages + ChatMessage(
+194:                                        role = MessageRole.SYSTEM,
+200:                            handleOfflineCommand(cleanCommand)
+219:    val networkMonitor = remember {
+230:    var messages by remember {
+238:                    role = MessageRole.SYSTEM
+276:            items(messages) { message ->
+374:                role = MessageRole.OWNER
+377:            messages = messages + ownerMessage
+385:                    role = MessageRole.SYSTEM
+388:                messages = messages + systemMessage
+396:                    role = MessageRole.SYSTEM
+399:                messages = messages + systemMessage
+450:                        role = MessageRole.MONU
+453:                    messages = messages + monuMessage
+476:                MessageRole.OWNER -> "YOU"
+477:                MessageRole.MONU -> "MONU"
+478:                MessageRole.SYSTEM -> "SYSTEM"

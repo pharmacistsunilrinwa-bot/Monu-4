@@ -1,0 +1,18 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:20:    fun isConfigured(): Boolean {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:22:        if (!ServerConfig.isConfigured()) {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:84:        if (!ServerConfig.isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:22:    fun isConfigured(): Boolean {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:41:        if (!isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:112:            available = gemini.isConfigured(),
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:114:                if (gemini.isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:14:    GEMINI,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:83:        if (gemini.isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:85:                gemini.ask(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:92:                    source = MONUQuerySource.GEMINI,

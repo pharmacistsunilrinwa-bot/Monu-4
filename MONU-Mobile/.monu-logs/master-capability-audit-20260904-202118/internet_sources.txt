@@ -1,0 +1,38 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:4:    SERVER_API,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:89:                "Searches internal knowledge structures."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:111:            name = "Gemini Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:55:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:78:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:88:                        source = "Wikipedia",
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:17:     * Real command API integration will be
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:34:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:42:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:45:                error = "Gemini API key is not configured."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:53:                "https://generativelanguage.googleapis.com/" +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:122:                return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:126:                        "Gemini HTTP $code: " +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:146:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:150:                        "Gemini returned no usable text."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:153:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:161:            MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:166:                        ?: "Unknown Gemini error."
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:45:            "SERVER API CONTRACT",
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")

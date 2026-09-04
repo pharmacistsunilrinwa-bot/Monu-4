@@ -1,0 +1,92 @@
+15:data class MONUGeminiResult(
+16:    val success: Boolean,
+17:    val text: String,
+18:    val error: String? = null
+21:class MONUGeminiIntelligenceEngine {
+26:    fun isConfigured(): Boolean {
+31:    suspend fun ask(
+35:        val cleanPrompt = prompt.trim()
+53:        var connection: HttpURLConnection? = null
+56:            val url = URL(
+75:            val body = JSONObject().apply {
+112:            val code = connection.responseCode
+114:            val stream =
+121:            val response =
+135:            val json = JSONObject(response)
+137:            val candidates =
+140:            val text =
+193:data class MONUIntelligenceCapability(
+194:    val name: String,
+195:    val available: Boolean,
+196:    val description: String
+199:class MONUIntelligenceHub {
+222:    val gemini =
+225:    fun capabilities(): List<MONUIntelligenceCapability> {
+227:        val capabilities = mutableListOf<MONUIntelligenceCapability>()
+306:    fun healthReport(): String {
+341:enum class MONUQuerySource {
+350:data class MONUQueryResponse(
+351:    val source: MONUQuerySource,
+352:    val text: String,
+353:    val success: Boolean
+356:class MONUQueryRouter {
+373:    suspend fun route(
+378:        val cleanQuery = query.trim()
+396:        val lower = cleanQuery.lowercase()
+415:            val geminiResult =
+430:        val internetResult =
+433:        val internetText =
+492:class MONUInternetKnowledgeEngine {
+499:    fun search(query: String): InternetKnowledgeResult {
+501:        val cleanedQuery = query.trim()
+515:            val encoded =
+518:            val url =
+521:            val request = Request.Builder()
+543:                val body =
+546:                val json = JSONObject(body)
+548:                val title =
+551:                val extract =
+599:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+614:    fun canHandle(command: String): Boolean {
+615:        val intent = intentParser.parse(command)
+620:    fun handle(command: String): String {
+659:        val command = request.command
+660:        val intent = intentParser.parse(command)
+661:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+678:enum class InternetKnowledgeState {
+685:data class InternetKnowledgeResult(
+686:    val query: String,
+687:    val title: String,
+688:    val summary: String,
+689:    val source: String,
+690:    val state: InternetKnowledgeState,
+691:    val errorMessage: String? = null
+700:data class ChatConversation(
+701:    val id: String,
+702:    val title: String,
+703:    val messages: List<ChatMessage> = emptyList(),
+704:    val createdAt: Long = System.currentTimeMillis()
+707:enum class MessageRole {
+713:data class ChatMessage(
+714:    val id: String,
+715:    val conversationId: String,
+716:    val content: String,
+717:    val role: MessageRole,
+718:    val timestamp: Long = System.currentTimeMillis(),
+719:    val audioProgressMs: Long = 0L,
+720:    val isAudioAvailable: Boolean = false
+783:fun ChatScreen() {
+833:fun addMessage(
+845:fun buildResponse(
+895:fun handleOfflineCommand(
+898:    val cleanCommand = command.trim()
+908:    val response =
+927:            val cleanCommand = recognizedCommand.trim()
+947:                    val response =
+1116:                    val microphoneGranted =
+1163:        val cleanCommand = command.trim()
+1165:        val attachmentText =
+1209:                val response =
+1231:fun MessageCard(
+1306:private fun copyToClipboard(
+1324:private fun shareText(

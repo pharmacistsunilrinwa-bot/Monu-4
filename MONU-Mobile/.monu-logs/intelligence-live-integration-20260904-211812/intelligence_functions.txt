@@ -1,0 +1,16 @@
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:44:    fun analyze(eventId: String): EventInsight? {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:18:    fun analyzePatterns(): List<MONUCommandPattern> {
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:27:    fun generatedImageAppearance(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:14:    fun analyze(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:30:    fun search(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:27:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:63:    override fun execute(
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:19:    fun handle(command: String): String {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:19:    fun execute(
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:8:    fun analyze(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:25:    fun execute(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:27:    suspend fun ask(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:29:    fun remember(content: String): MONUMemory? {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:169:fun handleOfflineCommand(

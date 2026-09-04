@@ -1,0 +1,22 @@
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:13:    val notificationsEnabled: Boolean = false,
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:1:package com.monu.mobile.feature.notification
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:10:    private val notifications = mutableListOf<MONUNotification>()
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:19:        val notification = MONUNotification(
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:27:        notifications.add(0, notification)
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:29:        return notification
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:33:        return notifications.toList()
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:37:        return notifications.count { !it.read }
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:43:        return notifications.filter {
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:29:                "notifications",
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:32:                "Required for Android notification delivery."
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:29:                id = "notifications",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:31:                description = "MONU notification preferences.",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:32:                enabled = settings.notificationsEnabled
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:29:            message = "Real server notifications will appear here."
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:66:            items(demoNotifications) { notification ->
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:67:                NotificationCard(notification)
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:75:    notification: MONUNotification
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:83:            Text(notification.title)
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:84:            Text(notification.message)
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:85:            Text("Source: ${notification.source}")
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:86:            Text("Priority: ${notification.priority}")

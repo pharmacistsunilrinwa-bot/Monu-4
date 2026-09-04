@@ -1,0 +1,14 @@
+3:data class ChatConversation(
+4:    val id: String,
+5:    val title: String,
+6:    val messages: List<ChatMessage> = emptyList(),
+7:    val createdAt: Long = System.currentTimeMillis()
+10:enum class MessageRole {
+16:data class ChatMessage(
+17:    val id: String,
+18:    val conversationId: String,
+19:    val content: String,
+20:    val role: MessageRole,
+21:    val timestamp: Long = System.currentTimeMillis(),
+22:    val audioProgressMs: Long = 0L,
+23:    val isAudioAvailable: Boolean = false

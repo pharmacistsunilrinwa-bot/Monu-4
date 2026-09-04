@@ -1,0 +1,138 @@
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:11:        context.getSharedPreferences(
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:4:import androidx.room.RoomDatabase
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:5:import com.monu.mobile.data.local.dao.OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:8:@Database(
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:16:    RoomDatabase() {
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:18:    abstract fun offlineCommandDao():
+app/src/main/java/com/monu/mobile/data/local/MONULocalDatabase.kt:19:        OfflineCommandDao
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:6:@Dao
+app/src/main/java/com/monu/mobile/data/local/dao/OfflineCommandDao.kt:7:interface OfflineCommandDao {
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:4:import android.content.SharedPreferences
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:10:    private val preferences: SharedPreferences =
+app/src/main/java/com/monu/mobile/data/preferences/HomeAppearanceStore.kt:11:        context.getSharedPreferences(
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:3:data class ChatConversation(
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:11:data class MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:7:class ConnectionRepository(
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:4:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:8:    private val repository: ConnectionRepository = ConnectionRepository()
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:3:import com.monu.mobile.domain.model.MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:6:class MONUCommandHistory {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:8:    private val commands = mutableListOf<MONUCommandHistoryEntry>()
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:10:    fun add(entry: MONUCommandHistoryEntry) {
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:14:    fun all(): List<MONUCommandHistoryEntry> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:3:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:8:    private val connectionRepository:
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:9:        ConnectionRepository =
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:10:            ConnectionRepository()
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:25:            connectionRepository
+app/src/main/java/com/monu/mobile/feature/offline/OfflineCommandQueue.kt:16:            .offlineCommandDao()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:3:enum class MONUConversationRole {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:9:data class MONUConversationMessage(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:11:    val role: MONUConversationRole,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:16:data class MONUConversationSnapshot(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:17:    val messages: List<MONUConversationMessage>,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:3:interface MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:5:    fun messages(): List<MONUConversationMessage>
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:8:        role: MONUConversationRole,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:10:    ): MONUConversationMessage
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:14:    fun snapshot(): MONUConversationSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:4:    MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:7:        mutableListOf<MONUConversationMessage>()
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:11:    override fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:16:        role: MONUConversationRole,
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:18:    ): MONUConversationMessage {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:21:            MONUConversationMessage(
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:38:    override fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:39:        return MONUConversationSnapshot(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:3:data class MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:10:class MONUConversationStateController(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:11:    private val repository: MONUConversationRepository =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:12:        MONULocalConversationRepository(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:13:    private val persistence: MONUConversationPersistence =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:14:        MONULocalConversationSnapshotStore()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:18:        MONUConversationState()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:20:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:43:    ): MONUConversationMessage {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:47:                role = MONUConversationRole.USER,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:59:    ): MONUConversationMessage {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:63:                role = MONUConversationRole.ASSISTANT,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:85:    fun restoreConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:94:                MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:103:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:108:            MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:113:    fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:114:        return MONUConversationSnapshot(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:8:data class MONUConversationExecutionResult(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:9:    val userMessage: MONUConversationMessage,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:10:    val assistantMessage: MONUConversationMessage,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:14:class MONUOfflineConversationBridge(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:17:    private val stateController: MONUConversationStateController =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:18:        MONUConversationStateController()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:21:    fun conversationState(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:27:    ): MONUConversationExecutionResult {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:52:            MONUConversationExecutionResult(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:76:            MONUConversationExecutionResult(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:91:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:92:        stateController.clearConversation()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:3:class MONUConversationPipeline(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:4:    private val bridge: MONUOfflineConversationBridge =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:5:        MONUOfflineConversationBridge()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:8:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:14:    ): MONUConversationExecutionResult {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:22:        bridge.clearConversation()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:3:data class MONUConversationUiState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:9:class MONUConversationUiAdapter(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:10:    private val pipeline: MONUConversationPipeline =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:11:        MONUConversationPipeline()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:14:    fun currentState(): MONUConversationUiState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:17:        return MONUConversationUiState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:26:    ): MONUConversationExecutionResult {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:5:    val result: MONUConversationExecutionResult?,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:6:    val state: MONUConversationUiState
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:10:    private val adapter: MONUConversationUiAdapter =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:11:        MONUConversationUiAdapter()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:14:    fun state(): MONUConversationUiState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:41:    fun clearConversation() {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:8:    fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:23:        coordinator.clearConversation()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:3:interface MONUConversationPersistence {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:6:        snapshot: MONUConversationSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:9:    fun restore(): MONUConversationSnapshot?
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:3:class MONULocalConversationSnapshotStore :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:4:    MONUConversationPersistence {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:7:        MONUConversationSnapshot? = null
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:10:        snapshot: MONUConversationSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:17:    override fun restore(): MONUConversationSnapshot? {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:3:class MONUConversationLifecycle(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:5:        MONUConversationStateController =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:6:        MONUConversationStateController()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:9:    fun start(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:10:        stateController.restoreConversation()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:14:    fun snapshot(): MONUConversationSnapshot {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:18:    fun clear(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:19:        stateController.clearConversation()
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:8:data class MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:16:class MONUMemoryEngine(context: Context) {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:21:        appContext.getSharedPreferences(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:29:    fun remember(content: String): MONUMemory? {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:69:            MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:139:                    compareByDescending<Pair<MONUMemory, Int>> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:159:    fun recent(limit: Int = 20): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:168:    fun all(): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:316:    private fun loadAll(): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:348:                        MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:386:        memories: List<MONUMemory>
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:16:import com.monu.mobile.domain.model.MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:20:fun CommandHistoryScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:23:        MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:31:        MONUCommandHistoryEntry(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:47:        Text("MONU Command History")
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:58:                CommandHistoryCard(entry)
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:65:private fun CommandHistoryCard(
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:66:    entry: MONUCommandHistoryEntry
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:11:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:40:                ConnectionRepository()

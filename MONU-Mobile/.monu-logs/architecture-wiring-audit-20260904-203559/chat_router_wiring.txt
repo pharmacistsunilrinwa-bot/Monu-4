@@ -1,0 +1,14 @@
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+50:import com.monu.mobile.ui.components.CommandInput
+65:val queryRouter = remember {
+66:    MONUQueryRouter()
+169:fun handleOfflineCommand(
+200:        onResult = { recognizedCommand ->
+214:                    handleOfflineCommand(cleanCommand)
+222:                        queryRouter.route(
+232:                    handleOfflineCommand(cleanCommand)
+436:    CommandInput { command, attachments ->
+465:            return@CommandInput
+476:                handleOfflineCommand(cleanCommand)
+484:                    queryRouter.route(
+494:                handleOfflineCommand(cleanCommand)

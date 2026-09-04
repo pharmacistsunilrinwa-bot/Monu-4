@@ -1,0 +1,29 @@
+================================================
+ MONU REAL CAPABILITY SCORECARD
+================================================
+
+QUERY ROUTER:
+PASS: Chat connected to router
+
+MEMORY:
+GAP: Memory NOT connected to main router
+
+INTERNET:
+Real hardcoded internet sources: 1
+GAP: Internet intelligence is single-source
+
+GEMINI:
+PASS: Optional AI intelligence route exists
+
+OFFLINE:
+PASS: Offline command route exists
+
+ORPHANS:
+Possible orphan engines: 22
+
+NEXT ARCHITECTURAL PRIORITY:
+1. Integrate Memory into live query context
+2. Classify orphan engines by real functionality
+3. Build multi-source internet intelligence
+4. Add source selection + freshness logic
+5. Build unified capability orchestration

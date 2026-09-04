@@ -1,0 +1,54 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:15:    const val BASE_URL = ""
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:21:        return BASE_URL.isNotBlank()
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:25:        return BASE_URL.trimEnd('/') + HEALTH_ENDPOINT
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:29:        return BASE_URL.trimEnd('/') + CAPABILITIES_ENDPOINT
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:20:            .putString("baseUrl", config.baseUrl)
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:31:            baseUrl =
+app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:33:                    "baseUrl",
+app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:4:    val baseUrl: String = "",
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:19:    private val apiKey: String
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:23:        return apiKey.isNotBlank() &&
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:55:                    "?key=$apiKey"
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:58:            value = config.baseUrl,
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:62:                        baseUrl = it
+./.gitignore:3:/local.properties
+./.gitignore:13:local.properties
+./app/build.gradle.kts:16:        val geminiApiKey =
+./app/build.gradle.kts:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./app/build.gradle.kts:21:            "GEMINI_API_KEY",
+./app/build.gradle.kts:22:            "\"$geminiApiKey\""
+./app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:15:    const val BASE_URL = ""
+./app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:21:        return BASE_URL.isNotBlank()
+./app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:25:        return BASE_URL.trimEnd('/') + HEALTH_ENDPOINT
+./app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:29:        return BASE_URL.trimEnd('/') + CAPABILITIES_ENDPOINT
+./app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:20:            .putString("baseUrl", config.baseUrl)
+./app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:31:            baseUrl =
+./app/src/main/java/com/monu/mobile/data/config/ServerConfigStore.kt:33:                    "baseUrl",
+./app/src/main/java/com/monu/mobile/domain/model/ServerContractModels.kt:4:    val baseUrl: String = "",
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:19:    private val apiKey: String
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:23:        return apiKey.isNotBlank() &&
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:55:                    "?key=$apiKey"
+./app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:58:            value = config.baseUrl,
+./app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:62:                        baseUrl = it
+./docs/IDENTITY_SESSION_ARCHITECTURE.md:34:- Secure token storage
+./level10_level11_realtime_contract.sh:24:    val baseUrl: String = "",
+./level10_level11_realtime_contract.sh:71:            .putString("baseUrl", config.baseUrl)
+./level10_level11_realtime_contract.sh:82:            baseUrl =
+./level10_level11_realtime_contract.sh:84:                    "baseUrl",
+./level10_level11_realtime_contract.sh:376:            value = config.baseUrl,
+./level10_level11_realtime_contract.sh:380:                        baseUrl = it
+./level28_level29_identity_history.sh:387:- Secure token storage
+./level6_level7_connection_engine.sh:85:    const val BASE_URL = ""
+./level6_level7_connection_engine.sh:91:        return BASE_URL.isNotBlank()
+./level6_level7_connection_engine.sh:95:        return BASE_URL.trimEnd('/') + HEALTH_ENDPOINT
+./level6_level7_connection_engine.sh:99:        return BASE_URL.trimEnd('/') + CAPABILITIES_ENDPOINT
+./setup_monu_mobile.sh:335:/local.properties
+./mobile_completion_audit.sh:88:'com.example|localhost|127.0.0.1|YOUR_|API_KEY|BASE_URL|TODO' \
+./local.properties:5:GEMINI_API_KEY=PASTE_YOUR_GEMINI_API_KEY_HERE
+./.monu-logs/level103/full_compile.txt:1686:Java source files: /data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/build/generated/ksp/debug/java/com/monu/mobile/data/local/dao/OfflineCommandDao_Impl.java, /data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/build/generated/ksp/debug/java/com/monu/mobile/data/local/MONULocalDatabase_Impl.java, /data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/build/generated/source/buildConfig/debug/com/monu/mobile/BuildConfig.java
+./.monu-logs/router-audit-20260904-195954/buildconfig.txt:2:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./.monu-logs/router-audit-20260904-195954/buildconfig.txt:4:21:            "GEMINI_API_KEY",

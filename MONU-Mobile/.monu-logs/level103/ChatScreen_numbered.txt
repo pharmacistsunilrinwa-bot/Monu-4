@@ -1,0 +1,558 @@
+     1	package com.monu.mobile.ui.screens
+     2	import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+     3	import androidx.compose.runtime.DisposableEffect
+     4	
+     5	import android.Manifest
+     6	import android.content.pm.PackageManager
+     7	import androidx.activity.compose.rememberLauncherForActivityResult
+     8	import androidx.activity.result.contract.ActivityResultContracts
+     9	import androidx.core.content.ContextCompat
+    10	
+    11	import android.content.ClipData
+    12	import android.content.ClipboardManager
+    13	import android.content.Context
+    14	import android.content.Intent
+    15	import androidx.compose.foundation.layout.*
+    16	import androidx.compose.foundation.layout.Row
+    17	import androidx.compose.foundation.lazy.LazyColumn
+    18	import androidx.compose.foundation.lazy.items
+    19	import androidx.compose.material3.*
+    20	import androidx.compose.runtime.*
+    21	import androidx.compose.ui.Modifier
+    22	import androidx.compose.ui.platform.LocalContext
+    23	import androidx.compose.ui.unit.dp
+    24	import com.monu.mobile.core.network.MONUNetworkMonitor
+    25	import com.monu.mobile.domain.model.ChatMessage
+    26	import com.monu.mobile.domain.model.InternetKnowledgeState
+    27	import com.monu.mobile.domain.model.MessageRole
+    28	import com.monu.mobile.domain.model.MONUAttachment
+    29	import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+    30	import com.monu.mobile.feature.voice.MONUVoiceEngine
+    31	import com.monu.mobile.ui.components.CommandInput
+    32	import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+    33	import kotlinx.coroutines.Dispatchers
+    34	import kotlinx.coroutines.launch
+    35	import kotlinx.coroutines.withContext
+    36	import java.util.UUID
+    37	import com.monu.mobile.feature.conversation.MONUChatScreenIntegration
+    38	
+    39	@Composable
+    40	fun ChatScreen() {
+    41	
+    42	    // MONU_LEVEL_91_95_CONVERSATION_PIPELINE
+    43	    // Production conversation pipeline authority.
+    44	    val monuChatScreenIntegration =
+    45	        remember {
+    46	            MONUChatScreenIntegration()
+    47	        }
+    48	
+    49	    fun buildOfflineCommandFallback(
+    50	        command: String
+    51	    ): String {
+    52	        val normalized = command.trim().lowercase()
+    53	
+    54	        return when {
+    55	            normalized.isBlank() ->
+    56	                "Please say or type a command."
+    57	
+    58	            normalized.contains("hello") ||
+    59	                normalized.contains("hi monu") ->
+    60	                "Hello. MONU is running in offline mode."
+    61	
+    62	            normalized.contains("help") ->
+    63	                "Offline commands available: hello, help, status, time."
+    64	
+    65	            normalized.contains("status") ->
+    66	                "MONU offline runtime is ready."
+    67	
+    68	            normalized.contains("time") ->
+    69	                "Time information requires a connected knowledge source."
+    70	
+    71	            else ->
+    72	                "I am currently offline. Your command was received: $command"
+    73	        }
+    74	    }
+    75	
+    76	    val offlineCommandRouter = remember {
+    77	        MONUOfflineCommandRouter()
+    78	    }
+    79	
+    80	    val context = LocalContext.current
+    81	    val scope = rememberCoroutineScope()
+    82	
+    83	    fun handleOfflineCommand(
+    84	        command: String
+    85	    ) {
+    86	        val cleanCommand = command.trim()
+    87	
+    88	        if (cleanCommand.isBlank()) return
+    89	
+    90	        val offlineResponse =
+    91	            offlineCommandRouter.handle(cleanCommand)
+    92	
+    93	        messages = messages + ChatMessage(
+    94	            id = UUID.randomUUID().toString(),
+    95	            role = MessageRole.ASSISTANT,
+    96	            content = offlineResponse
+    97	        )
+    98	    }
+    99	
+   100	    var voiceReady by remember {
+   101	        mutableStateOf(false)
+   102	    }
+   103	
+   104	    var searching by remember {
+   105	        mutableStateOf(false)
+   106	    }
+   107	
+   108	    val voiceEngine = remember {
+   109	        MONUVoiceEngine(context) {
+   110	            voiceReady = it
+   111	        }
+   112	    }
+   113	
+   114	    val knowledgeEngine = remember {
+   115	        MONUInternetKnowledgeEngine()
+   116	    }
+   117	
+   118	    val microphonePermissionLauncher =
+   119	        rememberLauncherForActivityResult(
+   120	            contract = ActivityResultContracts.RequestPermission()
+   121	        ) { granted ->
+   122	            if (granted) {
+   123	                voiceInputStatus = ""
+   124	                voiceInputEngine.startListening()
+   125	            } else {
+   126	                voiceInputStatus =
+   127	                    "Microphone permission was denied."
+   128	                voiceListening = false
+   129	            }
+   130	        }
+   131	
+   132	    DisposableEffect(voiceInputEngine) {
+   133	        onDispose {
+   134	            voiceInputEngine.shutdown()
+   135	        }
+   136	    }
+   137	
+   138	    var voiceRuntimeHealth by remember {
+   139	        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+   140	    }
+   141	
+   142	    var voiceListening by remember {
+   143	        mutableStateOf(false)
+   144	    }
+   145	
+   146	    var voiceInputStatus by remember {
+   147	        mutableStateOf("")
+   148	    }
+   149	
+   150	    val voiceInputEngine = remember {
+   151	        MONUVoiceInputEngine(
+   152	            context = context,
+   153	            onResult = { recognizedCommand ->
+   154	                val cleanCommand = recognizedCommand.trim()
+   155	
+   156	                if (cleanCommand.isNotBlank()) {
+   157	                    messages = messages + ChatMessage(
+   158	                        role = MessageRole.OWNER,
+   159	                        content = cleanCommand
+   160	                    )
+   161	
+   162	                    scope.launch {
+   163	                        if (!networkMonitor.isOnline()) {
+   164	                            messages = messages + ChatMessage(
+   165	                                role = MessageRole.SYSTEM,
+   166	                                content = "Internet connection is unavailable."
+   167	                            )
+   168	                            return@launch
+   169	                        }
+   170	
+   171	                        searching = true
+   172	
+   173	                        try {
+   174	                            when (
+   175	                                val result =
+   176	                                    withContext(Dispatchers.IO) {
+   177	                                        knowledgeEngine.search(cleanCommand)
+   178	                                    }
+   179	                            ) {
+   180	                                is InternetKnowledgeState.SUCCESS -> {
+   181	                                    messages = messages + ChatMessage(
+   182	                                        role = MessageRole.MONU,
+   183	                                        content = result.answer
+   184	                                    )
+   185	                                }
+   186	
+   187	                                is InternetKnowledgeState.NOT_FOUND -> {
+   188	                                    messages = messages + ChatMessage(
+   189	                                        role = MessageRole.SYSTEM,
+   190	                                        content = "No information found for this command."
+   191	                                    )
+   192	                                }
+   193	
+   194	                                is InternetKnowledgeState.NETWORK_ERROR -> {
+   195	                                    messages = messages + ChatMessage(
+   196	                                        role = MessageRole.SYSTEM,
+   197	                                        content = "Network error while processing voice command."
+   198	                                    )
+   199	                                }
+   200	
+   201	                                is InternetKnowledgeState.INVALID_QUERY -> {
+   202	                                    messages = messages + ChatMessage(
+   203	                                        role = MessageRole.SYSTEM,
+   204	                                        content = "Voice command was invalid."
+   205	                                    )
+   206	                                }
+   207	                            }
+   208	                        } catch (error: Exception) {
+   209	                            handleOfflineCommand(cleanCommand)
+   210	                        } finally {
+   211	                            searching = false
+   212	                        }
+   213	                    }
+   214	                }
+   215	            },
+   216	            onError = { error ->
+   217	                voiceInputStatus = error
+   218	                voiceListening = false
+   219	            },
+   220	            onListeningStateChanged = { isListening ->
+   221	                voiceListening = isListening
+   222	                voiceRuntimeHealth =
+   223	                    voiceInputEngine.getRuntimeHealth()
+   224	            }
+   225	        )
+   226	    }
+   227	
+   228	    val networkMonitor = remember {
+   229	        MONUNetworkMonitor(context.applicationContext)
+   230	    }
+   231	
+   232	    DisposableEffect(Unit) {
+   233	        onDispose {
+   234	            voiceEngine.shutdown()
+   235	        voiceInputEngine.shutdown()
+   236	        }
+   237	    }
+   238	
+   239	    var messages by remember {
+   240	        mutableStateOf(
+   241	            listOf(
+   242	                ChatMessage(
+   243	                    id = UUID.randomUUID().toString(),
+   244	                    conversationId = "default",
+   245	                    content =
+   246	                        "MONU Command Center ready. Internet knowledge is available.",
+   247	                    role = MessageRole.SYSTEM
+   248	                )
+   249	            )
+   250	        )
+   251	    }
+   252	
+   253	    Column(
+   254	        modifier = Modifier.fillMaxSize()
+   255	    ) {
+   256	
+   257	        Row(
+   258	            modifier = Modifier
+   259	                .fillMaxWidth()
+   260	                .padding(16.dp),
+   261	            horizontalArrangement = Arrangement.SpaceBetween
+   262	        ) {
+   263	            Text(
+   264	                text = "COMMAND CENTER",
+   265	                style = MaterialTheme.typography.headlineSmall
+   266	            )
+   267	
+   268	            Text(
+   269	                text = when {
+   270	                    searching -> "SEARCHING INTERNET"
+   271	                    voiceReady -> "VOICE READY • INTERNET READY"
+   272	                    else -> "VOICE INITIALIZING • INTERNET READY"
+   273	                },
+   274	                style = MaterialTheme.typography.labelSmall
+   275	            )
+   276	        }
+   277	
+   278	        LazyColumn(
+   279	            modifier = Modifier
+   280	                .weight(1f)
+   281	                .fillMaxWidth(),
+   282	            contentPadding = PaddingValues(12.dp),
+   283	            verticalArrangement = Arrangement.spacedBy(10.dp)
+   284	        ) {
+   285	            items(messages) { message ->
+   286	                MessageCard(
+   287	                    message = message,
+   288	                    onCopy = {
+   289	                        copyToClipboard(context, message.content)
+   290	                    },
+   291	                    onListen = {
+   292	                        voiceEngine.speak(message.content)
+   293	                    },
+   294	                    onStop = {
+   295	                        voiceEngine.stop()
+   296	                    },
+   297	                    onShare = {
+   298	                        shareText(context, message.content)
+   299	                    }
+   300	                )
+   301	            }
+   302	
+   303	            if (searching) {
+   304	                item {
+   305	                    Card(
+   306	                        modifier = Modifier.fillMaxWidth()
+   307	                    ) {
+   308	                        Row(
+   309	                            modifier = Modifier.padding(16.dp),
+   310	                            horizontalArrangement =
+   311	                                Arrangement.spacedBy(12.dp)
+   312	                        ) {
+   313	                            CircularProgressIndicator(
+   314	                                modifier = Modifier.size(24.dp)
+   315	                            )
+   316	
+   317	                            Text(
+   318	                                text =
+   319	                                    "MONU is retrieving information from the internet..."
+   320	                            )
+   321	                        }
+   322	                    }
+   323	                }
+   324	            }
+   325	        }
+   326	
+   327	        Row {
+   328	            Button(
+   329	                onClick = {
+   330	                    if (voiceListening) {
+   331	                        voiceInputEngine.stopListening()
+   332	                    } else {
+   333	                        voiceInputStatus = ""
+   334	
+   335	                        val microphoneGranted =
+   336	                            ContextCompat.checkSelfPermission(
+   337	                                context,
+   338	                                Manifest.permission.RECORD_AUDIO
+   339	                            ) == PackageManager.PERMISSION_GRANTED
+   340	
+   341	                        if (microphoneGranted) {
+   342	                            voiceInputEngine.startListening()
+   343	                        } else {
+   344	                            microphonePermissionLauncher.launch(
+   345	                                Manifest.permission.RECORD_AUDIO
+   346	                            )
+   347	                        }
+   348	                    }
+   349	                }
+   350	            ) {
+   351	                Text(
+   352	                    if (voiceListening) {
+   353	                        "Stop Listening"
+   354	                    } else {
+   355	                        "Start Voice"
+   356	                    }
+   357	                )
+   358	            }
+   359	
+   360	            Text(
+   361	                text = voiceRuntimeHealth
+   362	            )
+   363	            if (voiceInputStatus.isNotBlank()) {
+   364	                Text(voiceInputStatus)
+   365	            }
+   366	        }
+   367	
+   368	        CommandInput { command, attachments ->
+   369	
+   370	            val attachmentText =
+   371	                if (attachments.isEmpty()) {
+   372	                    ""
+   373	                } else {
+   374	                    "\nAttachments selected: ${
+   375	                        attachments.joinToString { it.name }
+   376	                    }"
+   377	                }
+   378	
+   379	            val ownerMessage = ChatMessage(
+   380	                id = UUID.randomUUID().toString(),
+   381	                conversationId = "default",
+   382	                content = command + attachmentText,
+   383	                role = MessageRole.OWNER
+   384	            )
+   385	
+   386	            messages = messages + ownerMessage
+   387	
+   388	            if (command.isBlank()) {
+   389	                val systemMessage = ChatMessage(
+   390	                    id = UUID.randomUUID().toString(),
+   391	                    conversationId = "default",
+   392	                    content =
+   393	                        "Please enter a text query. Attachment analysis will be added separately.",
+   394	                    role = MessageRole.SYSTEM
+   395	                )
+   396	
+   397	                messages = messages + systemMessage
+   398	            } else if (!networkMonitor.isOnline()) {
+   399	
+   400	                val systemMessage = ChatMessage(
+   401	                    id = UUID.randomUUID().toString(),
+   402	                    conversationId = "default",
+   403	                    content =
+   404	                        "MONU cannot reach the internet right now. Check your network connection and try again.",
+   405	                    role = MessageRole.SYSTEM
+   406	                )
+   407	
+   408	                messages = messages + systemMessage
+   409	
+   410	            } else {
+   411	
+   412	                searching = true
+   413	
+   414	                scope.launch {
+   415	
+   416	                    val result =
+   417	                        withContext(Dispatchers.IO) {
+   418	                            knowledgeEngine.search(command)
+   419	                        }
+   420	
+   421	                    searching = false
+   422	
+   423	                    val responseText =
+   424	                        when (result.state) {
+   425	
+   426	                            InternetKnowledgeState.SUCCESS -> {
+   427	                                buildString {
+   428	                                    append(result.title)
+   429	
+   430	                                    if (result.summary.isNotBlank()) {
+   431	                                        append("\n\n")
+   432	                                        append(result.summary)
+   433	                                    }
+   434	
+   435	                                    append("\n\nSource: ")
+   436	                                    append(result.source)
+   437	                                }
+   438	                            }
+   439	
+   440	                            InternetKnowledgeState.NOT_FOUND -> {
+   441	                                "I could not find a useful internet summary for this query. " +
+   442	                                (result.errorMessage ?: "")
+   443	                            }
+   444	
+   445	                            InternetKnowledgeState.NETWORK_ERROR -> {
+   446	                                "Internet request failed. " +
+   447	                                (result.errorMessage ?: "")
+   448	                            }
+   449	
+   450	                            InternetKnowledgeState.INVALID_QUERY -> {
+   451	                                "Please enter a valid query."
+   452	                            }
+   453	                        }
+   454	
+   455	                    val monuMessage = ChatMessage(
+   456	                        id = UUID.randomUUID().toString(),
+   457	                        conversationId = "default",
+   458	                        content = responseText,
+   459	                        role = MessageRole.MONU
+   460	                    )
+   461	
+   462	                    messages = messages + monuMessage
+   463	                }
+   464	            }
+   465	        }
+   466	    }
+   467	}
+   468	
+   469	@Composable
+   470	fun MessageCard(
+   471	    message: ChatMessage,
+   472	    onCopy: () -> Unit,
+   473	    onListen: () -> Unit,
+   474	    onStop: () -> Unit,
+   475	    onShare: () -> Unit
+   476	) {
+   477	    Card(
+   478	        modifier = Modifier.fillMaxWidth()
+   479	    ) {
+   480	        Column(
+   481	            modifier = Modifier.padding(14.dp)
+   482	        ) {
+   483	
+   484	            val roleName = when (message.role) {
+   485	                MessageRole.OWNER -> "YOU"
+   486	                MessageRole.MONU -> "MONU"
+   487	                MessageRole.SYSTEM -> "SYSTEM"
+   488	            }
+   489	
+   490	            Text(
+   491	                text = roleName,
+   492	                style = MaterialTheme.typography.labelMedium
+   493	            )
+   494	
+   495	            Spacer(modifier = Modifier.height(6.dp))
+   496	
+   497	            Text(
+   498	                text = message.content,
+   499	                style = MaterialTheme.typography.bodyLarge
+   500	            )
+   501	
+   502	            Spacer(modifier = Modifier.height(10.dp))
+   503	
+   504	            Row(
+   505	                horizontalArrangement = Arrangement.spacedBy(6.dp)
+   506	            ) {
+   507	                OutlinedButton(onClick = onCopy) {
+   508	                    Text("Copy")
+   509	                }
+   510	
+   511	                OutlinedButton(onClick = onListen) {
+   512	                    Text("Listen")
+   513	                }
+   514	
+   515	                OutlinedButton(onClick = onStop) {
+   516	                    Text("Stop")
+   517	                }
+   518	
+   519	                OutlinedButton(onClick = onShare) {
+   520	                    Text("Share")
+   521	                }
+   522	            }
+   523	        }
+   524	    }
+   525	}
+   526	
+   527	private fun copyToClipboard(
+   528	    context: Context,
+   529	    text: String
+   530	) {
+   531	    val clipboard =
+   532	        context.getSystemService(Context.CLIPBOARD_SERVICE)
+   533	                as ClipboardManager
+   534	
+   535	    clipboard.setPrimaryClip(
+   536	        ClipData.newPlainText(
+   537	            "MONU Message",
+   538	            text
+   539	        )
+   540	    )
+   541	}
+   542	
+   543	private fun shareText(
+   544	    context: Context,
+   545	    text: String
+   546	) {
+   547	    val intent = Intent(Intent.ACTION_SEND).apply {
+   548	        type = "text/plain"
+   549	        putExtra(Intent.EXTRA_TEXT, text)
+   550	    }
+   551	
+   552	    context.startActivity(
+   553	        Intent.createChooser(
+   554	            intent,
+   555	            "Share MONU Message"
+   556	        )
+   557	    )
+   558	}

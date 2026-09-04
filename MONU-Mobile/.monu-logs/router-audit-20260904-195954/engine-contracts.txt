@@ -1,0 +1,42 @@
+
+===== app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt =====
+8:class MONUUnifiedIntelligence {
+10:    fun collectSignals(): List<IntelligenceSignal> {
+14:    fun analyze(
+20:    fun snapshot(): IntelligenceSnapshot {
+
+===== app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt =====
+7:class MONUDecisionCenter {
+9:    fun createDecision(
+29:    fun selectOption(
+
+===== app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt =====
+9:class MONUPlanningIntelligence {
+11:    fun createPlan(
+31:    fun nextExecutableStep(
+40:    fun updateStepStatus(
+
+===== app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt =====
+8:class MONUContextIntelligence {
+10:    fun demoContext(): List<MONUContextItem> {
+31:    fun createSnapshot(
+42:    fun prioritize(
+
+===== app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt =====
+7:class MONUKnowledgeCenter {
+9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+30:    fun search(
+
+===== app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt =====
+9:class MONUVerificationEngine {
+13:    fun begin(
+33:    fun verify(
+72:    fun reject(
+94:    fun get(
+102:    fun all(): List<VerificationResult> {
+106:    fun report(): VerificationReport {
+
+===== app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt =====
+6:class MONURulesEngine {
+8:    fun demoRules(): List<MONURule> {
+25:    fun evaluate(rule: MONURule): MONURuleStatus {

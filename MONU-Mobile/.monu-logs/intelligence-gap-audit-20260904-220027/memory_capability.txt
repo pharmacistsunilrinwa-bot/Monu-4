@@ -1,0 +1,117 @@
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:1:package com.monu.mobile.domain.repository
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:7:class ConnectionRepository(
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:4:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:8:    private val repository: ConnectionRepository = ConnectionRepository()
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:29:                    repository.checkConnection()
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:3:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:8:    private val connectionRepository:
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:9:        ConnectionRepository =
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:10:            ConnectionRepository()
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:25:            connectionRepository
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:3:interface MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:4:    MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:11:    private val repository: MONUConversationRepository =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:12:        MONULocalConversationRepository(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:46:            repository.append(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:62:            repository.append(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:104:        repository.clear()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:123:                messages = repository.messages()
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:1:package com.monu.mobile.feature.memory
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:8:data class MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:16:class MONUMemoryEngine(context: Context) {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:22:            "monu_persistent_memory",
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:26:    private val memoryKey = "memories_v1"
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:29:    fun remember(content: String): MONUMemory? {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:68:        val memory =
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:69:            MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:77:        memories.add(memory)
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:81:        return memory
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:104:                .map { memory ->
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:106:                    val memoryWords =
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:108:                            memory.content.lowercase()
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:113:                            it in memoryWords
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:118:                            memory.content
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:128:                        memory.accessCount.coerceAtMost(5)
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:135:                    memory to score
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:139:                    compareByDescending<Pair<MONUMemory, Int>> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:150:            ranked.forEach { memory ->
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:151:                touch(memory.id)
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:159:    fun recent(limit: Int = 20): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:168:    fun all(): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:191:        relevant.forEachIndexed { index, memory ->
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:194:                "${index + 1}. ${memory.content}\n"
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:210:    fun forget(memoryId: String): Boolean {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:217:                it.id == memoryId
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:263:            .remove(memoryKey)
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:267:    fun memoryCount(): Int {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:271:    private fun touch(memoryId: String) {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:278:                it.id == memoryId
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:316:    private fun loadAll(): List<MONUMemory> {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:320:                memoryKey,
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:348:                        MONUMemory(
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:386:        memories: List<MONUMemory>
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:392:        memories.forEach { memory ->
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:399:                        memory.id
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:404:                        memory.content
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:409:                        memory.createdAt
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:414:                        memory.updatedAt
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:419:                        memory.accessCount
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:427:                memoryKey,
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:46:    var currentDestination by remember {
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:50:    val drawerState = rememberDrawerState(
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:54:    val scope = rememberCoroutineScope()
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:6:import androidx.activity.compose.rememberLauncherForActivityResult
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:20:    val launcher = rememberLauncherForActivityResult(
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:15:    var text by remember { mutableStateOf("") }
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:16:    var attachments by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:9:import androidx.activity.compose.rememberLauncherForActivityResult
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:33:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:34:import androidx.compose.runtime.rememberCoroutineScope
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:59:val scope = rememberCoroutineScope()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:61:val networkMonitor = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:65:val queryRouter = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:69:val offlineCommandRouter = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:73:var voiceReady by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:77:var searching by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:81:var voiceListening by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:85:var voiceInputStatus by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:89:var voiceRuntimeHealth by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:var messages by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:191:val voiceEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:197:val voiceInputEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:259:    rememberLauncherForActivityResult(
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:11:import com.monu.mobile.domain.repository.ConnectionRepository
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:22:    val scope = rememberCoroutineScope()
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:24:    var status by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:30:    var checking by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:40:                ConnectionRepository()
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:13:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:21:    val hub = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ExecutionOrchestratorScreen.kt:13:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/ExecutionOrchestratorScreen.kt:21:    val orchestrator = remember {
+app/src/main/java/com/monu/mobile/ui/screens/IdentitySessionScreen.kt:12:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/IdentitySessionScreen.kt:21:    val center = remember { MONUIdentityCenter() }
+app/src/main/java/com/monu/mobile/ui/screens/IdentitySessionScreen.kt:23:    var identityText by remember {
+app/src/main/java/com/monu/mobile/ui/screens/IdentitySessionScreen.kt:27:    var sessionText by remember {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:21:        rememberCoroutineScope()
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:24:        remember {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:28:    var command by remember {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:32:    var queueCount by remember {
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:36:    var message by remember {
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:20:        remember {
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:25:        remember {
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:33:        remember {
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:18:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:31:    var findings by remember {
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:16:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:28:    var reportText by remember {
+app/src/main/java/com/monu/mobile/ui/screens/SelfDiagnosticsScreen.kt:32:    var results by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:19:        remember {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:23:    var config by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:29:    var message by remember {
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:13:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:21:    val engine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:13:import androidx.compose.runtime.remember
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:21:    val engine = remember {

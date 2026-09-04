@@ -1,0 +1,221 @@
+        )
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "COMMAND CENTER",
+                style = MaterialTheme.typography.headlineSmall
+            )
+
+            Text(
+                text = when {
+                    searching -> "SEARCHING INTERNET"
+                    voiceReady -> "VOICE READY • INTERNET READY"
+                    else -> "VOICE INITIALIZING • INTERNET READY"
+                },
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
+
+        LazyColumn(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            contentPadding = PaddingValues(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            items(messages) { message ->
+                MessageCard(
+                    message = message,
+                    onCopy = {
+                        copyToClipboard(context, message.content)
+                    },
+                    onListen = {
+                        voiceEngine.speak(message.content)
+                    },
+                    onStop = {
+                        voiceEngine.stop()
+                    },
+                    onShare = {
+                        shareText(context, message.content)
+                    }
+                )
+            }
+
+            if (searching) {
+                item {
+                    Card(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalArrangement =
+                                Arrangement.spacedBy(12.dp)
+                        ) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(24.dp)
+                            )
+
+                            Text(
+                                text =
+                                    "MONU is retrieving information from the internet..."
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        Row {
+            Button(
+                onClick = {
+                    if (voiceListening) {
+                        voiceInputEngine.stopListening()
+                    } else {
+                        voiceInputStatus = ""
+
+                        val microphoneGranted =
+                            ContextCompat.checkSelfPermission(
+                                context,
+                                Manifest.permission.RECORD_AUDIO
+                            ) == PackageManager.PERMISSION_GRANTED
+
+                        if (microphoneGranted) {
+                            voiceInputEngine.startListening()
+                        } else {
+                            microphonePermissionLauncher.launch(
+                                Manifest.permission.RECORD_AUDIO
+                            )
+                        }
+                    }
+                }
+            ) {
+                Text(
+                    if (voiceListening) {
+                        "Stop Listening"
+                    } else {
+                        "Start Voice"
+                    }
+                )
+            }
+
+            Text(
+                text = voiceRuntimeHealth
+            )
+            if (voiceInputStatus.isNotBlank()) {
+                Text(voiceInputStatus)
+            }
+        }
+
+        CommandInput { command, attachments ->
+
+            val attachmentText =
+                if (attachments.isEmpty()) {
+                    ""
+                } else {
+                    "\nAttachments selected: ${
+                        attachments.joinToString { it.name }
+                    }"
+                }
+
+            val ownerMessage = ChatMessage(
+                id = UUID.randomUUID().toString(),
+                conversationId = "default",
+                content = command + attachmentText,
+                role = MessageRole.OWNER
+            )
+
+            messages = messages + ownerMessage
+
+            if (command.isBlank()) {
+                val systemMessage = ChatMessage(
+                    id = UUID.randomUUID().toString(),
+                    conversationId = "default",
+                    content =
+                        "Please enter a text query. Attachment analysis will be added separately.",
+                    role = MessageRole.SYSTEM
+                )
+
+                messages = messages + systemMessage
+            } else if (!networkMonitor.isOnline()) {
+
+                val systemMessage = ChatMessage(
+                    id = UUID.randomUUID().toString(),
+                    conversationId = "default",
+                    content =
+                        "MONU cannot reach the internet right now. Check your network connection and try again.",
+                    role = MessageRole.SYSTEM
+                )
+
+                messages = messages + systemMessage
+
+            } else {
+
+                searching = true
+
+                scope.launch {
+
+                    val result =
+                        withContext(Dispatchers.IO) {
+                            knowledgeEngine.search(command)
+                        }
+
+                    searching = false
+
+                    val responseText =
+                        when (result.state) {
+
+                            InternetKnowledgeState.SUCCESS -> {
+                                buildString {
+                                    append(result.title)
+
+                                    if (result.summary.isNotBlank()) {
+                                        append("\n\n")
+                                        append(result.summary)
+                                    }
+
+                                    append("\n\nSource: ")
+                                    append(result.source)
+                                }
+                            }
+
+                            InternetKnowledgeState.NOT_FOUND -> {
+                                "I could not find a useful internet summary for this query. " +
+                                (result.errorMessage ?: "")
+                            }
+
+                            InternetKnowledgeState.NETWORK_ERROR -> {
+                                "Internet request failed. " +
+                                (result.errorMessage ?: "")
+                            }
+
+                            InternetKnowledgeState.INVALID_QUERY -> {
+                                "Please enter a valid query."
+                            }
+                        }
+
+                    val monuMessage = ChatMessage(
+                        id = UUID.randomUUID().toString(),
+                        conversationId = "default",
+                        content = responseText,
+                        role = MessageRole.MONU
+                    )
+
+                    messages = messages + monuMessage
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MessageCard(

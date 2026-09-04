@@ -1,0 +1,96 @@
+================================================
+SYMBOL: messages
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:6:    val messages: List<ChatMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:17:    val messages: List<MONUConversationMessage>,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:5:    fun messages(): List<MONUConversationMessage>
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:11:    override fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:40:            messages = messages(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:95:                    messages = snapshot.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:115:            messages = currentState.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:123:                messages = repository.messages()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:18:            messages = state.messages,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:8:    fun messages(): List<MONUConversationMessage> {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:9:        return coordinator.state().messages
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:13:            messages = snapshot.messages.toList()
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:19:            messages = storedSnapshot
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:20:                ?.messages
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:        messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:157:                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:164:                            messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:181:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:188:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:195:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:                                    messages = messages + ChatMessage(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:239:    var messages by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:285:            items(messages) { message ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:386:            messages = messages + ownerMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:397:                messages = messages + systemMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:408:                messages = messages + systemMessage
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:462:                    messages = messages + monuMessage
+
+================================================
+SYMBOL: ASSISTANT
+================================================
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt:5:    ASSISTANT,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:63:                role = MONUConversationRole.ASSISTANT,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:95:            role = MessageRole.ASSISTANT,
+
+================================================
+SYMBOL: conversationId
+================================================
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:18:    val conversationId: String,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:244:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:381:                conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:391:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:402:                    conversationId = "default",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:457:                        conversationId = "default",
+
+================================================
+SYMBOL: voiceInputStatus
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:123:                voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:126:                voiceInputStatus =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:146:    var voiceInputStatus by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:217:                voiceInputStatus = error
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:333:                        voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:363:            if (voiceInputStatus.isNotBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:364:                Text(voiceInputStatus)
+
+================================================
+SYMBOL: voiceInputEngine
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:124:                voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:132:    DisposableEffect(voiceInputEngine) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:134:            voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:150:    val voiceInputEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:223:                    voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:235:        voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:331:                        voiceInputEngine.stopListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:342:                            voiceInputEngine.startListening()
+
+================================================
+SYMBOL: voiceListening
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:128:                voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:142:    var voiceListening by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:218:                voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:221:                voiceListening = isListening
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:330:                    if (voiceListening) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:352:                    if (voiceListening) {
+
+================================================
+SYMBOL: networkMonitor
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:163:                        if (!networkMonitor.isOnline()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:228:    val networkMonitor = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:398:            } else if (!networkMonitor.isOnline()) {
+
+================================================
+SYMBOL: answer
+================================================
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:                                        content = result.answer
+

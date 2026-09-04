@@ -1,0 +1,26 @@
+LEVEL 82 PRODUCTION COMMAND CONTRACT
+====================================
+
+REQUEST:
+MONUOfflineCommandRequest
+
+RESPONSE:
+MONUOfflineCommandResponse
+
+CONTRACT:
+MONUOfflineCommandContract
+
+NEXT ARCHITECTURE:
+CHAT
+  ->
+COMMAND REQUEST
+  ->
+OFFLINE COMMAND ROUTER
+  ->
+INTENT PARSER
+  ->
+EXECUTION OWNER
+  ->
+COMMAND RESPONSE
+  ->
+CHAT UI

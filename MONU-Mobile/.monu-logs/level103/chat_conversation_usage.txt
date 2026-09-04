@@ -1,0 +1,31 @@
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:3:interface MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository :
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:4:    MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:3:data class MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:10:class MONUConversationStateController(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:11:    private val repository: MONUConversationRepository =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:12:        MONULocalConversationRepository(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:18:        MONUConversationState()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:20:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:94:                MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:108:            MONUConversationState(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:14:class MONUOfflineConversationBridge(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:17:    private val stateController: MONUConversationStateController =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:18:        MONUConversationStateController()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:21:    fun conversationState(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:3:class MONUConversationPipeline(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:4:    private val bridge: MONUOfflineConversationBridge =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:5:        MONUOfflineConversationBridge()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:8:    fun state(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:10:    private val pipeline: MONUConversationPipeline =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:11:        MONUConversationPipeline()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:9:class MONUChatCoordinator(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:3:class MONUChatScreenIntegration(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:4:    private val coordinator: MONUChatCoordinator =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:5:        MONUChatCoordinator()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:5:        MONUConversationStateController =
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:6:        MONUConversationStateController()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:9:    fun start(): MONUConversationState {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:18:    fun clear(): MONUConversationState {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:37:import com.monu.mobile.feature.conversation.MONUChatScreenIntegration
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:46:            MONUChatScreenIntegration()

@@ -1,0 +1,18 @@
+168:fun handleOfflineCommand(
+171:    val cleanCommand = command.trim()
+173:    if (cleanCommand.isBlank()) {
+182:        offlineCommandRouter.handle(cleanCommand)
+200:            val cleanCommand = recognizedCommand.trim()
+202:            if (cleanCommand.isBlank()) {
+207:                content = cleanCommand,
+212:                if (!networkMonitor.isOnline()) {
+213:                    handleOfflineCommand(cleanCommand)
+222:                            knowledgeEngine.search(cleanCommand)
+230:                    handleOfflineCommand(cleanCommand)
+435:        val cleanCommand = command.trim()
+447:        if (cleanCommand.isBlank()) {
+468:                cleanCommand + attachmentText,
+473:            if (!networkMonitor.isOnline()) {
+474:                handleOfflineCommand(cleanCommand)
+483:                        knowledgeEngine.search(cleanCommand)
+491:                handleOfflineCommand(cleanCommand)

@@ -1,0 +1,22 @@
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:111:            name = "Gemini Intelligence",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:115:                    "Cloud AI reasoning is configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:28:        prompt: String
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:31:        val cleanPrompt = prompt.trim()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:34:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:42:            return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:45:                error = "Gemini API key is not configured."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:122:                return@withContext MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:126:                        "Gemini HTTP $code: " +
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:146:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:150:                        "Gemini returned no usable text."
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:153:                MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:161:            MONUGeminiResult(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:166:                        ?: "Unknown Gemini error."

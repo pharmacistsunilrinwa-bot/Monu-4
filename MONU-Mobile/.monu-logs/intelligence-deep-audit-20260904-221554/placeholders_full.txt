@@ -1,0 +1,17 @@
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:27:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:48:        } ?: return null
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:41:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:59:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:18:        return null
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:43:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:81:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:14:                description = "Architecture placeholder for automated daily review.",
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:20:                description = "Architecture placeholder for project task automation.",
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:36:            return null
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:186:            return ""
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:12:    placeholder: String = "Tell MONU what to do...",
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:46:                placeholder = {
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:47:                    Text(placeholder)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:453:                        "Attachments selected but attachment analysis is not available yet." +
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:68:            placeholder = {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:146:            placeholder = {

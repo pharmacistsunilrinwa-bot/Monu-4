@@ -1,0 +1,144 @@
+     1	package com.monu.mobile.feature.intelligence
+     2	
+     3	import com.monu.mobile.feature.context.MONUContextIntelligence
+     4	import com.monu.mobile.feature.decision.MONUDecisionCenter
+     5	import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+     6	import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+     7	import com.monu.mobile.feature.planning.MONUPlanningIntelligence
+     8	import com.monu.mobile.feature.rules.MONURulesEngine
+     9	import com.monu.mobile.feature.verification.MONUVerificationEngine
+    10	
+    11	data class MONUIntelligenceCapability(
+    12	    val name: String,
+    13	    val available: Boolean,
+    14	    val description: String
+    15	)
+    16	
+    17	class MONUIntelligenceHub {
+    18	
+    19	    private val unifiedIntelligence =
+    20	        MONUUnifiedIntelligence()
+    21	
+    22	    private val decisionCenter =
+    23	        MONUDecisionCenter()
+    24	
+    25	    private val planningIntelligence =
+    26	        MONUPlanningIntelligence()
+    27	
+    28	    private val contextIntelligence =
+    29	        MONUContextIntelligence()
+    30	
+    31	    private val knowledgeCenter =
+    32	        MONUKnowledgeCenter()
+    33	
+    34	    private val verificationEngine =
+    35	        MONUVerificationEngine()
+    36	
+    37	    private val rulesEngine =
+    38	        MONURulesEngine()
+    39	
+    40	    val gemini =
+    41	        MONUGeminiIntelligenceEngine()
+    42	
+    43	    fun capabilities(): List<MONUIntelligenceCapability> {
+    44	
+    45	        val capabilities = mutableListOf<MONUIntelligenceCapability>()
+    46	
+    47	        capabilities += MONUIntelligenceCapability(
+    48	            name = "Unified Intelligence",
+    49	            available = runCatching {
+    50	                unifiedIntelligence.snapshot()
+    51	            }.isSuccess,
+    52	            description =
+    53	                "Collects signals, analyzes insights and creates intelligence snapshots."
+    54	        )
+    55	
+    56	        capabilities += MONUIntelligenceCapability(
+    57	            name = "Decision Center",
+    58	            available = runCatching {
+    59	                decisionCenter
+    60	            }.isSuccess,
+    61	            description =
+    62	                "Supports structured option and decision management."
+    63	        )
+    64	
+    65	        capabilities += MONUIntelligenceCapability(
+    66	            name = "Planning Intelligence",
+    67	            available = runCatching {
+    68	                planningIntelligence
+    69	            }.isSuccess,
+    70	            description =
+    71	                "Creates plans and determines executable next steps."
+    72	        )
+    73	
+    74	        capabilities += MONUIntelligenceCapability(
+    75	            name = "Context Intelligence",
+    76	            available = runCatching {
+    77	                contextIntelligence.demoContext()
+    78	            }.isSuccess,
+    79	            description =
+    80	                "Stores, prioritizes and snapshots contextual information."
+    81	        )
+    82	
+    83	        capabilities += MONUIntelligenceCapability(
+    84	            name = "Knowledge Center",
+    85	            available = runCatching {
+    86	                knowledgeCenter.demoKnowledge()
+    87	            }.isSuccess,
+    88	            description =
+    89	                "Searches internal knowledge structures."
+    90	        )
+    91	
+    92	        capabilities += MONUIntelligenceCapability(
+    93	            name = "Verification Engine",
+    94	            available = runCatching {
+    95	                verificationEngine.report()
+    96	            }.isSuccess,
+    97	            description =
+    98	                "Tracks evidence and verification results."
+    99	        )
+   100	
+   101	        capabilities += MONUIntelligenceCapability(
+   102	            name = "Rules Engine",
+   103	            available = runCatching {
+   104	                rulesEngine.demoRules()
+   105	            }.isSuccess,
+   106	            description =
+   107	                "Evaluates structured MONU rules."
+   108	        )
+   109	
+   110	        capabilities += MONUIntelligenceCapability(
+   111	            name = "Gemini Intelligence",
+   112	            available = gemini.isConfigured(),
+   113	            description =
+   114	                if (gemini.isConfigured()) {
+   115	                    "Cloud AI reasoning is configured."
+   116	                } else {
+   117	                    "Gemini engine exists but API key is not configured."
+   118	                }
+   119	        )
+   120	
+   121	        return capabilities
+   122	    }
+   123	
+   124	    fun healthReport(): String {
+   125	
+   126	        return buildString {
+   127	
+   128	            append("MONU INTELLIGENCE HUB\n\n")
+   129	
+   130	            capabilities().forEach {
+   131	
+   132	                append(
+   133	                    if (it.available) "✓ " else "○ "
+   134	                )
+   135	
+   136	                append(it.name)
+   137	                append("\n")
+   138	
+   139	                append(it.description)
+   140	                append("\n\n")
+   141	            }
+   142	        }.trim()
+   143	    }
+   144	}

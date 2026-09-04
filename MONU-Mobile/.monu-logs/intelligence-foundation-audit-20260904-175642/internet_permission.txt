@@ -1,0 +1,1 @@
+app/src/main/AndroidManifest.xml:4:    <uses-permission android:name="android.permission.INTERNET" />

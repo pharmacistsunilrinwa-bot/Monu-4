@@ -1,0 +1,7 @@
+LEVEL 70 VOICE RUNTIME HEALTH UI MAP
+====================================
+80:    var voiceRuntimeHealth by remember {
+81:        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+162:                voiceRuntimeHealth =
+163:                    voiceInputEngine.getRuntimeHealth()
+301:                text = voiceRuntimeHealth

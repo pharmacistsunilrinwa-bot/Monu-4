@@ -1,0 +1,551 @@
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	data class MONUChatSubmission(
+     4	    val accepted: Boolean,
+     5	    val result: MONUConversationExecutionResult?,
+     6	    val state: MONUConversationUiState
+     7	)
+     8	
+     9	class MONUChatCoordinator(
+    10	    private val adapter: MONUConversationUiAdapter =
+    11	        MONUConversationUiAdapter()
+    12	) {
+    13	
+    14	    fun state(): MONUConversationUiState {
+    15	        return adapter.currentState()
+    16	    }
+    17	
+    18	    fun submit(
+    19	        input: String
+    20	    ): MONUChatSubmission {
+    21	
+    22	        val cleanInput = input.trim()
+    23	
+    24	        if (cleanInput.isBlank()) {
+    25	            return MONUChatSubmission(
+    26	                accepted = false,
+    27	                result = null,
+    28	                state = adapter.currentState()
+    29	            )
+    30	        }
+    31	
+    32	        val result = adapter.submit(cleanInput)
+    33	
+    34	        return MONUChatSubmission(
+    35	            accepted = true,
+    36	            result = result,
+    37	            state = adapter.currentState()
+    38	        )
+    39	    }
+    40	
+    41	    fun clearConversation() {
+    42	        adapter.clear()
+    43	    }
+    44	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	class MONUChatScreenIntegration(
+     4	    private val coordinator: MONUChatCoordinator =
+     5	        MONUChatCoordinator()
+     6	) {
+     7	
+     8	    fun messages(): List<MONUConversationMessage> {
+     9	        return coordinator.state().messages
+    10	    }
+    11	
+    12	    fun isProcessing(): Boolean {
+    13	        return coordinator.state().isProcessing
+    14	    }
+    15	
+    16	    fun submit(
+    17	        command: String
+    18	    ): MONUChatSubmission {
+    19	        return coordinator.submit(command)
+    20	    }
+    21	
+    22	    fun clear() {
+    23	        coordinator.clearConversation()
+    24	    }
+    25	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	class MONUConversationLifecycle(
+     4	    private val stateController:
+     5	        MONUConversationStateController =
+     6	        MONUConversationStateController()
+     7	) {
+     8	
+     9	    fun start(): MONUConversationState {
+    10	        stateController.restoreConversation()
+    11	        return stateController.state()
+    12	    }
+    13	
+    14	    fun snapshot(): MONUConversationSnapshot {
+    15	        return stateController.snapshot()
+    16	    }
+    17	
+    18	    fun clear(): MONUConversationState {
+    19	        stateController.clearConversation()
+    20	        return stateController.state()
+    21	    }
+    22	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	enum class MONUConversationRole {
+     4	    USER,
+     5	    ASSISTANT,
+     6	    SYSTEM
+     7	}
+     8	
+     9	data class MONUConversationMessage(
+    10	    val id: Long,
+    11	    val role: MONUConversationRole,
+    12	    val content: String,
+    13	    val timestamp: Long
+    14	)
+    15	
+    16	data class MONUConversationSnapshot(
+    17	    val messages: List<MONUConversationMessage>,
+    18	    val updatedAt: Long
+    19	)
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	interface MONUConversationPersistence {
+     4	
+     5	    fun save(
+     6	        snapshot: MONUConversationSnapshot
+     7	    )
+     8	
+     9	    fun restore(): MONUConversationSnapshot?
+    10	
+    11	    fun clear()
+    12	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	class MONUConversationPipeline(
+     4	    private val bridge: MONUOfflineConversationBridge =
+     5	        MONUOfflineConversationBridge()
+     6	) {
+     7	
+     8	    fun state(): MONUConversationState {
+     9	        return bridge.conversationState()
+    10	    }
+    11	
+    12	    fun submit(
+    13	        input: String
+    14	    ): MONUConversationExecutionResult {
+    15	
+    16	        val cleanInput = input.trim()
+    17	
+    18	        return bridge.execute(cleanInput)
+    19	    }
+    20	
+    21	    fun clear() {
+    22	        bridge.clearConversation()
+    23	    }
+    24	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	interface MONUConversationRepository {
+     4	
+     5	    fun messages(): List<MONUConversationMessage>
+     6	
+     7	    fun append(
+     8	        role: MONUConversationRole,
+     9	        content: String
+    10	    ): MONUConversationMessage
+    11	
+    12	    fun clear()
+    13	
+    14	    fun snapshot(): MONUConversationSnapshot
+    15	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	data class MONUConversationState(
+     4	    val messages: List<MONUConversationMessage> = emptyList(),
+     5	    val isProcessing: Boolean = false,
+     6	    val lastError: String? = null,
+     7	    val restored: Boolean = false
+     8	)
+     9	
+    10	class MONUConversationStateController(
+    11	    private val repository: MONUConversationRepository =
+    12	        MONULocalConversationRepository(),
+    13	    private val persistence: MONUConversationPersistence =
+    14	        MONULocalConversationSnapshotStore()
+    15	) {
+    16	
+    17	    private var currentState =
+    18	        MONUConversationState()
+    19	
+    20	    fun state(): MONUConversationState {
+    21	        return currentState
+    22	    }
+    23	
+    24	    fun beginProcessing() {
+    25	        currentState =
+    26	            currentState.copy(
+    27	                isProcessing = true,
+    28	                lastError = null
+    29	            )
+    30	    }
+    31	
+    32	    fun finishProcessing() {
+    33	        currentState =
+    34	            currentState.copy(
+    35	                isProcessing = false
+    36	            )
+    37	
+    38	        persist()
+    39	    }
+    40	
+    41	    fun addUserMessage(
+    42	        content: String
+    43	    ): MONUConversationMessage {
+    44	
+    45	        val message =
+    46	            repository.append(
+    47	                role = MONUConversationRole.USER,
+    48	                content = content
+    49	            )
+    50	
+    51	        refreshMessages()
+    52	        persist()
+    53	
+    54	        return message
+    55	    }
+    56	
+    57	    fun addAssistantMessage(
+    58	        content: String
+    59	    ): MONUConversationMessage {
+    60	
+    61	        val message =
+    62	            repository.append(
+    63	                role = MONUConversationRole.ASSISTANT,
+    64	                content = content
+    65	            )
+    66	
+    67	        refreshMessages()
+    68	        persist()
+    69	
+    70	        return message
+    71	    }
+    72	
+    73	    fun setError(
+    74	        message: String
+    75	    ) {
+    76	        currentState =
+    77	            currentState.copy(
+    78	                isProcessing = false,
+    79	                lastError = message
+    80	            )
+    81	
+    82	        persist()
+    83	    }
+    84	
+    85	    fun restoreConversation() {
+    86	        val snapshot = persistence.restore()
+    87	
+    88	        currentState =
+    89	            if (snapshot == null) {
+    90	                currentState.copy(
+    91	                    restored = true
+    92	                )
+    93	            } else {
+    94	                MONUConversationState(
+    95	                    messages = snapshot.messages,
+    96	                    isProcessing = false,
+    97	                    lastError = null,
+    98	                    restored = true
+    99	                )
+   100	            }
+   101	    }
+   102	
+   103	    fun clearConversation() {
+   104	        repository.clear()
+   105	        persistence.clear()
+   106	
+   107	        currentState =
+   108	            MONUConversationState(
+   109	                restored = true
+   110	            )
+   111	    }
+   112	
+   113	    fun snapshot(): MONUConversationSnapshot {
+   114	        return MONUConversationSnapshot(
+   115	            messages = currentState.messages,
+   116	            updatedAt = System.currentTimeMillis()
+   117	        )
+   118	    }
+   119	
+   120	    private fun refreshMessages() {
+   121	        currentState =
+   122	            currentState.copy(
+   123	                messages = repository.messages()
+   124	            )
+   125	    }
+   126	
+   127	    private fun persist() {
+   128	        persistence.save(snapshot())
+   129	    }
+   130	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	data class MONUConversationUiState(
+     4	    val messages: List<MONUConversationMessage> = emptyList(),
+     5	    val isProcessing: Boolean = false,
+     6	    val errorMessage: String? = null
+     7	)
+     8	
+     9	class MONUConversationUiAdapter(
+    10	    private val pipeline: MONUConversationPipeline =
+    11	        MONUConversationPipeline()
+    12	) {
+    13	
+    14	    fun currentState(): MONUConversationUiState {
+    15	        val state = pipeline.state()
+    16	
+    17	        return MONUConversationUiState(
+    18	            messages = state.messages,
+    19	            isProcessing = state.isProcessing,
+    20	            errorMessage = state.lastError
+    21	        )
+    22	    }
+    23	
+    24	    fun submit(
+    25	        input: String
+    26	    ): MONUConversationExecutionResult {
+    27	        return pipeline.submit(input)
+    28	    }
+    29	
+    30	    fun clear() {
+    31	        pipeline.clear()
+    32	    }
+    33	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	class MONULocalConversationRepository :
+     4	    MONUConversationRepository {
+     5	
+     6	    private val conversationMessages =
+     7	        mutableListOf<MONUConversationMessage>()
+     8	
+     9	    private var nextId = 1L
+    10	
+    11	    override fun messages(): List<MONUConversationMessage> {
+    12	        return conversationMessages.toList()
+    13	    }
+    14	
+    15	    override fun append(
+    16	        role: MONUConversationRole,
+    17	        content: String
+    18	    ): MONUConversationMessage {
+    19	
+    20	        val message =
+    21	            MONUConversationMessage(
+    22	                id = nextId++,
+    23	                role = role,
+    24	                content = content,
+    25	                timestamp = System.currentTimeMillis()
+    26	            )
+    27	
+    28	        conversationMessages += message
+    29	
+    30	        return message
+    31	    }
+    32	
+    33	    override fun clear() {
+    34	        conversationMessages.clear()
+    35	        nextId = 1L
+    36	    }
+    37	
+    38	    override fun snapshot(): MONUConversationSnapshot {
+    39	        return MONUConversationSnapshot(
+    40	            messages = messages(),
+    41	            updatedAt = System.currentTimeMillis()
+    42	        )
+    43	    }
+    44	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	class MONULocalConversationSnapshotStore :
+     4	    MONUConversationPersistence {
+     5	
+     6	    private var storedSnapshot:
+     7	        MONUConversationSnapshot? = null
+     8	
+     9	    override fun save(
+    10	        snapshot: MONUConversationSnapshot
+    11	    ) {
+    12	        storedSnapshot = snapshot.copy(
+    13	            messages = snapshot.messages.toList()
+    14	        )
+    15	    }
+    16	
+    17	    override fun restore(): MONUConversationSnapshot? {
+    18	        return storedSnapshot?.copy(
+    19	            messages = storedSnapshot
+    20	                ?.messages
+    21	                ?.toList()
+    22	                ?: emptyList()
+    23	        )
+    24	    }
+    25	
+    26	    override fun clear() {
+    27	        storedSnapshot = null
+    28	    }
+    29	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt
+################################################
+     1	package com.monu.mobile.feature.conversation
+     2	
+     3	import com.monu.mobile.feature.offline.MONUOfflineCommandContract
+     4	import com.monu.mobile.feature.offline.MONUOfflineCommandRequest
+     5	import com.monu.mobile.feature.offline.MONUOfflineCommandResponse
+     6	import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+     7	
+     8	data class MONUConversationExecutionResult(
+     9	    val userMessage: MONUConversationMessage,
+    10	    val assistantMessage: MONUConversationMessage,
+    11	    val commandResponse: MONUOfflineCommandResponse
+    12	)
+    13	
+    14	class MONUOfflineConversationBridge(
+    15	    private val commandContract: MONUOfflineCommandContract =
+    16	        MONUOfflineCommandRouter(),
+    17	    private val stateController: MONUConversationStateController =
+    18	        MONUConversationStateController()
+    19	) {
+    20	
+    21	    fun conversationState(): MONUConversationState {
+    22	        return stateController.state()
+    23	    }
+    24	
+    25	    fun execute(
+    26	        command: String
+    27	    ): MONUConversationExecutionResult {
+    28	
+    29	        stateController.beginProcessing()
+    30	
+    31	        return try {
+    32	
+    33	            val userMessage =
+    34	                stateController.addUserMessage(
+    35	                    content = command
+    36	                )
+    37	
+    38	            val response =
+    39	                commandContract.execute(
+    40	                    MONUOfflineCommandRequest(
+    41	                        command = command
+    42	                    )
+    43	                )
+    44	
+    45	            val assistantMessage =
+    46	                stateController.addAssistantMessage(
+    47	                    content = response.response
+    48	                )
+    49	
+    50	            stateController.finishProcessing()
+    51	
+    52	            MONUConversationExecutionResult(
+    53	                userMessage = userMessage,
+    54	                assistantMessage = assistantMessage,
+    55	                commandResponse = response
+    56	            )
+    57	
+    58	        } catch (error: Exception) {
+    59	
+    60	            val safeMessage =
+    61	                error.message
+    62	                    ?: "MONU could not process the command locally."
+    63	
+    64	            stateController.setError(safeMessage)
+    65	
+    66	            val userMessage =
+    67	                stateController.addUserMessage(
+    68	                    content = command
+    69	                )
+    70	
+    71	            val assistantMessage =
+    72	                stateController.addAssistantMessage(
+    73	                    content = safeMessage
+    74	                )
+    75	
+    76	            MONUConversationExecutionResult(
+    77	                userMessage = userMessage,
+    78	                assistantMessage = assistantMessage,
+    79	                commandResponse =
+    80	                    MONUOfflineCommandResponse(
+    81	                        handled = false,
+    82	                        intent =
+    83	                            com.monu.mobile.feature.offline
+    84	                                .MONUOfflineCommandIntent.UNKNOWN,
+    85	                        response = safeMessage
+    86	                    )
+    87	            )
+    88	        }
+    89	    }
+    90	
+    91	    fun clearConversation() {
+    92	        stateController.clearConversation()
+    93	    }
+    94	}
+

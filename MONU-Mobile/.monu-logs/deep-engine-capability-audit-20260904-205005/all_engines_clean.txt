@@ -1,0 +1,64 @@
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:7:class MONUNetworkMonitor(
+app/src/main/java/com/monu/mobile/data/local/MONUDatabaseProvider.kt:6:object MONUDatabaseProvider {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:12:class MONUServerClient {
+app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt:7:class MONUActivityCenter {
+app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt:8:class MONUAuditTrail {
+app/src/main/java/com/monu/mobile/feature/backup/MONUBackupCenter.kt:7:class MONUBackupCenter {
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:9:class MONUDeviceCapabilityInspector(
+app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt:7:class HeartbeatEngine(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:8:class MONUContextIntelligence {
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:7:class MONUDecisionCenter {
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:10:class MONUSelfDiagnostics(
+app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt:7:class MONUEmployeeCenter {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:8:class MONUEventIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:9:class MONUExecutionOrchestrator {
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:9:class MONUSystemHealthEngine(
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:6:class MONUCommandHistory {
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:6:class MONUHomePersonalization {
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:7:class MONUIdentityCenter {
+app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt:6:class MONUIntegrationHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:8:class MONUUnifiedIntelligence {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:17:class MONUIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:25:class MONUQueryRouter {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:7:class MONUKnowledgeCenter {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt:8:class MONUMediaStudio {
+app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt:8:class MONUNotificationCenter {
+app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt:5:class MONUSyncEngine(
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter 
+app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt:7:class MONULocalDeviceCommandEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:15:class MONUOfflineCommandIntentParser {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:9:class MONUOfflineCommandCapabilityMatrix {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandContract.kt:13:interface MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:6:class MONUOptimizationEngine {
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:10:class MONUPermissionCenter(
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:9:class MONUPlanningIntelligence {
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:7:class MONUPlatformCoordinator {
+app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt:6:class MONUProjectCenter {
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:10:class MONUWebSocketEngine {
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:7:class MONURecoveryEngine {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:6:class MONURulesEngine {
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:9:class MONUSecurityCenter(
+app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt:6:class MONUServiceCoordinator {
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:6:class MONUSettingsCenter {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:9:class MONUStateSynchronizationEngine {
+app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt:6:class MONUTaskCenter {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:6:class MONUChunkPlanner {
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:8:class MONUTransferEngine {
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:9:class MONUVerificationEngine {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:7:class MONUWorkflowCenter {
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt:3:interface MONUConversationRepository {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt:3:class MONULocalConversationRepository 
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:10:class MONUConversationStateController(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:14:class MONUOfflineConversationBridge(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt:3:class MONUConversationPipeline(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:9:class MONUConversationUiAdapter(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt:9:class MONUChatCoordinator(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt:3:class MONUChatScreenIntegration(
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt:3:interface MONUConversationPersistence {
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:3:class MONULocalConversationSnapshotStore 
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt:3:class MONUConversationLifecycle(
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:16:class MONUMemoryEngine(context

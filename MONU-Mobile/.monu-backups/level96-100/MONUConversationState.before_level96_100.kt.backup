@@ -1,0 +1,89 @@
+package com.monu.mobile.feature.conversation
+
+data class MONUConversationState(
+    val messages: List<MONUConversationMessage> = emptyList(),
+    val isProcessing: Boolean = false,
+    val lastError: String? = null
+)
+
+class MONUConversationStateController(
+    private val repository: MONUConversationRepository =
+        MONULocalConversationRepository()
+) {
+
+    private var currentState =
+        MONUConversationState()
+
+    fun state(): MONUConversationState {
+        return currentState
+    }
+
+    fun beginProcessing() {
+        currentState =
+            currentState.copy(
+                isProcessing = true,
+                lastError = null
+            )
+    }
+
+    fun finishProcessing() {
+        currentState =
+            currentState.copy(
+                isProcessing = false
+            )
+    }
+
+    fun addUserMessage(
+        content: String
+    ): MONUConversationMessage {
+
+        val message =
+            repository.append(
+                role = MONUConversationRole.USER,
+                content = content
+            )
+
+        refreshMessages()
+
+        return message
+    }
+
+    fun addAssistantMessage(
+        content: String
+    ): MONUConversationMessage {
+
+        val message =
+            repository.append(
+                role = MONUConversationRole.ASSISTANT,
+                content = content
+            )
+
+        refreshMessages()
+
+        return message
+    }
+
+    fun setError(
+        message: String
+    ) {
+        currentState =
+            currentState.copy(
+                isProcessing = false,
+                lastError = message
+            )
+    }
+
+    fun clearConversation() {
+        repository.clear()
+
+        currentState =
+            MONUConversationState()
+    }
+
+    private fun refreshMessages() {
+        currentState =
+            currentState.copy(
+                messages = repository.messages()
+            )
+    }
+}

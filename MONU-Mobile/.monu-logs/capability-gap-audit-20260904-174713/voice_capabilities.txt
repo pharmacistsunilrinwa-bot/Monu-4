@@ -1,0 +1,97 @@
+app/src/main/java/com/monu/mobile/domain/model/SettingsModels.kt:14:    val voiceEnabled: Boolean = true,
+app/src/main/java/com/monu/mobile/feature/permissions/MONUPermissionCenter.kt:26:                "Required only for voice input."
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:35:                id = "voice",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:36:                title = "Voice",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:37:                description = "Text-to-Speech and voice interaction.",
+app/src/main/java/com/monu/mobile/feature/settings/MONUSettingsCenter.kt:38:                enabled = settings.voiceEnabled
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:1:package com.monu.mobile.feature.voice
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:4:import android.speech.tts.TextToSpeech
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:10:) : TextToSpeech.OnInitListener {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:12:    private val textToSpeech = TextToSpeech(context.applicationContext, this)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:17:        initialized = status == TextToSpeech.SUCCESS
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:28:    fun speak(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:38:        textToSpeech.speak(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:40:            TextToSpeech.QUEUE_FLUSH,
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:1:package com.monu.mobile.feature.voice
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:10:import android.speech.SpeechRecognizer
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:17:    private val onListeningStateChanged: (Boolean) -> Unit = {}
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:22:    private var speechRecognizer: SpeechRecognizer? = null
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:26:    private fun updateListeningState(value: Boolean) {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:28:        onListeningStateChanged(value)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:38:                "Listening"
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:45:        return SpeechRecognizer.isRecognitionAvailable(appContext)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:55:    fun startListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:60:            updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:71:                SpeechRecognizer.createSpeechRecognizer(appContext)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:90:        updateListeningState(true)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:92:        speechRecognizer?.startListening(intent)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:95:    fun stopListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:96:        updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:97:        speechRecognizer?.stopListening()
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:101:        updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:108:        updateListeningState(true)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:112:        updateListeningState(true)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:120:        updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:124:        updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:128:                SpeechRecognizer.ERROR_AUDIO ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:131:                SpeechRecognizer.ERROR_CLIENT ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:134:                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:137:                SpeechRecognizer.ERROR_NETWORK ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:140:                SpeechRecognizer.ERROR_NETWORK_TIMEOUT ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:143:                SpeechRecognizer.ERROR_NO_MATCH ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:146:                SpeechRecognizer.ERROR_RECOGNIZER_BUSY ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:149:                SpeechRecognizer.ERROR_SERVER ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:152:                SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:162:        updateListeningState(false)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:166:                SpeechRecognizer.RESULTS_RECOGNITION
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:178:            onError("No voice command recognized.")
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:142:                            title = "Voice",
+app/src/main/java/com/monu/mobile/ui/MONUApp.kt:144:                                "MONU voice intelligence module."
+app/src/main/java/com/monu/mobile/ui/navigation/MONUDestination.kt:14:    VOICE("Voice", "◌"),
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:47:import com.monu.mobile.feature.voice.MONUVoiceEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:48:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:72:var voiceReady by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:80:var voiceListening by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:84:var voiceInputStatus by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:88:var voiceRuntimeHealth by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:190:val voiceEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:191:    MONUVoiceEngine(context) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:192:        voiceReady = it
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:196:val voiceInputEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:197:    MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:203:                return@MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:237:            voiceInputStatus = error
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:238:            voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:240:        onListeningStateChanged = { isListening ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:241:            voiceListening = isListening
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:247:    voiceRuntimeHealth =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:248:        voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:251:        voiceEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:252:        voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:262:            voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:263:            voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:264:            voiceRuntimeHealth =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:265:                voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:267:            voiceInputStatus =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:269:            voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:270:            voiceRuntimeHealth =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:271:                voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:298:                    voiceReady ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:332:                    voiceEngine.speak(message.content)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:335:                    voiceEngine.stop()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:383:                if (voiceListening) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:384:                    voiceInputEngine.stopListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:386:                    voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:396:                        voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:404:                voiceRuntimeHealth =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:405:                    voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:409:                if (voiceListening) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:410:                    "Stop Listening"
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:412:                    "Start Voice"
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:419:                text = voiceRuntimeHealth,
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:424:            if (voiceInputStatus.isNotBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:426:                    text = voiceInputStatus,
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:22:        MONUFeatureCard("Command Center", "Text, voice and multimodal commands", "◉"),
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:28:        MONUFeatureCard("Voice", "Voice commands and spoken responses", "◌"),

@@ -1,0 +1,26 @@
+3:import com.monu.mobile.BuildConfig
+11:data class MONUGeminiResult(
+12:    val success: Boolean,
+14:    val error: String? = null
+17:class MONUGeminiIntelligenceEngine {
+20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+27:    suspend fun ask(
+35:                success = false,
+37:                error = "Prompt is empty."
+43:                success = false,
+45:                error = "Gemini API key is not configured."
+53:                "https://generativelanguage.googleapis.com/" +
+54:                    "v1beta/models/gemini-2.5-flash:generateContent" +
+66:            connection.setRequestProperty(
+114:                    connection.errorStream
+123:                    success = false,
+125:                    error =
+147:                    success = false,
+149:                    error =
+154:                    success = true,
+159:        } catch (error: Exception) {
+162:                success = false,
+164:                error =
+165:                    error.message
+166:                        ?: "Unknown Gemini error."

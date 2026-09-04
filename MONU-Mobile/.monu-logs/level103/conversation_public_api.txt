@@ -1,0 +1,66 @@
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatCoordinator.kt
+################################################
+3:data class MONUChatSubmission(
+9:class MONUChatCoordinator(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+################################################
+3:class MONUChatScreenIntegration(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt
+################################################
+3:class MONUConversationLifecycle(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationModels.kt
+################################################
+3:enum class MONUConversationRole {
+9:data class MONUConversationMessage(
+16:data class MONUConversationSnapshot(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPersistence.kt
+################################################
+3:interface MONUConversationPersistence {
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationPipeline.kt
+################################################
+3:class MONUConversationPipeline(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationRepository.kt
+################################################
+3:interface MONUConversationRepository {
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt
+################################################
+3:data class MONUConversationState(
+10:class MONUConversationStateController(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt
+################################################
+3:data class MONUConversationUiState(
+9:class MONUConversationUiAdapter(
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationRepository.kt
+################################################
+3:class MONULocalConversationRepository :
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt
+################################################
+3:class MONULocalConversationSnapshotStore :
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt
+################################################
+8:data class MONUConversationExecutionResult(
+14:class MONUOfflineConversationBridge(

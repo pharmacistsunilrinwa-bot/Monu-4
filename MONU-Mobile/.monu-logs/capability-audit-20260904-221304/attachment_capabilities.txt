@@ -1,0 +1,34 @@
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:3:enum class AttachmentType {
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:11:data class MONUAttachment(
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:14:    val type: AttachmentType,
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:34:    val sourceUri: String? = null,
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:35:    val destinationUri: String? = null,
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:71:    val resultUri: String? = null,
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:17:        imageUri: String
+app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt:21:            backgroundValue = imageUri,
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:15:        sourceUri: String? = null,
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:16:        destinationUri: String? = null
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:23:            sourceUri = sourceUri,
+app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt:24:            destinationUri = destinationUri,
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:4:import android.net.Uri
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:13:import com.monu.mobile.domain.model.AttachmentType
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:14:import com.monu.mobile.domain.model.MONUAttachment
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:17:fun AttachmentPicker(
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:18:    onAttachmentSelected: (MONUAttachment) -> Unit
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:21:        contract = ActivityResultContracts.OpenDocument()
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:24:            onAttachmentSelected(
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:25:                buildAttachment(uri)
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:76:private fun buildAttachment(
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:77:    uri: Uri
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:78:): MONUAttachment {
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:84:            AttachmentType.IMAGE
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:87:            AttachmentType.VIDEO
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:90:            AttachmentType.PDF
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:93:            AttachmentType.DOCUMENT
+app/src/main/java/com/monu/mobile/ui/components/AttachmentPicker.kt:96:    return MONUAttachment(
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:8:import com.monu.mobile.domain.model.MONUAttachment
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:13:    onSend: (String, List<MONUAttachment>) -> Unit
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:17:        mutableStateOf<List<MONUAttachment>>(emptyList())
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:31:        AttachmentPicker { attachment ->
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:443:                "\nAttachments selected: " +
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:453:                        "Attachments selected but attachment analysis is not available yet." +

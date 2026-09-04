@@ -1,0 +1,43 @@
+3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+4:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+5:import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+22:    val success: Boolean
+27:    private val offlineRouter =
+30:    private val knowledgeCenter =
+36:    private val gemini =
+39:    private val internet =
+42:    suspend fun route(
+44:        isOnline: Boolean
+50:            return@withContext MONUQueryResponse(
+53:                success = false
+57:        if (!isOnline) {
+58:            return@withContext MONUQueryResponse(
+60:                text = offlineRouter.handle(cleanQuery),
+61:                success = true
+73:            return@withContext MONUQueryResponse(
+76:                success = true
+80:        // Live query routing intentionally does not use demo knowledge.
+81:        // Static/demo knowledge must never masquerade as a real intelligence answer.
+83:        if (gemini.isConfigured()) {
+84:            val geminiResult =
+85:                gemini.ask(cleanQuery)
+88:                geminiResult.success &&
+89:                geminiResult.text.isNotBlank()
+91:                return@withContext MONUQueryResponse(
+93:                    text = geminiResult.text,
+94:                    success = true
+99:        val internetResult =
+100:            internet.search(cleanQuery)
+102:        val internetText =
+103:            when (internetResult.state) {
+106:                        append(internetResult.title)
+108:                        if (internetResult.summary.isNotBlank()) {
+110:                            append(internetResult.summary)
+113:                        if (internetResult.source.isNotBlank()) {
+115:                            append(internetResult.source)
+121:                    "I could not find useful internet information."
+127:                            internetResult.errorMessage
+139:            text = internetText,
+140:            success =
+141:                internetResult.state ==

@@ -1,0 +1,80 @@
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt
+################################################
+     1	package com.monu.mobile.feature.offline
+     2	import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+     3	import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+     4	import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+     5	
+     6	class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+     7	
+     8	    private val intentParser =
+     9	        MONUOfflineCommandIntentParser()
+    10	
+    11	    private val localDeviceCommandEngine =
+    12	        MONULocalDeviceCommandEngine()
+    13	
+    14	
+    15	    override fun canHandle(
+    16	        request: MONUOfflineCommandRequest
+    17	    ): Boolean {
+    18	        return canHandle(request.command)
+    19	    }
+    20	
+    21	    fun canHandle(command: String): Boolean {
+    22	        val intent = intentParser.parse(command)
+    23	
+    24	        return intent != MONUOfflineCommandIntent.UNKNOWN
+    25	    }
+    26	
+    27	    fun handle(command: String): String {
+    28	        return when (intentParser.parse(command)) {
+    29	            MONUOfflineCommandIntent.EMPTY ->
+    30	                "Please say or type a command."
+    31	
+    32	            MONUOfflineCommandIntent.GREETING ->
+    33	                "Hello. MONU is running locally in offline mode."
+    34	
+    35	            MONUOfflineCommandIntent.HELP ->
+    36	                """
+    37	                MONU offline commands:
+    38	                • hello
+    39	                • help
+    40	                • status
+    41	                • who are you
+    42	                • time
+    43	                • date
+    44	                • device status
+    45	                """.trimIndent()
+    46	
+    47	            MONUOfflineCommandIntent.STATUS ->
+    48	                "MONU local runtime is ready. Offline command system is active."
+    49	
+    50	            MONUOfflineCommandIntent.IDENTITY ->
+    51	                "I am MONU, your personal AI assistant. I can operate with local offline capabilities."
+    52	
+    53	            MONUOfflineCommandIntent.TIME,
+    54	            MONUOfflineCommandIntent.DATE,
+    55	            MONUOfflineCommandIntent.LOCAL_STATUS ->
+    56	                localDeviceCommandEngine.handle(command)
+    57	
+    58	            MONUOfflineCommandIntent.UNKNOWN ->
+    59	                "I received your command, but this offline capability is not available yet."
+    60	        }
+    61	    }
+    62	
+    63	    override fun execute(
+    64	        request: MONUOfflineCommandRequest
+    65	    ): MONUOfflineCommandResponse {
+    66	        val command = request.command
+    67	        val intent = intentParser.parse(command)
+    68	        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+    69	
+    70	        return MONUOfflineCommandResponse(
+    71	            handled = handled,
+    72	            intent = intent,
+    73	            response = handle(command)
+    74	        )
+    75	    }
+    76	
+    77	}

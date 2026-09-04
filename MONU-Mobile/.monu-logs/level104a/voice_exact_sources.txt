@@ -1,0 +1,256 @@
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt
+################################################
+     1	package com.monu.mobile.feature.voice
+     2	
+     3	import android.content.Context
+     4	import android.speech.tts.TextToSpeech
+     5	import java.util.Locale
+     6	
+     7	class MONUVoiceEngine(
+     8	    context: Context,
+     9	    private val onReady: (Boolean) -> Unit = {}
+    10	) : TextToSpeech.OnInitListener {
+    11	
+    12	    private val textToSpeech = TextToSpeech(context.applicationContext, this)
+    13	
+    14	    private var initialized = false
+    15	
+    16	    override fun onInit(status: Int) {
+    17	        initialized = status == TextToSpeech.SUCCESS
+    18	
+    19	        if (initialized) {
+    20	            textToSpeech.language = Locale.getDefault()
+    21	            textToSpeech.setSpeechRate(1.0f)
+    22	            textToSpeech.setPitch(1.0f)
+    23	        }
+    24	
+    25	        onReady(initialized)
+    26	    }
+    27	
+    28	    fun speak(
+    29	        text: String,
+    30	        speechRate: Float = 1.0f,
+    31	        pitch: Float = 1.0f
+    32	    ) {
+    33	        if (!initialized || text.isBlank()) return
+    34	
+    35	        textToSpeech.setSpeechRate(speechRate)
+    36	        textToSpeech.setPitch(pitch)
+    37	
+    38	        textToSpeech.speak(
+    39	            text,
+    40	            TextToSpeech.QUEUE_FLUSH,
+    41	            null,
+    42	            "MONU_MESSAGE"
+    43	        )
+    44	    }
+    45	
+    46	    fun stop() {
+    47	        if (initialized) {
+    48	            textToSpeech.stop()
+    49	        }
+    50	    }
+    51	
+    52	    fun shutdown() {
+    53	        textToSpeech.stop()
+    54	        textToSpeech.shutdown()
+    55	    }
+    56	}
+
+
+################################################
+FILE: app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt
+################################################
+     1	package com.monu.mobile.feature.voice
+     2	
+     3	import android.Manifest
+     4	import android.content.Context
+     5	import android.content.Intent
+     6	import android.content.pm.PackageManager
+     7	import android.os.Bundle
+     8	import android.speech.RecognitionListener
+     9	import android.speech.RecognizerIntent
+    10	import android.speech.SpeechRecognizer
+    11	import androidx.core.content.ContextCompat
+    12	
+    13	class MONUVoiceInputEngine(
+    14	    context: Context,
+    15	    private val onResult: (String) -> Unit,
+    16	    private val onError: (String) -> Unit = {},
+    17	    private val onListeningStateChanged: (Boolean) -> Unit = {}
+    18	) : RecognitionListener {
+    19	
+    20	    private val appContext = context.applicationContext
+    21	
+    22	    private var speechRecognizer: SpeechRecognizer? = null
+    23	
+    24	    private var listening = false
+    25	
+    26	    private fun updateListeningState(value: Boolean) {
+    27	        listening = value
+    28	        onListeningStateChanged(value)
+    29	    }
+    30	
+    31	    fun getRuntimeHealth(): String {
+    32	        return when {
+    33	            !hasMicrophonePermission() ->
+    34	                "Microphone permission required"
+    35	            !isAvailable() ->
+    36	                "Speech recognition unavailable"
+    37	            listening ->
+    38	                "Listening"
+    39	            else ->
+    40	                "Ready"
+    41	        }
+    42	    }
+    43	
+    44	    fun isAvailable(): Boolean {
+    45	        return SpeechRecognizer.isRecognitionAvailable(appContext)
+    46	    }
+    47	
+    48	    fun hasMicrophonePermission(): Boolean {
+    49	        return ContextCompat.checkSelfPermission(
+    50	            appContext,
+    51	            Manifest.permission.RECORD_AUDIO
+    52	        ) == PackageManager.PERMISSION_GRANTED
+    53	    }
+    54	
+    55	    fun startListening() {
+    56	        if (listening) return
+    57	
+    58	        if (!hasMicrophonePermission()) {
+    59	            onError("Microphone permission is required.")
+    60	            updateListeningState(false)
+    61	            return
+    62	        }
+    63	
+    64	        if (!isAvailable()) {
+    65	            onError("Speech recognition is not available on this device.")
+    66	            return
+    67	        }
+    68	
+    69	        if (speechRecognizer == null) {
+    70	            speechRecognizer =
+    71	                SpeechRecognizer.createSpeechRecognizer(appContext)
+    72	
+    73	            speechRecognizer?.setRecognitionListener(this)
+    74	        }
+    75	
+    76	        val intent = Intent(
+    77	            RecognizerIntent.ACTION_RECOGNIZE_SPEECH
+    78	        ).apply {
+    79	            putExtra(
+    80	                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+    81	                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+    82	            )
+    83	
+    84	            putExtra(
+    85	                RecognizerIntent.EXTRA_PARTIAL_RESULTS,
+    86	                true
+    87	            )
+    88	        }
+    89	
+    90	        updateListeningState(true)
+    91	
+    92	        speechRecognizer?.startListening(intent)
+    93	    }
+    94	
+    95	    fun stopListening() {
+    96	        updateListeningState(false)
+    97	        speechRecognizer?.stopListening()
+    98	    }
+    99	
+   100	    fun shutdown() {
+   101	        updateListeningState(false)
+   102	        speechRecognizer?.cancel()
+   103	        speechRecognizer?.destroy()
+   104	        speechRecognizer = null
+   105	    }
+   106	
+   107	    override fun onReadyForSpeech(params: Bundle?) {
+   108	        updateListeningState(true)
+   109	    }
+   110	
+   111	    override fun onBeginningOfSpeech() {
+   112	        updateListeningState(true)
+   113	    }
+   114	
+   115	    override fun onRmsChanged(rmsdB: Float) = Unit
+   116	
+   117	    override fun onBufferReceived(buffer: ByteArray?) = Unit
+   118	
+   119	    override fun onEndOfSpeech() {
+   120	        updateListeningState(false)
+   121	    }
+   122	
+   123	    override fun onError(error: Int) {
+   124	        updateListeningState(false)
+   125	
+   126	        onError(
+   127	            when (error) {
+   128	                SpeechRecognizer.ERROR_AUDIO ->
+   129	                    "Audio recording error."
+   130	
+   131	                SpeechRecognizer.ERROR_CLIENT ->
+   132	                    "Speech recognition client error."
+   133	
+   134	                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS ->
+   135	                    "Microphone permission denied."
+   136	
+   137	                SpeechRecognizer.ERROR_NETWORK ->
+   138	                    "Speech recognition network error."
+   139	
+   140	                SpeechRecognizer.ERROR_NETWORK_TIMEOUT ->
+   141	                    "Speech recognition network timeout."
+   142	
+   143	                SpeechRecognizer.ERROR_NO_MATCH ->
+   144	                    "No speech recognized."
+   145	
+   146	                SpeechRecognizer.ERROR_RECOGNIZER_BUSY ->
+   147	                    "Speech recognizer is busy."
+   148	
+   149	                SpeechRecognizer.ERROR_SERVER ->
+   150	                    "Speech recognition server error."
+   151	
+   152	                SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+   153	                    "No speech detected."
+   154	
+   155	                else ->
+   156	                    "Unknown speech recognition error."
+   157	            }
+   158	        )
+   159	    }
+   160	
+   161	    override fun onResults(results: Bundle?) {
+   162	        updateListeningState(false)
+   163	
+   164	        val matches =
+   165	            results?.getStringArrayList(
+   166	                SpeechRecognizer.RESULTS_RECOGNITION
+   167	            )
+   168	
+   169	        val command =
+   170	            matches
+   171	                ?.firstOrNull()
+   172	                ?.trim()
+   173	                .orEmpty()
+   174	
+   175	        if (command.isNotBlank()) {
+   176	            onResult(command)
+   177	        } else {
+   178	            onError("No voice command recognized.")
+   179	        }
+   180	    }
+   181	
+   182	    override fun onPartialResults(
+   183	        partialResults: Bundle?
+   184	    ) = Unit
+   185	
+   186	    override fun onEvent(
+   187	        eventType: Int,
+   188	        params: Bundle?
+   189	    ) = Unit
+   190	}
+

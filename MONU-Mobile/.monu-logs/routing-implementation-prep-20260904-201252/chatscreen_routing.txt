@@ -1,0 +1,3 @@
+183:        offlineCommandRouter.handle(cleanCommand)
+222:                        queryRouter.route(
+484:                    queryRouter.route(

@@ -1,0 +1,30 @@
+LEVEL 73 LOCAL DEVICE COMMAND ENGINE MAP
+=========================================
+
+ENGINE:
+3:import java.text.SimpleDateFormat
+7:class MONULocalDeviceCommandEngine {
+9:    fun canHandle(command: String): Boolean {
+12:        return normalized.contains("time") ||
+13:            normalized.contains("date") ||
+15:            normalized.contains("device status") ||
+16:            normalized.contains("local status")
+19:    fun handle(command: String): String {
+23:            normalized.contains("time") ->
+26:            normalized.contains("date") ||
+30:            normalized.contains("device status") ||
+31:                normalized.contains("local status") ->
+32:                localRuntimeStatus()
+41:            SimpleDateFormat("hh:mm a", Locale.getDefault())
+43:        return "Current local time: ${formatter.format(Date())}"
+48:            SimpleDateFormat(
+53:        return "Today's date: ${formatter.format(Date())}"
+56:    private fun localRuntimeStatus(): String {
+
+ROUTER:
+2:import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+6:    private val localDeviceCommandEngine =
+7:        MONULocalDeviceCommandEngine()
+14:        if (localDeviceCommandEngine.canHandle(normalized)) {
+30:        if (localDeviceCommandEngine.canHandle(normalized)) {
+31:            return localDeviceCommandEngine.handle(normalized)

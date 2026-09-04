@@ -1,0 +1,11 @@
+No mirror or mirror group selected. You might want to select one by running 'termux-change-repo'
+Checking availability of current mirror:
+[*] https://mirrors.nju.edu.cn/termux/apt/termux-main: ok
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Sorting...
+Full Text Search...
+aapt2/stable 16.0.0.4-2 aarch64
+  AAPT2 (Android Asset Packaging Tool)
+

@@ -1,0 +1,63 @@
+package com.monu.mobile.feature.offline
+import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+
+class MONUOfflineCommandRouter {
+
+    private val localDeviceCommandEngine =
+        MONULocalDeviceCommandEngine()
+
+    fun canHandle(command: String): Boolean {
+        val normalized = command.trim().lowercase()
+
+        if (normalized.isBlank()) return true
+
+        if (localDeviceCommandEngine.canHandle(normalized)) {
+            return true
+        }
+
+        return normalized.contains("hello") ||
+            normalized.contains("hi monu") ||
+            normalized.contains("help") ||
+            normalized.contains("status") ||
+            normalized.contains("time") ||
+            normalized.contains("who are you") ||
+            normalized.contains("what can you do")
+    }
+
+    fun handle(command: String): String {
+        val normalized = command.trim().lowercase()
+
+        if (localDeviceCommandEngine.canHandle(normalized)) {
+            return localDeviceCommandEngine.handle(normalized)
+        }
+
+        return when {
+            normalized.isBlank() ->
+                "Please say or type a command."
+
+            normalized.contains("hello") ||
+                normalized.contains("hi monu") ->
+                "Hello. MONU is running locally in offline mode."
+
+            normalized.contains("help") ||
+                normalized.contains("what can you do") ->
+                """
+                MONU offline commands:
+                • hello
+                • help
+                • status
+                • who are you
+                • time
+                """.trimIndent()
+
+            normalized.contains("status") ->
+                "MONU local runtime is ready. Offline command system is active."
+
+            normalized.contains("who are you") ->
+                "I am MONU, your personal AI assistant. I can operate with local offline capabilities."
+
+            else ->
+                "I received your command, but this offline capability is not available yet."
+        }
+    }
+}

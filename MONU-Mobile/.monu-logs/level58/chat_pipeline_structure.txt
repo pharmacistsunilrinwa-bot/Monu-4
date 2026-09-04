@@ -1,0 +1,12 @@
+22:import com.monu.mobile.ui.components.CommandInput
+29:fun ChatScreen() {
+149:        CommandInput { command, attachments ->
+160:            val ownerMessage = ChatMessage(
+167:            messages = messages + ownerMessage
+170:                val systemMessage = ChatMessage(
+178:                messages = messages + systemMessage
+181:                val systemMessage = ChatMessage(
+189:                messages = messages + systemMessage
+195:                scope.launch {
+236:                    val monuMessage = ChatMessage(
+243:                    messages = messages + monuMessage

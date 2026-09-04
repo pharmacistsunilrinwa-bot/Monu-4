@@ -1,0 +1,37 @@
+40:import com.monu.mobile.core.network.MONUNetworkMonitor
+45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+47:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+48:import com.monu.mobile.feature.voice.MONUVoiceEngine
+49:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+50:import com.monu.mobile.ui.components.CommandInput
+61:val networkMonitor = remember {
+62:    MONUNetworkMonitor(context.applicationContext)
+66:    MONUQueryRouter()
+69:val offlineCommandRouter = remember {
+70:    MONUOfflineCommandRouter()
+100:                    "MONU Command Center ready. Internet knowledge is available.",
+169:fun handleOfflineCommand(
+183:        offlineCommandRouter.handle(cleanCommand)
+187:        role = MessageRole.MONU
+192:    MONUVoiceEngine(context) {
+198:    MONUVoiceInputEngine(
+204:                return@MONUVoiceInputEngine
+212:            scope.launch {
+213:                if (!networkMonitor.isOnline()) {
+214:                    handleOfflineCommand(cleanCommand)
+224:                            isOnline = networkMonitor.isOnline()
+229:                        role = MessageRole.MONU
+232:                    handleOfflineCommand(cleanCommand)
+367:                                "MONU is retrieving information from the internet..."
+436:    CommandInput { command, attachments ->
+465:            return@CommandInput
+474:        scope.launch {
+475:            if (!networkMonitor.isOnline()) {
+476:                handleOfflineCommand(cleanCommand)
+486:                        isOnline = networkMonitor.isOnline()
+491:                    role = MessageRole.MONU
+494:                handleOfflineCommand(cleanCommand)
+521:MessageRole.MONU -> "MONU"
+591:        "MONU Message",
+614:        "Share MONU Message"

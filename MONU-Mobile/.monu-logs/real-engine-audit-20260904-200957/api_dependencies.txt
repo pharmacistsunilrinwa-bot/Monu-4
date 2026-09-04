@@ -1,0 +1,7 @@
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:14:    GEMINI,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:114:                    source = MONUQuerySource.GEMINI,
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:19:    private val apiKey: String
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:23:        return apiKey.isNotBlank() &&
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:55:                    "?key=$apiKey"

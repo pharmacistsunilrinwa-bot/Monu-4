@@ -1,0 +1,20 @@
+LEVEL 79 OFFLINE COMMAND BEHAVIOR MATRIX
+=========================================
+
+INPUT SCENARIOS:
+blank|EMPTY
+hello|GREETING
+hi monu|GREETING
+help|HELP
+what can you do|HELP
+status|STATUS
+who are you|IDENTITY
+time|TIME
+date|DATE
+today|DATE
+device status|LOCAL_STATUS
+local status|LOCAL_STATUS
+random unsupported command|UNKNOWN
+
+ARCHITECTURE:
+CHAT -> ROUTER -> INTENT PARSER -> EXECUTION OWNER

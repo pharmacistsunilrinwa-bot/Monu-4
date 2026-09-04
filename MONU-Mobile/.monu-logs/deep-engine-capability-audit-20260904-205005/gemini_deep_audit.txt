@@ -1,0 +1,24 @@
+--- CONFIG CHECK ---
+3:import com.monu.mobile.BuildConfig
+20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+22:    fun isConfigured(): Boolean {
+24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+27:    suspend fun ask(
+41:        if (!isConfigured()) {
+
+--- NETWORK ENDPOINTS ---
+53:                "https://generativelanguage.googleapis.com/" +
+
+--- ERROR/FALLBACK HANDLING ---
+14:    val error: String? = null
+37:                error = "Prompt is empty."
+45:                error = "Gemini API key is not configured."
+62:            connection.connectTimeout = 20000
+63:            connection.readTimeout = 30000
+114:                    connection.errorStream
+125:                    error =
+149:                    error =
+159:        } catch (error: Exception) {
+164:                error =
+165:                    error.message
+166:                        ?: "Unknown Gemini error."

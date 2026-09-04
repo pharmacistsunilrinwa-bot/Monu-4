@@ -1,0 +1,33 @@
+7:import androidx.activity.compose.rememberLauncherForActivityResult
+27:import com.monu.mobile.domain.model.MessageRole
+67:    val offlineCommandRouter = remember {
+72:    val scope = rememberCoroutineScope()
+74:    fun handleOfflineCommand(
+82:            offlineCommandRouter.handle(cleanCommand)
+86:            role = MessageRole.ASSISTANT,
+91:    var voiceReady by remember {
+95:    var searching by remember {
+99:    val voiceEngine = remember {
+105:    val knowledgeEngine = remember {
+110:        rememberLauncherForActivityResult(
+129:    var voiceRuntimeHealth by remember {
+133:    var voiceListening by remember {
+137:    var voiceInputStatus by remember {
+141:    val voiceInputEngine = remember {
+149:                        role = MessageRole.OWNER,
+156:                                role = MessageRole.SYSTEM,
+173:                                        role = MessageRole.MONU,
+180:                                        role = MessageRole.SYSTEM,
+187:                                        role = MessageRole.SYSTEM,
+194:                                        role = MessageRole.SYSTEM,
+200:                            handleOfflineCommand(cleanCommand)
+219:    val networkMonitor = remember {
+230:    var messages by remember {
+238:                    role = MessageRole.SYSTEM
+374:                role = MessageRole.OWNER
+385:                    role = MessageRole.SYSTEM
+396:                    role = MessageRole.SYSTEM
+450:                        role = MessageRole.MONU
+476:                MessageRole.OWNER -> "YOU"
+477:                MessageRole.MONU -> "MONU"
+478:                MessageRole.SYSTEM -> "SYSTEM"

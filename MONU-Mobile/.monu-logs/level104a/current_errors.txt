@@ -1,0 +1,49 @@
+26:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:9 Unresolved reference 'messages'.
+27:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:93:20 Unresolved reference 'messages'.
+28:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:95:32 Unresolved reference 'ASSISTANT'.
+29:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:96:13 No value passed for parameter 'conversationId'.
+30:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:123:17 Unresolved reference 'voiceInputStatus'.
+31:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:124:17 Unresolved reference 'voiceInputEngine'.
+32:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:126:17 Unresolved reference 'voiceInputStatus'.
+33:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:128:17 Unresolved reference 'voiceListening'.
+34:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:132:22 Unresolved reference 'voiceInputEngine'.
+35:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:134:13 Unresolved reference 'voiceInputEngine'.
+36:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:31 Cannot infer type for this parameter. Please specify it explicitly.
+37:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:31 Not enough information to infer type argument for 'T'.
+38:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:31 Cannot infer type for this parameter. Please specify it explicitly.
+39:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:31 Not enough information to infer type argument for 'T'.
+40:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:138:40 Cannot infer type for this parameter. Please specify it explicitly.
+41:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:9 Cannot infer type for this parameter. Please specify it explicitly.
+42:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:9 Not enough information to infer type argument for 'T'.
+43:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:24 Unresolved reference 'voiceInputEngine'.
+44:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:157:21 Unresolved reference 'messages'.
+45:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:157:32 Unresolved reference 'messages'.
+46:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:159:25 No value passed for parameter 'id'.
+47:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:159:25 No value passed for parameter 'conversationId'.
+48:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:163:30 Unresolved reference 'networkMonitor'.
+49:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:164:29 Unresolved reference 'messages'.
+50:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:164:40 Unresolved reference 'messages'.
+51:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:166:33 No value passed for parameter 'id'.
+52:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:166:33 No value passed for parameter 'conversationId'.
+53:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:180:36 'is' over enum entry is prohibited. Use comparison instead.
+54:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:181:37 Unresolved reference 'messages'.
+55:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:181:48 Unresolved reference 'messages'.
+56:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:41 No value passed for parameter 'id'.
+57:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:41 No value passed for parameter 'conversationId'.
+58:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:58 Unresolved reference 'answer'.
+59:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:187:36 'is' over enum entry is prohibited. Use comparison instead.
+60:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:188:37 Unresolved reference 'messages'.
+61:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:188:48 Unresolved reference 'messages'.
+62:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:190:41 No value passed for parameter 'id'.
+63:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:190:41 No value passed for parameter 'conversationId'.
+64:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:194:36 'is' over enum entry is prohibited. Use comparison instead.
+65:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:195:37 Unresolved reference 'messages'.
+66:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:195:48 Unresolved reference 'messages'.
+67:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:197:41 No value passed for parameter 'id'.
+68:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:197:41 No value passed for parameter 'conversationId'.
+69:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:201:36 'is' over enum entry is prohibited. Use comparison instead.
+70:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:37 Unresolved reference 'messages'.
+71:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:202:48 Unresolved reference 'messages'.
+72:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:204:41 No value passed for parameter 'id'.
+73:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:204:41 No value passed for parameter 'conversationId'.
+74:e: file:///data/data/com.termux/files/home/Monu-3/MONU-Mobile/app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:223:21 Unresolved reference 'voiceInputEngine'.

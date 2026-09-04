@@ -1,0 +1,1 @@
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:54:                    "v1beta/models/gemini-2.5-flash:generateContent" +

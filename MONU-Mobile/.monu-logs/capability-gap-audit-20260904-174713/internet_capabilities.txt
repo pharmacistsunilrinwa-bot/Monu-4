@@ -1,0 +1,38 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:1:package com.monu.mobile.core.network
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:11:     * http://192.168.1.100:8000
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:12:     * https://your-server-domain.com
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:1:package com.monu.mobile.core.network
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:15:        val network =
+app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt:19:            connectivityManager.getNetworkCapabilities(network)
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:1:package com.monu.mobile.data.network
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:3:import com.monu.mobile.core.network.ServerConfig
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:7:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:14:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:33:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:94:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/domain/repository/ConnectionRepository.kt:3:import com.monu.mobile.data.network.MONUServerClient
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:110:            id = "network",
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:114:                "Manifest permission must be combined with a real network test.",
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:30:    fun search(
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:5:import okhttp3.OkHttpClient
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:13:    private val client = OkHttpClient.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:18:    fun search(query: String): InternetKnowledgeResult {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:38:                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:40:            val request = Request.Builder()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:103:                    error.message ?: "Unknown network error"
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:13:        OkHttpClient()
+app/src/main/java/com/monu/mobile/feature/realtime/MONUWebSocketEngine.kt:60:            Request.Builder()
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:54:            id = "network",
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:138:                    "Speech recognition network error."
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:141:                    "Speech recognition network timeout."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:40:import com.monu.mobile.core.network.MONUNetworkMonitor
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:60:val networkMonitor = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:141:                    "I could not find a useful internet summary for this query."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:212:                if (!networkMonitor.isOnline()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:222:                            knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:365:                                "MONU is retrieving information from the internet..."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:473:            if (!networkMonitor.isOnline()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:483:                        knowledgeEngine.search(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:66:            text = "Status is based on real network requests only.",
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:69:                Text("http://192.168.x.x:8000")
+app/src/main/java/com/monu/mobile/ui/screens/TransferCenterScreen.kt:47:            "Real upload and download endpoints are required before network transfer execution."

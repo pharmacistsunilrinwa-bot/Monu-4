@@ -1,0 +1,14 @@
+43:import com.monu.mobile.domain.model.InternetKnowledgeState
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+65:val queryRouter = remember {
+66:    MONUQueryRouter()
+123:        InternetKnowledgeState.SUCCESS -> {
+139:        InternetKnowledgeState.NOT_FOUND -> {
+152:        InternetKnowledgeState.NETWORK_ERROR -> {
+163:        InternetKnowledgeState.INVALID_QUERY -> {
+213:                if (!networkMonitor.isOnline()) {
+222:                        queryRouter.route(
+224:                            isOnline = networkMonitor.isOnline()
+475:            if (!networkMonitor.isOnline()) {
+484:                    queryRouter.route(
+486:                        isOnline = networkMonitor.isOnline()

@@ -1,0 +1,13 @@
+45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+53:import kotlinx.coroutines.withContext
+66:    MONUQueryRouter()
+183:        offlineCommandRouter.handle(cleanCommand)
+212:            scope.launch {
+213:                if (!networkMonitor.isOnline()) {
+222:                        queryRouter.route(
+224:                            isOnline = networkMonitor.isOnline()
+474:        scope.launch {
+475:            if (!networkMonitor.isOnline()) {
+484:                    queryRouter.route(
+486:                        isOnline = networkMonitor.isOnline()

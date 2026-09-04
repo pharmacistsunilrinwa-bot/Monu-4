@@ -1,0 +1,8 @@
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:86:                knowledgeCenter.demoKnowledge()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:84:                    knowledgeCenter.demoKnowledge()
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:59:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:14:                description = "Architecture placeholder for automated daily review.",
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:20:                description = "Architecture placeholder for project task automation.",
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:453:                        "Attachments selected but attachment analysis is not available yet." +
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:21:    val knowledge = MONUKnowledgeCenter().demoKnowledge()

@@ -1,0 +1,15 @@
+./.gitignore:3:/local.properties
+./.gitignore:13:local.properties
+./app/build.gradle.kts:10:    // MONU_GEMINI_BUILD_CONFIG
+./app/build.gradle.kts:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./app/build.gradle.kts:21:            "GEMINI_API_KEY",
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:14:    GEMINI,
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:114:                    source = MONUQuerySource.GEMINI,
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:19:    private val apiKey: String
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:23:        return apiKey.isNotBlank() &&
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:55:                    "?key=$apiKey"
+./setup_monu_mobile.sh:335:/local.properties
+./mobile_completion_audit.sh:88:'com.example|localhost|127.0.0.1|YOUR_|API_KEY|BASE_URL|TODO' \
+./local.properties:5:GEMINI_API_KEY=PASTE_YOUR_GEMINI_API_KEY_HERE

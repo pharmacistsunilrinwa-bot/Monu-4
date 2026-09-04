@@ -1,0 +1,43 @@
+LEVEL 75 OFFLINE INTENT PARSER MAP
+==================================
+
+PARSER:
+3:enum class MONUOfflineCommandIntent {
+5:    GREETING,
+6:    HELP,
+7:    STATUS,
+9:    TIME,
+10:    DATE,
+11:    LOCAL_STATUS,
+12:    UNKNOWN
+15:class MONUOfflineCommandIntentParser {
+17:    fun parse(command: String): MONUOfflineCommandIntent {
+22:                MONUOfflineCommandIntent.EMPTY
+26:                MONUOfflineCommandIntent.GREETING
+30:                MONUOfflineCommandIntent.HELP
+33:                MONUOfflineCommandIntent.IDENTITY
+37:                MONUOfflineCommandIntent.LOCAL_STATUS
+40:                MONUOfflineCommandIntent.STATUS
+43:                MONUOfflineCommandIntent.TIME
+47:                MONUOfflineCommandIntent.DATE
+50:                MONUOfflineCommandIntent.UNKNOWN
+
+ROUTER:
+2:import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+3:import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+8:    private val intentParser =
+9:        MONUOfflineCommandIntentParser()
+14:    fun canHandle(command: String): Boolean {
+15:        return intentParser.parse(command) !=
+16:            MONUOfflineCommandIntent.UNKNOWN
+19:    fun handle(command: String): String {
+20:        return when (intentParser.parse(command)) {
+21:            MONUOfflineCommandIntent.EMPTY ->
+24:            MONUOfflineCommandIntent.GREETING ->
+27:            MONUOfflineCommandIntent.HELP ->
+39:            MONUOfflineCommandIntent.STATUS ->
+42:            MONUOfflineCommandIntent.IDENTITY ->
+45:            MONUOfflineCommandIntent.TIME,
+46:            MONUOfflineCommandIntent.DATE,
+47:            MONUOfflineCommandIntent.LOCAL_STATUS ->
+50:            MONUOfflineCommandIntent.UNKNOWN ->

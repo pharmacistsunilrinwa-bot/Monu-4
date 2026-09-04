@@ -1,0 +1,9 @@
+LEVEL 68 VOICE LIFECYCLE MAP
+============================
+2:import androidx.compose.runtime.DisposableEffect
+74:    DisposableEffect(voiceInputEngine) {
+75:        onDispose {
+76:            voiceInputEngine.shutdown()
+166:    DisposableEffect(Unit) {
+167:        onDispose {
+169:        voiceInputEngine.shutdown()

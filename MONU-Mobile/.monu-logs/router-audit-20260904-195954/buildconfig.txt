@@ -1,0 +1,4 @@
+10:    // MONU_GEMINI_BUILD_CONFIG
+17:            project.properties["GEMINI_API_KEY"]?.toString()
+19:        buildConfigField(
+21:            "GEMINI_API_KEY",

@@ -1,0 +1,7 @@
+11:enum class MessageRole {
+17:data class ChatMessage(
+46:    fun search(query: String): InternetKnowledgeResult {
+169:    fun getRuntimeHealth(): String {
+193:    fun startListening() {
+233:    fun stopListening() {
+446:    fun handle(command: String): String {

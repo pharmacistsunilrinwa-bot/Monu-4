@@ -1,0 +1,16 @@
+LEVEL 80 OFFLINE COMMAND REGRESSION GUARD MAP
+==============================================
+
+ARCHITECTURE:
+CHAT -> ROUTER -> INTENT PARSER -> EXECUTION OWNER
+
+AUTHORITIES:
+Parser : app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt
+Router : app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt
+Engine : app/src/main/java/com/monu/mobile/feature/offline/MONULocalDeviceCommandEngine.kt
+Matrix : app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt
+
+RESULT:
+PASS=46
+FAIL=0
+WARN=0

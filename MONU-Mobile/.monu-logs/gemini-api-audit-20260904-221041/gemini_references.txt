@@ -1,0 +1,162 @@
+./app/build.gradle.kts:16:        val geminiApiKey =
+./app/build.gradle.kts:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./app/build.gradle.kts:21:            "GEMINI_API_KEY",
+./app/build.gradle.kts:22:            "\"$geminiApiKey\""
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:40:    val gemini =
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:111:            name = "Gemini Intelligence",
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:112:            available = gemini.isConfigured(),
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:114:                if (gemini.isConfigured()) {
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:36:    private val gemini =
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:83:        if (gemini.isConfigured()) {
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:84:            val geminiResult =
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:85:                gemini.ask(cleanQuery)
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:88:                geminiResult.success &&
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:89:                geminiResult.text.isNotBlank()
+./app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:93:                    text = geminiResult.text,
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:1:package com.monu.mobile.feature.gemini
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:3:import com.monu.mobile.BuildConfig
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:34:            return@withContext MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:42:            return@withContext MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:45:                error = "Gemini API key is not configured."
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:54:                    "v1beta/models/gemini-2.5-flash:generateContent" +
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:122:                return@withContext MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:126:                        "Gemini HTTP $code: " +
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:146:                MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:150:                        "Gemini returned no usable text."
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:153:                MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:161:            MONUGeminiResult(
+./app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:166:                        ?: "Unknown Gemini error."
+./local.properties:3:# MONU Gemini API Key
+./local.properties:4:# Replace the value below with your real Gemini API key
+./local.properties:5:GEMINI_API_KEY=PASTE_YOUR_GEMINI_API_KEY_HERE
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:36:    private val gemini =
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:105:        if (gemini.isConfigured()) {
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:106:            val geminiResult =
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:107:                gemini.ask(cleanQuery)
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:110:                geminiResult.success &&
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:111:                geminiResult.text.isNotBlank()
+./.monu-logs/router-integration-audit-20260904-200318/MONUQueryRouter.audit.kt:115:                    text = geminiResult.text,
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:36:    private val gemini =
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:105:        if (gemini.isConfigured()) {
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:106:            val geminiResult =
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:107:                gemini.ask(cleanQuery)
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:110:                geminiResult.success &&
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:111:                geminiResult.text.isNotBlank()
+./.monu-logs/router-chat-integration-20260904-200512/MONUQueryRouter.before.kt:115:                    text = geminiResult.text,
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:36:    private val gemini =
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:105:        if (gemini.isConfigured()) {
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:106:            val geminiResult =
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:107:                gemini.ask(cleanQuery)
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:110:                geminiResult.success &&
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:111:                geminiResult.text.isNotBlank()
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:115:                    text = geminiResult.text,
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:40:    val gemini =
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:41:        MONUGeminiIntelligenceEngine()
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:111:            name = "Gemini Intelligence",
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:112:            available = gemini.isConfigured(),
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:114:                if (gemini.isConfigured()) {
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:117:                    "Gemini engine exists but API key is not configured."
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:1:package com.monu.mobile.feature.gemini
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:3:import com.monu.mobile.BuildConfig
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:11:data class MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:17:class MONUGeminiIntelligenceEngine {
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:34:            return@withContext MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:42:            return@withContext MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:45:                error = "Gemini API key is not configured."
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:54:                    "v1beta/models/gemini-2.5-flash:generateContent" +
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:122:                return@withContext MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:126:                        "Gemini HTTP $code: " +
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:146:                MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:150:                        "Gemini returned no usable text."
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:153:                MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:161:            MONUGeminiResult(
+./.monu-logs/routing-implementation-prep-20260904-201252/app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:166:                        ?: "Unknown Gemini error."
+./.monu-logs/routing-implementation-prep-20260904-201252/app/build.gradle.kts:16:        val geminiApiKey =
+./.monu-logs/routing-implementation-prep-20260904-201252/app/build.gradle.kts:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./.monu-logs/routing-implementation-prep-20260904-201252/app/build.gradle.kts:21:            "GEMINI_API_KEY",
+./.monu-logs/routing-implementation-prep-20260904-201252/app/build.gradle.kts:22:            "\"$geminiApiKey\""
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:36:    private val gemini =
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:105:        if (gemini.isConfigured()) {
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:106:            val geminiResult =
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:107:                gemini.ask(cleanQuery)
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:110:                geminiResult.success &&
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:111:                geminiResult.text.isNotBlank()
+./.monu-logs/router-surgery-audit-20260904-201424/MONUQueryRouter.before.kt:115:                    text = geminiResult.text,
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:5:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:40:    val gemini =
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:41:        MONUGeminiIntelligenceEngine()
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:111:            name = "Gemini Intelligence",
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:112:            available = gemini.isConfigured(),
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:114:                if (gemini.isConfigured()) {
+./.monu-logs/router-surgery-audit-20260904-201424/MONUIntelligenceHub.before.kt:117:                    "Gemini engine exists but API key is not configured."
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:36:    private val gemini =
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:105:        if (gemini.isConfigured()) {
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:106:            val geminiResult =
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:107:                gemini.ask(cleanQuery)
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:110:                geminiResult.success &&
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:111:                geminiResult.text.isNotBlank()
+./.monu-logs/router-surgery-20260904-201528/MONUQueryRouter.before.kt:115:                    text = geminiResult.text,
+./.monu-logs/core-integration-20260904-202611/app.build.before.gradle.kts:16:        val geminiApiKey =
+./.monu-logs/core-integration-20260904-202611/app.build.before.gradle.kts:17:            project.properties["GEMINI_API_KEY"]?.toString()
+./.monu-logs/core-integration-20260904-202611/app.build.before.gradle.kts:21:            "GEMINI_API_KEY",
+./.monu-logs/core-integration-20260904-202611/app.build.before.gradle.kts:22:            "\"$geminiApiKey\""
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:36:    private val gemini =
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:83:        if (gemini.isConfigured()) {
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:84:            val geminiResult =
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:85:                gemini.ask(cleanQuery)
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:88:                geminiResult.success &&
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:89:                geminiResult.text.isNotBlank()
+./.monu-logs/core-integration-20260904-202611/MONUQueryRouter.before.kt:93:                    text = geminiResult.text,
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:1:package com.monu.mobile.feature.gemini
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:3:import com.monu.mobile.BuildConfig
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:11:data class MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:17:class MONUGeminiIntelligenceEngine {
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:20:        get() = BuildConfig.GEMINI_API_KEY.trim()
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:24:            apiKey != "PASTE_YOUR_GEMINI_API_KEY_HERE"
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:29:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:34:            return@withContext MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:42:            return@withContext MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:45:                error = "Gemini API key is not configured."
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:54:                    "v1beta/models/gemini-2.5-flash:generateContent" +
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:122:                return@withContext MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:126:                        "Gemini HTTP $code: " +
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:146:                MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:150:                        "Gemini returned no usable text."
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:153:                MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:161:            MONUGeminiResult(
+./.monu-logs/intelligence-gap-audit-20260904-220027/GeminiEngine.kt:166:                        ?: "Unknown Gemini error."
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:3:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:36:    private val gemini =
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:37:        MONUGeminiIntelligenceEngine()
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:83:        if (gemini.isConfigured()) {
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:84:            val geminiResult =
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:85:                gemini.ask(cleanQuery)
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:88:                geminiResult.success &&
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:89:                geminiResult.text.isNotBlank()
+./.monu-logs/intelligence-gap-audit-20260904-220027/QueryRouter.kt:93:                    text = geminiResult.text,

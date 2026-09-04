@@ -1,0 +1,21 @@
+LEVEL 57 INTEGRATION MAP
+========================
+
+VOICE ENGINE:
+10:class MONUVoiceInputEngine(
+12:    private val onResult: (String) -> Unit,
+26:    fun startListening() {
+60:    fun stopListening() {
+126:    override fun onResults(results: Bundle?) {
+141:            onResult(command)
+
+CHAT PIPELINE:
+22:import com.monu.mobile.ui.components.CommandInput
+64:                ChatMessage(
+149:        CommandInput { command, attachments ->
+160:            val ownerMessage = ChatMessage(
+164:                role = MessageRole.OWNER
+170:                val systemMessage = ChatMessage(
+181:                val systemMessage = ChatMessage(
+236:                    val monuMessage = ChatMessage(
+266:                MessageRole.OWNER -> "YOU"

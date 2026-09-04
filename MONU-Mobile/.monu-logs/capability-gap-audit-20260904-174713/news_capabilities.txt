@@ -1,0 +1,12 @@
+app/src/main/java/com/monu/mobile/ui/components/MONUSidebar.kt:30:                style = MaterialTheme.typography.headlineMedium
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:289:                MaterialTheme.typography.headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:62:            style = MaterialTheme.typography.headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:155:                    MaterialTheme.typography.headlineMedium
+app/src/main/java/com/monu/mobile/ui/screens/FeatureScreen.kt:21:            style = MaterialTheme.typography.headlineMedium
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:44:                style = MaterialTheme.typography.headlineMedium
+app/src/main/java/com/monu/mobile/ui/screens/HomeScreen.kt:79:                        style = MaterialTheme.typography.headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/IntegrationHubScreen.kt:27:                style = MaterialTheme.typography.headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/OfflineQueueScreen.kt:67:                    .headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/RealtimeScreen.kt:50:                    .headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:48:                    .headlineSmall
+app/src/main/java/com/monu/mobile/ui/screens/ServiceCoordinationScreen.kt:27:                style = MaterialTheme.typography.headlineSmall

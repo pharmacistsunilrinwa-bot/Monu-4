@@ -1,0 +1,32 @@
+app/src/main/java/com/monu/mobile/core/network/ServerConfig.kt:20:    fun isConfigured(): Boolean {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:22:        if (!ServerConfig.isConfigured()) {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:62:        } catch (error: IOException) {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:71:        } catch (error: Exception) {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:84:        if (!ServerConfig.isConfigured()) {
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:115:        } catch (error: Exception) {
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:5:    NOT_FOUND,
+app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt:6:    NETWORK_ERROR,
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:32:        } catch (_: Exception) {
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:56:            } catch (_: Exception) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:112:            available = gemini.isConfigured(),
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:114:                if (gemini.isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:27:    private val offlineRouter =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:60:                text = offlineRouter.handle(cleanQuery),
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:83:        if (gemini.isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:85:                gemini.ask(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:100:            internet.search(cleanQuery)
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:120:                com.monu.mobile.domain.model.InternetKnowledgeState.NOT_FOUND -> {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:124:                com.monu.mobile.domain.model.InternetKnowledgeState.NETWORK_ERROR -> {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:56:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:79:                        state = InternetKnowledgeState.NOT_FOUND,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:94:        } catch (error: Exception) {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:101:                state = InternetKnowledgeState.NETWORK_ERROR,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:58:        } catch (error: Exception) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:22:    fun isConfigured(): Boolean {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:41:        if (!isConfigured()) {
+app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt:159:        } catch (error: Exception) {
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:380:        } catch (_: Exception) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:        InternetKnowledgeState.NOT_FOUND -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:152:        InternetKnowledgeState.NETWORK_ERROR -> {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:231:                } catch (_: Exception) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:493:            } catch (_: Exception) {

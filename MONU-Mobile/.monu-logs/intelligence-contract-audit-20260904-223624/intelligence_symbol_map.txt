@@ -1,0 +1,136 @@
+3:FILE: app/src/main/java/com/monu/mobile/feature/gemini/MONUGeminiIntelligenceEngine.kt
+15:data class MONUGeminiResult(
+21:class MONUGeminiIntelligenceEngine {
+31:    suspend fun ask(
+33:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+38:            return@withContext MONUGeminiResult(
+46:            return@withContext MONUGeminiResult(
+49:                error = "Gemini API key is not configured."
+58:                    "v1beta/models/gemini-2.5-flash:generateContent" +
+126:                return@withContext MONUGeminiResult(
+130:                        "Gemini HTTP $code: " +
+150:                MONUGeminiResult(
+154:                        "Gemini returned no usable text."
+157:                MONUGeminiResult(
+165:            MONUGeminiResult(
+170:                        ?: "Unknown Gemini error."
+181:FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt
+187:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+199:class MONUIntelligenceHub {
+223:        MONUGeminiIntelligenceEngine()
+293:            name = "Gemini Intelligence",
+299:                    "Gemini engine exists but API key is not configured."
+330:FILE: app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt
+334:import com.monu.mobile.feature.gemini.MONUGeminiIntelligenceEngine
+337:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+350:data class MONUQueryResponse(
+356:class MONUQueryRouter {
+358:    private val offlineRouter =
+365:        MONUIntelligenceHub()
+368:        MONUGeminiIntelligenceEngine()
+370:    private val internet =
+373:    suspend fun route(
+374:        query: String,
+376:    ): MONUQueryResponse = withContext(Dispatchers.IO) {
+378:        val cleanQuery = query.trim()
+381:            return@withContext MONUQueryResponse(
+389:            return@withContext MONUQueryResponse(
+391:                text = offlineRouter.handle(cleanQuery),
+404:            return@withContext MONUQueryResponse(
+411:        // Live query routing intentionally does not use demo knowledge.
+415:            val geminiResult =
+416:                gemini.ask(cleanQuery)
+419:                geminiResult.success &&
+420:                geminiResult.text.isNotBlank()
+422:                return@withContext MONUQueryResponse(
+424:                    text = geminiResult.text,
+430:        val internetResult =
+431:            internet.search(cleanQuery)
+433:        val internetText =
+434:            when (internetResult.state) {
+435:                com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS -> {
+437:                        append(internetResult.title)
+439:                        if (internetResult.summary.isNotBlank()) {
+441:                            append(internetResult.summary)
+444:                        if (internetResult.source.isNotBlank()) {
+446:                            append(internetResult.source)
+452:                    "I could not find useful internet information."
+455:                com.monu.mobile.domain.model.InternetKnowledgeState.NETWORK_ERROR -> {
+456:                    "Internet search failed: " +
+458:                            internetResult.errorMessage
+464:                    "Please enter a valid query."
+468:        MONUQueryResponse(
+470:            text = internetText,
+472:                internetResult.state ==
+473:                    com.monu.mobile.domain.model.InternetKnowledgeState.SUCCESS
+484:import com.monu.mobile.domain.model.InternetKnowledgeResult
+499:    fun search(query: String): InternetKnowledgeResult {
+501:        val cleanedQuery = query.trim()
+504:            return InternetKnowledgeResult(
+505:                query = query,
+532:                    return InternetKnowledgeResult(
+533:                        query = cleanedQuery,
+555:                    InternetKnowledgeResult(
+556:                        query = cleanedQuery,
+565:                    InternetKnowledgeResult(
+566:                        query = cleanedQuery,
+570:                        state = InternetKnowledgeState.SUCCESS
+577:            InternetKnowledgeResult(
+578:                query = cleanedQuery,
+582:                state = InternetKnowledgeState.NETWORK_ERROR,
+592:FILE: app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt
+594:package com.monu.mobile.feature.offline
+595:import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+596:import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+597:import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+620:    fun handle(command: String): String {
+626:                "Hello. MONU is running locally in offline mode."
+630:                MONU offline commands:
+644:                "I am MONU, your personal AI assistant. I can operate with local offline capabilities."
+649:                localDeviceCommandEngine.handle(command)
+652:                "I received your command, but this offline capability is not available yet."
+658:    ): MONUOfflineCommandResponse {
+661:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+663:        return MONUOfflineCommandResponse(
+664:            handled = handled,
+666:            response = handle(command)
+679:    SUCCESS,
+681:    NETWORK_ERROR,
+685:data class InternetKnowledgeResult(
+686:    val query: String,
+735:import androidx.activity.compose.rememberLauncherForActivityResult
+736:import androidx.activity.result.contract.ActivityResultContracts
+768:import com.monu.mobile.domain.model.InternetKnowledgeResult
+772:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+773:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+791:val queryRouter = remember {
+792:    MONUQueryRouter()
+795:val offlineCommandRouter = remember {
+803:var searching by remember {
+845:fun buildResponse(
+846:    result: InternetKnowledgeResult
+849:        InternetKnowledgeState.SUCCESS -> {
+868:                    "I could not find a useful internet summary for this query."
+878:        InternetKnowledgeState.NETWORK_ERROR -> {
+890:            "Please enter a valid query."
+895:fun handleOfflineCommand(
+909:        offlineCommandRouter.handle(cleanCommand)
+926:        onResult = { recognizedCommand ->
+940:                    handleOfflineCommand(cleanCommand)
+944:                searching = true
+948:                        queryRouter.route(
+949:                            query = cleanCommand,
+958:                    handleOfflineCommand(cleanCommand)
+960:                    searching = false
+985:    rememberLauncherForActivityResult(
+987:            ActivityResultContracts.RequestPermission()
+1023:                    searching ->
+1074:        if (searching) {
+1093:                                "MONU is retrieving information from the internet..."
+1186:                        "Please enter a text query.",
+1202:                handleOfflineCommand(cleanCommand)
+1206:            searching = true
+1210:                    queryRouter.route(
+1211:                        query = cleanCommand,
+1220:                handleOfflineCommand(cleanCommand)
+1222:                searching = false

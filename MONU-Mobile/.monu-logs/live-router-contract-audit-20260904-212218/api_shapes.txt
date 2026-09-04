@@ -1,0 +1,143 @@
+12:import kotlinx.coroutines.withContext
+24:    val source: MONUQuerySource,
+25:    val text: String,
+26:    val success: Boolean
+29:class MONUQueryRouter {
+46:    suspend fun route(
+49:    ): MONUQueryResponse = withContext(Dispatchers.IO) {
+54:            return@withContext MONUQueryResponse(
+55:                source = MONUQuerySource.FALLBACK,
+56:                text = "Please enter a valid request.",
+57:                success = false
+62:            return@withContext MONUQueryResponse(
+63:                source = MONUQuerySource.OFFLINE,
+64:                text = offlineRouter.handle(cleanQuery),
+65:                success = true
+77:            return@withContext MONUQueryResponse(
+78:                source = MONUQuerySource.INTELLIGENCE_HUB,
+79:                text = intelligenceHub.healthReport(),
+80:                success = true
+87:        if (gemini.isConfigured()) {
+92:                geminiResult.success &&
+93:                geminiResult.text.isNotBlank()
+95:                return@withContext MONUQueryResponse(
+96:                    source = MONUQuerySource.GEMINI,
+97:                    text = geminiResult.text,
+98:                    success = true
+117:                        if (internetResult.source.isNotBlank()) {
+119:                            append(internetResult.source)
+131:                            internetResult.errorMessage
+132:                                ?: "Unknown network error."
+142:            source = MONUQuerySource.INTERNET,
+143:            text = internetText,
+144:            success =
+158:import kotlinx.coroutines.withContext
+164:data class MONUGeminiResult(
+165:    val success: Boolean,
+166:    val text: String,
+167:    val error: String? = null
+175:    fun isConfigured(): Boolean {
+180:    suspend fun ask(
+182:    ): MONUGeminiResult = withContext(Dispatchers.IO) {
+187:            return@withContext MONUGeminiResult(
+188:                success = false,
+189:                text = "",
+190:                error = "Prompt is empty."
+194:        if (!isConfigured()) {
+195:            return@withContext MONUGeminiResult(
+196:                success = false,
+197:                text = "",
+198:                error = "Gemini API key is not configured."
+234:                                            "text",
+267:                    connection.errorStream
+275:                return@withContext MONUGeminiResult(
+276:                    success = false,
+277:                    text = "",
+278:                    error =
+289:            val text =
+295:                    ?.optString("text")
+298:            if (text.isBlank()) {
+300:                    success = false,
+301:                    text = "",
+302:                    error =
+303:                        "Gemini returned no usable text."
+307:                    success = true,
+308:                    text = text
+312:        } catch (error: Exception) {
+315:                success = false,
+316:                text = "",
+317:                error =
+318:                    error.message
+319:                        ?: "Unknown Gemini error."
+333:import com.monu.mobile.feature.context.MONUContextIntelligence
+358:    private val contextIntelligence =
+359:        MONUContextIntelligence()
+405:            name = "Context Intelligence",
+407:                contextIntelligence.demoContext()
+410:                "Stores, prioritizes and snapshots contextual information."
+442:            available = gemini.isConfigured(),
+444:                if (gemini.isConfigured()) {
+528:                source = MONUKnowledgeSource.PROJECT,
+536:                source = MONUKnowledgeSource.USER,
+543:    fun search(
+577:    fun search(query: String): InternetKnowledgeResult {
+586:                source = "Internet",
+588:                errorMessage = "Query is empty"
+614:                        source = "Wikipedia",
+616:                        errorMessage =
+617:                            "Internet source returned HTTP ${response.code}"
+637:                        source = "Wikipedia",
+639:                        errorMessage =
+647:                        source = "Wikipedia",
+653:        } catch (error: Exception) {
+659:                source = "Internet",
+661:                errorMessage =
+662:                    error.message ?: "Unknown network error"
+701:import android.content.Context
+714:class MONUMemoryEngine(context: Context) {
+716:    private val appContext = context.applicationContext
+719:        appContext.getSharedPreferences(
+721:            Context.MODE_PRIVATE
+874:    fun contextFor(
+996:    private fun tokenize(text: String): Set<String> {
+998:        return text
+1140:import android.content.Context
+1171:import androidx.compose.ui.platform.LocalContext
+1173:import androidx.core.content.ContextCompat
+1187:import kotlinx.coroutines.withContext
+1192:val context = LocalContext.current
+1196:    MONUNetworkMonitor(context.applicationContext)
+1266:                if (result.source.isNotBlank()) {
+1268:                    append(result.source)
+1279:                if (!result.errorMessage.isNullOrBlank()) {
+1281:                    append(result.errorMessage)
+1290:                if (!result.errorMessage.isNullOrBlank()) {
+1292:                    append(result.errorMessage)
+1326:    MONUVoiceEngine(context) {
+1333:        context = context,
+1362:                        content = response.text,
+1372:        onError = { error ->
+1373:            voiceInputStatus = error
+1423:            text = "COMMAND CENTER",
+1429:            text =
+1463:                        context,
+1475:                        context,
+1500:                            text =
+1525:                        ContextCompat.checkSelfPermission(
+1526:                            context,
+1555:                text = voiceRuntimeHealth,
+1562:                    text = voiceInputStatus,
+1594:                        "Please enter a text query.",
+1624:                    content = response.text,
+1660:            text = roleName,
+1671:            text = message.content,
+1715:context: Context,
+1716:text: String
+1719:context.getSystemService(
+1720:Context.CLIPBOARD_SERVICE
+1726:        text
+1733:context: Context,
+1734:text: String
+1738:type = "text/plain"
+1741:text
+1745:context.startActivity(

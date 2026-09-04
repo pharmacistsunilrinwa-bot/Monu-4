@@ -1,0 +1,85 @@
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:68:                status = MONUCapabilityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:10:    fun demoContext(): List<MONUContextItem> {
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:17:                status = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:25:                status = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:20:                MONUDecisionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:115:            status = MONUDiagnosticStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:127:            status = MONUDiagnosticStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:73:            unknown = events.count {
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:74:                it.status == MONUEventStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:98:            unknown = executions.count {
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:99:                it.status == ExecutionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:104:    fun createUnknownExecution(
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:109:        val id = "unknown-${System.currentTimeMillis()}"
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:118:            status = ExecutionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:61:            status = MONUHealthStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:70:            status = MONUHealthStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:88:                else -> MONUHealthStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:11:            id = "unknown",
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:21:            id = "unknown",
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:22:            status = MONUSessionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:25:            id = "unknown",
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:28:            status = IntelligenceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:9:    fun demoKnowledge(): List<MONUKnowledgeItem> {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:16:                status = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:24:                status = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:103:                    error.message ?: "Unknown network error"
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:24:        return intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:58:            MONUOfflineCommandIntent.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:68:        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:12:    UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:50:                MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:21:                MONUPlanStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:8:    fun demoRules(): List<MONURule> {
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:14:                status = MONURuleStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:20:                status = MONURuleStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:26:        return MONURuleStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:29:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:38:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:56:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:52:                SyncStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:66:                SyncStatus.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:100:            unknown = results.count {
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:101:                it.status == SyncStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:120:            unknown = results.count {
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:121:                it.status == VerificationStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:156:                    "Unknown speech recognition error."
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:9:    fun demoWorkflows(): List<MONUWorkflow> {
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:14:                description = "Architecture placeholder for automated daily review.",
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:15:                status = MONUWorkflowStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:20:                description = "Architecture placeholder for project task automation.",
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:21:                status = MONUWorkflowStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:30:            status = MONUWorkflowStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:84:                                .MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:30:            result = MONUAuditResult.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:38:            action = MONUAuditAction.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:39:            result = MONUAuditResult.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:41:            description = "Audit entries must eventually originate from real system actions."
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:27:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:35:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:138:            ConnectionState.UNKNOWN ->
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:22:    val context = engine.prioritize(engine.demoContext())
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:27:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:33:            description = "Decision options should eventually expose their real factors and sources.",
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:34:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:28:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:35:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:42:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:49:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:56:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:63:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:38:        Text("Unknown: ${report.unknown}")
+app/src/main/java/com/monu/mobile/ui/screens/ExecutionOrchestratorScreen.kt:38:        Text("Unknown: ${report.unknown}")
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:21:    val knowledge = MONUKnowledgeCenter().demoKnowledge()
+app/src/main/java/com/monu/mobile/ui/screens/MediaStudioScreen.kt:71:            Text("Status: ${MONUMediaJobStatus.UNKNOWN}")
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:23:    val demoNotifications = listOf(
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:66:            items(demoNotifications) { notification ->
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:21:    val rules = MONURulesEngine().demoRules()
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:68:            placeholder = {
+app/src/main/java/com/monu/mobile/ui/screens/ServerContractScreen.kt:146:            placeholder = {
+app/src/main/java/com/monu/mobile/ui/screens/StateSynchronizationScreen.kt:38:        Text("Unknown: ${report.unknown}")
+app/src/main/java/com/monu/mobile/ui/screens/TransferCenterScreen.kt:47:            "Real upload and download endpoints are required before network transfer execution."
+app/src/main/java/com/monu/mobile/ui/screens/UnifiedIntelligenceScreen.kt:22:        Text("Missing intelligence remains UNKNOWN.")
+app/src/main/java/com/monu/mobile/ui/screens/VerificationEngineScreen.kt:38:        Text("Unknown: ${report.unknown}")
+app/src/main/java/com/monu/mobile/ui/screens/WorkflowAutomationScreen.kt:21:    val workflows = MONUWorkflowCenter().demoWorkflows()

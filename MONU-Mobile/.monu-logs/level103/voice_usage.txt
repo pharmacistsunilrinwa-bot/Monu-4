@@ -1,0 +1,32 @@
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt:7:class MONUVoiceEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:13:class MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:55:    fun startListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:92:        speechRecognizer?.startListening(intent)
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:95:    fun stopListening() {
+app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt:97:        speechRecognizer?.stopListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:30:import com.monu.mobile.feature.voice.MONUVoiceEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:32:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:109:        MONUVoiceEngine(context) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:123:                voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:124:                voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:126:                voiceInputStatus =
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:128:                voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:132:    DisposableEffect(voiceInputEngine) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:134:            voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:139:        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:142:    var voiceListening by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:146:    var voiceInputStatus by remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:150:    val voiceInputEngine = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:151:        MONUVoiceInputEngine(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:217:                voiceInputStatus = error
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:218:                voiceListening = false
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:221:                voiceListening = isListening
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:223:                    voiceInputEngine.getRuntimeHealth()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:235:        voiceInputEngine.shutdown()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:330:                    if (voiceListening) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:331:                        voiceInputEngine.stopListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:333:                        voiceInputStatus = ""
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:342:                            voiceInputEngine.startListening()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:352:                    if (voiceListening) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:363:            if (voiceInputStatus.isNotBlank()) {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:364:                Text(voiceInputStatus)

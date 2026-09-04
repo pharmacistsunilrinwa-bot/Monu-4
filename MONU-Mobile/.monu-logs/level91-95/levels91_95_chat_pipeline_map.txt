@@ -1,0 +1,16 @@
+LEVELS 91-95 CHAT PIPELINE INTEGRATION
+=======================================
+
+FLOW:
+ChatScreen
+  -> MONUChatScreenIntegration
+  -> MONUChatCoordinator
+  -> MONUConversationUiAdapter
+  -> MONUConversationPipeline
+  -> MONUOfflineConversationBridge
+  -> MONUOfflineCommandContract
+  -> MONUOfflineCommandRouter
+
+RESULT:
+PASS=16
+FAIL=0

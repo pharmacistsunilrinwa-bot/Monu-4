@@ -1,0 +1,546 @@
+===== app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt =====
+package com.monu.mobile.domain.model
+
+data class ChatConversation(
+    val id: String,
+    val title: String,
+    val messages: List<ChatMessage> = emptyList(),
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+enum class MessageRole {
+    OWNER,
+    MONU,
+    SYSTEM
+}
+
+data class ChatMessage(
+    val id: String,
+    val conversationId: String,
+    val content: String,
+    val role: MessageRole,
+    val timestamp: Long = System.currentTimeMillis(),
+    val audioProgressMs: Long = 0L,
+    val isAudioAvailable: Boolean = false
+)
+
+
+===== app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt =====
+package com.monu.mobile.feature.knowledge
+
+import com.monu.mobile.domain.model.InternetKnowledgeResult
+import com.monu.mobile.domain.model.InternetKnowledgeState
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
+import java.net.URLEncoder
+import java.util.concurrent.TimeUnit
+
+class MONUInternetKnowledgeEngine {
+
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .build()
+
+    fun search(query: String): InternetKnowledgeResult {
+
+        val cleanedQuery = query.trim()
+
+        if (cleanedQuery.isBlank()) {
+            return InternetKnowledgeResult(
+                query = query,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.INVALID_QUERY,
+                errorMessage = "Query is empty"
+            )
+        }
+
+        return try {
+            val encoded =
+                URLEncoder.encode(cleanedQuery, "UTF-8")
+
+            val url =
+                "https://en.wikipedia.org/api/rest_v1/page/summary/$encoded"
+
+            val request = Request.Builder()
+                .url(url)
+                .header(
+                    "User-Agent",
+                    "MONU-Mobile/1.0"
+                )
+                .build()
+
+            client.newCall(request).execute().use { response ->
+
+                if (!response.isSuccessful) {
+                    return InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = "",
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "Internet source returned HTTP ${response.code}"
+                    )
+                }
+
+                val body =
+                    response.body?.string().orEmpty()
+
+                val json = JSONObject(body)
+
+                val title =
+                    json.optString("title", cleanedQuery)
+
+                val extract =
+                    json.optString("extract", "")
+
+                if (extract.isBlank()) {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = "",
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.NOT_FOUND,
+                        errorMessage =
+                            "No useful knowledge summary found"
+                    )
+                } else {
+                    InternetKnowledgeResult(
+                        query = cleanedQuery,
+                        title = title,
+                        summary = extract,
+                        source = "Wikipedia",
+                        state = InternetKnowledgeState.SUCCESS
+                    )
+                }
+            }
+
+        } catch (error: Exception) {
+
+            InternetKnowledgeResult(
+                query = cleanedQuery,
+                title = "",
+                summary = "",
+                source = "Internet",
+                state = InternetKnowledgeState.NETWORK_ERROR,
+                errorMessage =
+                    error.message ?: "Unknown network error"
+            )
+        }
+    }
+}
+
+
+===== app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceInputEngine.kt =====
+package com.monu.mobile.feature.voice
+
+import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.speech.RecognitionListener
+import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
+import androidx.core.content.ContextCompat
+
+class MONUVoiceInputEngine(
+    context: Context,
+    private val onResult: (String) -> Unit,
+    private val onError: (String) -> Unit = {},
+    private val onListeningStateChanged: (Boolean) -> Unit = {}
+) : RecognitionListener {
+
+    private val appContext = context.applicationContext
+
+    private var speechRecognizer: SpeechRecognizer? = null
+
+    private var listening = false
+
+    private fun updateListeningState(value: Boolean) {
+        listening = value
+        onListeningStateChanged(value)
+    }
+
+    fun getRuntimeHealth(): String {
+        return when {
+            !hasMicrophonePermission() ->
+                "Microphone permission required"
+            !isAvailable() ->
+                "Speech recognition unavailable"
+            listening ->
+                "Listening"
+            else ->
+                "Ready"
+        }
+    }
+
+    fun isAvailable(): Boolean {
+        return SpeechRecognizer.isRecognitionAvailable(appContext)
+    }
+
+    fun hasMicrophonePermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            appContext,
+            Manifest.permission.RECORD_AUDIO
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun startListening() {
+        if (listening) return
+
+        if (!hasMicrophonePermission()) {
+            onError("Microphone permission is required.")
+            updateListeningState(false)
+            return
+        }
+
+        if (!isAvailable()) {
+            onError("Speech recognition is not available on this device.")
+            return
+        }
+
+        if (speechRecognizer == null) {
+            speechRecognizer =
+                SpeechRecognizer.createSpeechRecognizer(appContext)
+
+            speechRecognizer?.setRecognitionListener(this)
+        }
+
+        val intent = Intent(
+            RecognizerIntent.ACTION_RECOGNIZE_SPEECH
+        ).apply {
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+
+            putExtra(
+                RecognizerIntent.EXTRA_PARTIAL_RESULTS,
+                true
+            )
+        }
+
+        updateListeningState(true)
+
+        speechRecognizer?.startListening(intent)
+    }
+
+    fun stopListening() {
+        updateListeningState(false)
+        speechRecognizer?.stopListening()
+    }
+
+    fun shutdown() {
+        updateListeningState(false)
+        speechRecognizer?.cancel()
+        speechRecognizer?.destroy()
+        speechRecognizer = null
+    }
+
+    override fun onReadyForSpeech(params: Bundle?) {
+        updateListeningState(true)
+    }
+
+    override fun onBeginningOfSpeech() {
+        updateListeningState(true)
+    }
+
+    override fun onRmsChanged(rmsdB: Float) = Unit
+
+    override fun onBufferReceived(buffer: ByteArray?) = Unit
+
+    override fun onEndOfSpeech() {
+        updateListeningState(false)
+    }
+
+    override fun onError(error: Int) {
+        updateListeningState(false)
+
+        onError(
+            when (error) {
+                SpeechRecognizer.ERROR_AUDIO ->
+                    "Audio recording error."
+
+                SpeechRecognizer.ERROR_CLIENT ->
+                    "Speech recognition client error."
+
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS ->
+                    "Microphone permission denied."
+
+                SpeechRecognizer.ERROR_NETWORK ->
+                    "Speech recognition network error."
+
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT ->
+                    "Speech recognition network timeout."
+
+                SpeechRecognizer.ERROR_NO_MATCH ->
+                    "No speech recognized."
+
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY ->
+                    "Speech recognizer is busy."
+
+                SpeechRecognizer.ERROR_SERVER ->
+                    "Speech recognition server error."
+
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+                    "No speech detected."
+
+                else ->
+                    "Unknown speech recognition error."
+            }
+        )
+    }
+
+    override fun onResults(results: Bundle?) {
+        updateListeningState(false)
+
+        val matches =
+            results?.getStringArrayList(
+                SpeechRecognizer.RESULTS_RECOGNITION
+            )
+
+        val command =
+            matches
+                ?.firstOrNull()
+                ?.trim()
+                .orEmpty()
+
+        if (command.isNotBlank()) {
+            onResult(command)
+        } else {
+            onError("No voice command recognized.")
+        }
+    }
+
+    override fun onPartialResults(
+        partialResults: Bundle?
+    ) = Unit
+
+    override fun onEvent(
+        eventType: Int,
+        params: Bundle?
+    ) = Unit
+}
+
+
+===== app/src/main/java/com/monu/mobile/feature/voice/MONUVoiceEngine.kt =====
+package com.monu.mobile.feature.voice
+
+import android.content.Context
+import android.speech.tts.TextToSpeech
+import java.util.Locale
+
+class MONUVoiceEngine(
+    context: Context,
+    private val onReady: (Boolean) -> Unit = {}
+) : TextToSpeech.OnInitListener {
+
+    private val textToSpeech = TextToSpeech(context.applicationContext, this)
+
+    private var initialized = false
+
+    override fun onInit(status: Int) {
+        initialized = status == TextToSpeech.SUCCESS
+
+        if (initialized) {
+            textToSpeech.language = Locale.getDefault()
+            textToSpeech.setSpeechRate(1.0f)
+            textToSpeech.setPitch(1.0f)
+        }
+
+        onReady(initialized)
+    }
+
+    fun speak(
+        text: String,
+        speechRate: Float = 1.0f,
+        pitch: Float = 1.0f
+    ) {
+        if (!initialized || text.isBlank()) return
+
+        textToSpeech.setSpeechRate(speechRate)
+        textToSpeech.setPitch(pitch)
+
+        textToSpeech.speak(
+            text,
+            TextToSpeech.QUEUE_FLUSH,
+            null,
+            "MONU_MESSAGE"
+        )
+    }
+
+    fun stop() {
+        if (initialized) {
+            textToSpeech.stop()
+        }
+    }
+
+    fun shutdown() {
+        textToSpeech.stop()
+        textToSpeech.shutdown()
+    }
+}
+
+
+===== app/src/main/java/com/monu/mobile/core/network/MONUNetworkMonitor.kt =====
+package com.monu.mobile.core.network
+
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+
+class MONUNetworkMonitor(
+    private val context: Context
+) {
+    fun isOnline(): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                    as ConnectivityManager
+
+        val network =
+            connectivityManager.activeNetwork ?: return false
+
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(network)
+                ?: return false
+
+        return capabilities.hasCapability(
+            NetworkCapabilities.NET_CAPABILITY_INTERNET
+        )
+    }
+}
+
+
+===== app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt =====
+package com.monu.mobile.feature.offline
+import com.monu.mobile.feature.offline.MONUOfflineCommandIntent
+import com.monu.mobile.feature.offline.MONUOfflineCommandIntentParser
+import com.monu.mobile.feature.offline.MONULocalDeviceCommandEngine
+
+class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+
+    private val intentParser =
+        MONUOfflineCommandIntentParser()
+
+    private val localDeviceCommandEngine =
+        MONULocalDeviceCommandEngine()
+
+
+    override fun canHandle(
+        request: MONUOfflineCommandRequest
+    ): Boolean {
+        return canHandle(request.command)
+    }
+
+    fun canHandle(command: String): Boolean {
+        val intent = intentParser.parse(command)
+
+        return intent != MONUOfflineCommandIntent.UNKNOWN
+    }
+
+    fun handle(command: String): String {
+        return when (intentParser.parse(command)) {
+            MONUOfflineCommandIntent.EMPTY ->
+                "Please say or type a command."
+
+            MONUOfflineCommandIntent.GREETING ->
+                "Hello. MONU is running locally in offline mode."
+
+            MONUOfflineCommandIntent.HELP ->
+                """
+                MONU offline commands:
+                • hello
+                • help
+                • status
+                • who are you
+                • time
+                • date
+                • device status
+                """.trimIndent()
+
+            MONUOfflineCommandIntent.STATUS ->
+                "MONU local runtime is ready. Offline command system is active."
+
+            MONUOfflineCommandIntent.IDENTITY ->
+                "I am MONU, your personal AI assistant. I can operate with local offline capabilities."
+
+            MONUOfflineCommandIntent.TIME,
+            MONUOfflineCommandIntent.DATE,
+            MONUOfflineCommandIntent.LOCAL_STATUS ->
+                localDeviceCommandEngine.handle(command)
+
+            MONUOfflineCommandIntent.UNKNOWN ->
+                "I received your command, but this offline capability is not available yet."
+        }
+    }
+
+    override fun execute(
+        request: MONUOfflineCommandRequest
+    ): MONUOfflineCommandResponse {
+        val command = request.command
+        val intent = intentParser.parse(command)
+        val handled = intent != MONUOfflineCommandIntent.UNKNOWN
+
+        return MONUOfflineCommandResponse(
+            handled = handled,
+            intent = intent,
+            response = handle(command)
+        )
+    }
+
+}
+
+
+===== app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt =====
+package com.monu.mobile.feature.conversation
+
+class MONUChatScreenIntegration(
+    private val coordinator: MONUChatCoordinator =
+        MONUChatCoordinator()
+) {
+
+    fun messages(): List<MONUConversationMessage> {
+        return coordinator.state().messages
+    }
+
+    fun isProcessing(): Boolean {
+        return coordinator.state().isProcessing
+    }
+
+    fun submit(
+        command: String
+    ): MONUChatSubmission {
+        return coordinator.submit(command)
+    }
+
+    fun clear() {
+        coordinator.clearConversation()
+    }
+}
+
+
+===== app/src/main/java/com/monu/mobile/domain/model/InternetKnowledgeModels.kt =====
+package com.monu.mobile.domain.model
+
+enum class InternetKnowledgeState {
+    SUCCESS,
+    NOT_FOUND,
+    NETWORK_ERROR,
+    INVALID_QUERY
+}
+
+data class InternetKnowledgeResult(
+    val query: String,
+    val title: String,
+    val summary: String,
+    val source: String,
+    val state: InternetKnowledgeState,
+    val errorMessage: String? = null
+)
+
+

@@ -1,0 +1,266 @@
+================================================
+ENGINE: HeartbeatEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt
+--- PUBLIC METHODS ---
+17:    fun start(
+40:    fun stop() {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+44 app/src/main/java/com/monu/mobile/feature/connection/HeartbeatEngine.kt
+================================================
+ENGINE: MONUActivityCenter
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt
+--- PUBLIC METHODS ---
+11:    fun addActivity(
+17:    fun getActivities(): List<MONUActivityLog> {
+24:    fun getActivitiesBySource(
+32:    fun getActivitiesBySeverity(
+40:    fun clear() {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+43 app/src/main/java/com/monu/mobile/feature/activity/MONUActivityCenter.kt
+================================================
+ENGINE: MONUAuditTrail
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt
+--- PUBLIC METHODS ---
+12:    fun record(
+32:    fun all(): List<MONUAuditEntry> {
+36:    fun clear() {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+39 app/src/main/java/com/monu/mobile/feature/audit/MONUAuditTrail.kt
+================================================
+ENGINE: MONUChatScreenIntegration
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+--- PUBLIC METHODS ---
+8:    fun messages(): List<MONUConversationMessage> {
+12:    fun isProcessing(): Boolean {
+16:    fun submit(
+22:    fun clear() {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+25 app/src/main/java/com/monu/mobile/feature/conversation/MONUChatScreenIntegration.kt
+================================================
+ENGINE: MONUChunkPlanner
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt
+--- PUBLIC METHODS ---
+8:    fun createChunks(
+--- TODO/STUB MARKERS ---
+15:            return emptyList()
+--- FILE SIZE ---
+46 app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt
+================================================
+ENGINE: MONUCommandHistory
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt
+--- PUBLIC METHODS ---
+10:    fun add(entry: MONUCommandHistoryEntry) {
+14:    fun all(): List<MONUCommandHistoryEntry> {
+18:    fun analyzePatterns(): List<MONUCommandPattern> {
+33:    fun clear() {
+--- TODO/STUB MARKERS ---
+19:        if (commands.isEmpty()) return emptyList()
+--- FILE SIZE ---
+36 app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt
+================================================
+ENGINE: MONUConversationLifecycle
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt
+--- PUBLIC METHODS ---
+9:    fun start(): MONUConversationState {
+14:    fun snapshot(): MONUConversationSnapshot {
+18:    fun clear(): MONUConversationState {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+22 app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationLifecycle.kt
+================================================
+ENGINE: MONUEmployeeCenter
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt
+--- PUBLIC METHODS ---
+11:    fun replaceEmployees(
+18:    fun getEmployees(): List<MONUEmployee> {
+22:    fun getEmployee(
+30:    fun updateEmployeeStatus(
+51:    fun countByStatus(
+59:    fun countByType(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+66 app/src/main/java/com/monu/mobile/feature/employees/MONUEmployeeCenter.kt
+================================================
+ENGINE: MONUHomePersonalization
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt
+--- PUBLIC METHODS ---
+8:    fun defaultAppearance(): HomeAppearance {
+16:    fun imageAppearance(
+27:    fun generatedImageAppearance(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+37 app/src/main/java/com/monu/mobile/feature/home/MONUHomePersonalization.kt
+================================================
+ENGINE: MONUIntegrationHub
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt
+--- PUBLIC METHODS ---
+8:    fun snapshot(
+16:    fun knownIntegrations(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+21 app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt
+================================================
+ENGINE: MONUMediaStudio
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt
+--- PUBLIC METHODS ---
+12:    fun createJob(
+29:    fun getJobs(): List<MONUMediaJob> {
+34:    fun getJob(
+40:    fun updateStatus(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+62 app/src/main/java/com/monu/mobile/feature/media/MONUMediaStudio.kt
+================================================
+ENGINE: MONUMemoryEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt
+--- PUBLIC METHODS ---
+29:    fun remember(content: String): MONUMemory? {
+85:    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+159:    fun recent(limit: Int = 20): List<MONUMemory> {
+168:    fun all(): List<MONUMemory> {
+176:    fun contextFor(
+210:    fun forget(memoryId: String): Boolean {
+228:    fun forgetMatching(query: String): Int {
+261:    fun clearAll() {
+267:    fun memoryCount(): Int {
+--- TODO/STUB MARKERS ---
+36:            return null
+186:            return ""
+--- FILE SIZE ---
+432 app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt
+================================================
+ENGINE: MONUNotificationCenter
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt
+--- PUBLIC METHODS ---
+12:    fun add(
+32:    fun all(): List<MONUNotification> {
+36:    fun unreadCount(): Int {
+40:    fun bySource(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+47 app/src/main/java/com/monu/mobile/feature/notification/MONUNotificationCenter.kt
+================================================
+ENGINE: MONUOfflineCommandCapabilityMatrix
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt
+--- PUBLIC METHODS ---
+11:    fun capabilities(): List<MONUOfflineCommandCapability> {
+69:    fun ownerFor(
+77:    fun supports(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+83 app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt
+================================================
+ENGINE: MONUOptimizationEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt
+--- PUBLIC METHODS ---
+8:    fun analyze(
+14:    fun recommendations(
+--- TODO/STUB MARKERS ---
+17:        return emptyList()
+--- FILE SIZE ---
+19 app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt
+================================================
+ENGINE: MONUPlatformCoordinator
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt
+--- PUBLIC METHODS ---
+9:    fun components(): List<PlatformComponent> {
+13:    fun capabilities(): List<PlatformCapability> {
+17:    fun architectureSnapshot(): PlatformArchitectureSnapshot {
+--- TODO/STUB MARKERS ---
+10:        return emptyList()
+14:        return emptyList()
+--- FILE SIZE ---
+23 app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt
+================================================
+ENGINE: MONUProjectCenter
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt
+--- PUBLIC METHODS ---
+10:    fun addProject(project: MONUProject) {
+14:    fun allProjects(): List<MONUProject> {
+18:    fun activeProjects(): List<MONUProject> {
+24:    fun findProject(id: String): MONUProject? {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+29 app/src/main/java/com/monu/mobile/feature/projects/MONUProjectCenter.kt
+================================================
+ENGINE: MONURecoveryEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt
+--- PUBLIC METHODS ---
+9:    fun checkpoints(): List<RecoveryCheckpoint> {
+13:    fun planRecovery(): List<RecoveryPlan> {
+17:    fun recover(plan: RecoveryPlan): RecoveryResult? {
+--- TODO/STUB MARKERS ---
+10:        return emptyList()
+14:        return emptyList()
+18:        return null
+--- FILE SIZE ---
+20 app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt
+================================================
+ENGINE: MONUServiceCoordinator
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt
+--- PUBLIC METHODS ---
+8:    fun snapshot(
+16:    fun registeredServices(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+21 app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt
+================================================
+ENGINE: MONUSyncEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt
+--- PUBLIC METHODS ---
+22:    suspend fun synchronize(): SyncResult {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+56 app/src/main/java/com/monu/mobile/feature/offline/MONUSyncEngine.kt
+================================================
+ENGINE: MONUTaskCenter
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt
+--- PUBLIC METHODS ---
+10:    fun addTask(task: MONUTask) {
+14:    fun allTasks(): List<MONUTask> {
+18:    fun activeTasks(): List<MONUTask> {
+32:    fun completedTasks(): List<MONUTask> {
+38:    fun failedTasks(): List<MONUTask> {
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+43 app/src/main/java/com/monu/mobile/feature/tasks/MONUTaskCenter.kt
+================================================
+ENGINE: MONUTransferEngine
+REFERENCE_FILES: 1
+FILE: app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt
+--- PUBLIC METHODS ---
+12:    fun createTransfer(
+33:    fun getTransfers(): List<MONUFileTransfer> {
+38:    fun updateStatus(
+57:    fun updateProgress(
+74:    fun pause(
+83:    fun resume(
+92:    fun cancel(
+--- TODO/STUB MARKERS ---
+--- FILE SIZE ---
+100 app/src/main/java/com/monu/mobile/feature/transfer/MONUTransferEngine.kt

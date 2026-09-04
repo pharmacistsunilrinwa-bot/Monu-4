@@ -1,0 +1,52 @@
+40:import com.monu.mobile.core.network.MONUNetworkMonitor
+42:import com.monu.mobile.domain.model.InternetKnowledgeResult
+43:import com.monu.mobile.domain.model.InternetKnowledgeState
+45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+46:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+47:import com.monu.mobile.feature.voice.MONUVoiceEngine
+48:import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+60:val networkMonitor = remember {
+61:    MONUNetworkMonitor(context.applicationContext)
+64:val knowledgeEngine = remember {
+65:    MONUInternetKnowledgeEngine()
+68:val offlineCommandRouter = remember {
+69:    MONUOfflineCommandRouter()
+72:var voiceReady by remember {
+76:var searching by remember {
+80:var voiceListening by remember {
+84:var voiceInputStatus by remember {
+88:var voiceRuntimeHealth by remember {
+92:var messages by remember {
+99:                    "MONU Command Center ready. Internet knowledge is available.",
+119:    result: InternetKnowledgeResult
+122:        InternetKnowledgeState.SUCCESS -> {
+138:        InternetKnowledgeState.NOT_FOUND -> {
+151:        InternetKnowledgeState.NETWORK_ERROR -> {
+153:                append("Internet request failed.")
+162:        InternetKnowledgeState.INVALID_QUERY -> {
+168:fun handleOfflineCommand(
+182:        offlineCommandRouter.handle(cleanCommand)
+190:val voiceEngine = remember {
+191:    MONUVoiceEngine(context) {
+196:val voiceInputEngine = remember {
+197:    MONUVoiceInputEngine(
+203:                return@MONUVoiceInputEngine
+212:                if (!networkMonitor.isOnline()) {
+213:                    handleOfflineCommand(cleanCommand)
+222:                            knowledgeEngine.search(cleanCommand)
+230:                    handleOfflineCommand(cleanCommand)
+248:        voiceInputEngine.getRuntimeHealth()
+251:        voiceEngine.shutdown()
+252:        voiceInputEngine.shutdown()
+263:            voiceInputEngine.startListening()
+265:                voiceInputEngine.getRuntimeHealth()
+271:                voiceInputEngine.getRuntimeHealth()
+332:                    voiceEngine.speak(message.content)
+335:                    voiceEngine.stop()
+384:                    voiceInputEngine.stopListening()
+396:                        voiceInputEngine.startListening()
+405:                    voiceInputEngine.getRuntimeHealth()
+473:            if (!networkMonitor.isOnline()) {
+474:                handleOfflineCommand(cleanCommand)
+483:                        knowledgeEngine.search(cleanCommand)
+491:                handleOfflineCommand(cleanCommand)

@@ -1,0 +1,71 @@
+38-import androidx.compose.ui.unit.dp
+39-import androidx.core.content.ContextCompat
+40-import com.monu.mobile.core.network.MONUNetworkMonitor
+41-import com.monu.mobile.domain.model.ChatMessage
+42-import com.monu.mobile.domain.model.InternetKnowledgeResult
+43-import com.monu.mobile.domain.model.InternetKnowledgeState
+44-import com.monu.mobile.domain.model.MessageRole
+45-import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+47-import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+48-import com.monu.mobile.feature.voice.MONUVoiceEngine
+49-import com.monu.mobile.feature.voice.MONUVoiceInputEngine
+50-import com.monu.mobile.ui.components.CommandInput
+51-import kotlinx.coroutines.Dispatchers
+52-import kotlinx.coroutines.launch
+53-import kotlinx.coroutines.withContext
+54-import java.util.UUID
+--
+58-val context = LocalContext.current
+59-val scope = rememberCoroutineScope()
+60-
+61-val networkMonitor = remember {
+62-    MONUNetworkMonitor(context.applicationContext)
+63-}
+64-
+65-val queryRouter = remember {
+66:    MONUQueryRouter()
+67-}
+68-
+69-val offlineCommandRouter = remember {
+70-    MONUOfflineCommandRouter()
+71-}
+72-
+73-var voiceReady by remember {
+74-    mutableStateOf(false)
+--
+214-                    handleOfflineCommand(cleanCommand)
+215-                    return@launch
+216-                }
+217-
+218-                searching = true
+219-
+220-                try {
+221-                    val response =
+222:                        queryRouter.route(
+223-                            query = cleanCommand,
+224-                            isOnline = networkMonitor.isOnline()
+225-                        )
+226-
+227-                    addMessage(
+228-                        content = response.text,
+229-                        role = MessageRole.MONU
+230-                    )
+--
+476-                handleOfflineCommand(cleanCommand)
+477-                return@launch
+478-            }
+479-
+480-            searching = true
+481-
+482-            try {
+483-                val response =
+484:                    queryRouter.route(
+485-                        query = cleanCommand,
+486-                        isOnline = networkMonitor.isOnline()
+487-                    )
+488-
+489-                addMessage(
+490-                    content = response.text,
+491-                    role = MessageRole.MONU
+492-                )

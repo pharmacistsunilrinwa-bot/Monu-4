@@ -1,0 +1,32 @@
+93:        messages = messages + ChatMessage(
+95:            role = MessageRole.ASSISTANT,
+124:                voiceInputEngine.startListening()
+132:    DisposableEffect(voiceInputEngine) {
+134:            voiceInputEngine.shutdown()
+139:        mutableStateOf(voiceInputEngine.getRuntimeHealth())
+150:    val voiceInputEngine = remember {
+157:                    messages = messages + ChatMessage(
+163:                        if (!networkMonitor.isOnline()) {
+164:                            messages = messages + ChatMessage(
+180:                                is InternetKnowledgeState.SUCCESS -> {
+181:                                    messages = messages + ChatMessage(
+187:                                is InternetKnowledgeState.NOT_FOUND -> {
+188:                                    messages = messages + ChatMessage(
+194:                                is InternetKnowledgeState.NETWORK_ERROR -> {
+195:                                    messages = messages + ChatMessage(
+201:                                is InternetKnowledgeState.INVALID_QUERY -> {
+202:                                    messages = messages + ChatMessage(
+223:                    voiceInputEngine.getRuntimeHealth()
+228:    val networkMonitor = remember {
+235:        voiceInputEngine.shutdown()
+331:                        voiceInputEngine.stopListening()
+342:                            voiceInputEngine.startListening()
+386:            messages = messages + ownerMessage
+397:                messages = messages + systemMessage
+398:            } else if (!networkMonitor.isOnline()) {
+408:                messages = messages + systemMessage
+426:                            InternetKnowledgeState.SUCCESS -> {
+440:                            InternetKnowledgeState.NOT_FOUND -> {
+445:                            InternetKnowledgeState.NETWORK_ERROR -> {
+450:                            InternetKnowledgeState.INVALID_QUERY -> {
+462:                    messages = messages + monuMessage

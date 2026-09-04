@@ -1,0 +1,41 @@
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:8:class MONUEventIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:6:import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:17:class MONUIntelligenceHub {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:32:        MONUKnowledgeCenter()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:4:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:5:import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:25:class MONUQueryRouter {
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:27:    private val offlineRouter =
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:28:        MONUOfflineCommandRouter()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:31:        MONUKnowledgeCenter()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:34:        MONUIntelligenceHub()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:40:        MONUInternetKnowledgeEngine()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:42:    suspend fun route(
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUQueryRouter.kt:60:                text = offlineRouter.handle(cleanQuery),
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:7:class MONUKnowledgeCenter {
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUInternetKnowledgeEngine.kt:11:class MONUInternetKnowledgeEngine {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:6:class MONUOfflineCommandRouter : MONUOfflineCommandContract {
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:15:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:21:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:27:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:33:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:39:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:63:                executionOwner = "Router",
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:6:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/feature/conversation/MONUOfflineConversationBridge.kt:16:        MONUOfflineCommandRouter(),
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:45:import com.monu.mobile.feature.knowledge.MONUInternetKnowledgeEngine
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:46:import com.monu.mobile.feature.intelligence.MONUQueryRouter
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:47:import com.monu.mobile.feature.offline.MONUOfflineCommandRouter
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:65:val queryRouter = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:66:    MONUQueryRouter()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:69:val offlineCommandRouter = remember {
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:70:    MONUOfflineCommandRouter()
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:183:        offlineCommandRouter.handle(cleanCommand)
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:222:                        queryRouter.route(
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:484:                    queryRouter.route(
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:16:import com.monu.mobile.feature.events.MONUEventIntelligenceHub
+app/src/main/java/com/monu/mobile/ui/screens/EventIntelligenceScreen.kt:22:        MONUEventIntelligenceHub()
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:16:import com.monu.mobile.feature.knowledge.MONUKnowledgeCenter
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:19:fun KnowledgeCenterScreen() {
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:21:    val knowledge = MONUKnowledgeCenter().demoKnowledge()
