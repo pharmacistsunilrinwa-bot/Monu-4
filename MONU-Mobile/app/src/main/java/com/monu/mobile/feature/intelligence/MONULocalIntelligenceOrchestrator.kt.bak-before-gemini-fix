@@ -20,7 +20,7 @@ class MONULocalIntelligenceOrchestrator {
     private val internet = MONUInternetKnowledgeEngine()
     private val offline = MONUOfflineCommandRouter()
 
-    suspend fun answer(query: String): String {
+    fun answer(query: String): String {
         val clean = query.trim()
 
         if (clean.isBlank()) {
@@ -30,10 +30,10 @@ class MONULocalIntelligenceOrchestrator {
         // Gemini is the primary local AI intelligence layer.
         try {
             if (gemini.isConfigured()) {
-                val result = gemini.ask(clean)
+                val result = gemini.generate(clean)
 
-                if (result.success && result.text.isNotBlank()) {
-                    return result.text
+                if (result.isNotBlank()) {
+                    return result
                 }
             }
         } catch (_: Exception) {
