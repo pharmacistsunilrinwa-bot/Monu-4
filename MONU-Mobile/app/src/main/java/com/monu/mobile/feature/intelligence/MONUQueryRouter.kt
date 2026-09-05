@@ -54,13 +54,10 @@ class MONUQueryRouter {
             )
         }
 
-        if (!isOnline) {
-            return@withContext MONUQueryResponse(
-                source = MONUQuerySource.OFFLINE,
-                text = offlineRouter.handle(cleanQuery),
-                success = true
-            )
-        }
+        // Do not block Gemini based only on networkMonitor.
+        // The Gemini engine performs the real HTTPS attempt itself.
+        // If Gemini and internet knowledge both fail, offline fallback
+        // is handled later in the routing chain.
 
         val lower = cleanQuery.lowercase()
 

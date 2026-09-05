@@ -210,10 +210,7 @@ val voiceInputEngine = remember {
             )
 
             scope.launch {
-                if (!networkMonitor.isOnline()) {
-                    handleOfflineCommand(cleanCommand)
-                    return@launch
-                }
+
 
                 searching = true
 
@@ -472,10 +469,7 @@ Column(
         )
 
         scope.launch {
-            if (!networkMonitor.isOnline()) {
-                handleOfflineCommand(cleanCommand)
-                return@launch
-            }
+
 
             searching = true
 
